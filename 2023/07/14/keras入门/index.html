@@ -11,20 +11,22 @@
   <meta charset="utf-8">
   
   
-  <title>什么是CNN-LSTM | 日月星辰的个人博客</title>
+  <title>keras入门 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="CNN-LSTM是一种混合模型，结合了卷积神经网络（Convolutional Neural Network，CNN）和长短期记忆网络（Long Short-Term Memory，LSTM）。它常被用于处理具有时空特性的数据，如图像序列、文本序列等。 CNN是一种主要用于处理图像数据的神经网络架构。它通过卷积层和池化层来提取输入数据中的局部特征，然后通过全连接层进行分类或回归等任务。CNN在图像">
+  <meta name="description" content="这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647from tensorflow import kerasfrom keras import layersfrom keras.datasets">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是CNN-LSTM">
-<meta property="og:url" content="http://example.com/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFCNN-LSTM/index.html">
+<meta property="og:title" content="keras入门">
+<meta property="og:url" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="CNN-LSTM是一种混合模型，结合了卷积神经网络（Convolutional Neural Network，CNN）和长短期记忆网络（Long Short-Term Memory，LSTM）。它常被用于处理具有时空特性的数据，如图像序列、文本序列等。 CNN是一种主要用于处理图像数据的神经网络架构。它通过卷积层和池化层来提取输入数据中的局部特征，然后通过全连接层进行分类或回归等任务。CNN在图像">
+<meta property="og:description" content="这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647from tensorflow import kerasfrom keras import layersfrom keras.datasets">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T10:15:18.000Z">
-<meta property="article:modified_time" content="2023-07-14T11:28:18.234Z">
+<meta property="og:image" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot.png">
+<meta property="article:published_time" content="2023-07-14T11:19:19.000Z">
+<meta property="article:modified_time" content="2023-07-14T11:27:34.859Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot.png">
   
     <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
   
@@ -214,7 +216,7 @@
     <div id="content-body">
        
 
-<article id="post-什么是CNN-LSTM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+<article id="post-keras入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
     
    
@@ -227,7 +229,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        什么是CNN-LSTM
+        keras入门
       </h1>
     
   
@@ -235,7 +237,7 @@
 
         <div class='meta-info-bar'>
           <div class="meta-info">
-  <time class="dt-published" datetime="2023-07-09T10:15:18.000Z" itemprop="datePublished">2023-07-09</time>
+  <time class="dt-published" datetime="2023-07-14T11:19:19.000Z" itemprop="datePublished">2023-07-14</time>
 </div>
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
@@ -246,7 +248,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            421 words 
+            259 words 
           </div>
         </div>
         
@@ -255,11 +257,14 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p>CNN-LSTM是一种混合模型，结合了卷积神经网络（Convolutional Neural Network，CNN）和长短期记忆网络（Long Short-Term Memory，LSTM）。它常被用于处理具有时空特性的数据，如图像序列、文本序列等。</p>
-<p>CNN是一种主要用于处理图像数据的神经网络架构。它通过卷积层和池化层来提取输入数据中的局部特征，然后通过全连接层进行分类或回归等任务。CNN在图像处理领域取得了很大的成功，因为它能够自动学习和提取图像中的特征。</p>
-<p>LSTM是一种递归神经网络（Recurrent Neural Network，RNN）的变体，专门用于处理序列数据。相比于传统的RNN，LSTM能够更好地处理长序列依赖关系，避免了梯度消失或梯度爆炸等问题。LSTM通过使用称为“门”的结构来选择性地遗忘和更新信息，以捕捉序列中的长期依赖关系。</p>
-<p>将CNN和LSTM结合起来，可以利用CNN在提取局部特征方面的优势，并将这些特征输入到LSTM中进行序列建模。这种混合模型常被用于处理文本分类、情感分析、语音识别等任务，其中CNN用于提取文本或语音中的局部特征，而LSTM用于对这些特征进行序列建模和处理。</p>
-<p>CNN-LSTM模型的设计可以根据具体任务和数据进行调整和优化。通过结合CNN和LSTM的能力，它可以更好地捕捉时空特性，提高对序列数据的建模能力。</p>
+          <p>这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 加载数据集</span></span><br><span class="line">(train_images, train_lables), (test_images, test_labels) = mnist.load_data()</span><br><span class="line"><span class="built_in">print</span>(train_images.shape) <span class="comment"># (60000, 28, 28)</span></span><br><span class="line"><span class="built_in">print</span>(train_lables)       <span class="comment"># [5 0 4 ... 5 6 8]</span></span><br><span class="line"></span><br><span class="line">model = keras.Sequential([</span><br><span class="line">    layers.Dense(<span class="number">512</span>, activation=<span class="string">&quot;relu&quot;</span>),</span><br><span class="line">    layers.Dense(<span class="number">10</span>, activation=<span class="string">&quot;softmax&quot;</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&quot;rmsprop&quot;</span>,                    <span class="comment"># 优化器</span></span><br><span class="line">              loss=<span class="string">&quot;sparse_categorical_crossentropy&quot;</span>, <span class="comment"># 损失函数</span></span><br><span class="line">              metrics=[<span class="string">&quot;accuracy&quot;</span>])                   <span class="comment"># 指标，只关心精度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line"><span class="comment"># 将每图片展成一维数组，长度是28*28，一共60000个一维数组</span></span><br><span class="line"><span class="comment"># 数据/255都转成0~1的整数</span></span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">train_images = train_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拟合训练</span></span><br><span class="line">history = model.fit(train_images, train_lables, epochs = <span class="number">10</span>,validation_data = (test_images, test_labels) , verbose=<span class="number">1</span>)</span><br><span class="line">model.save_weights(<span class="string">&#x27;weight.h5&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练准确度(已知图片)和验证准确度(未知图片)曲线</span></span><br><span class="line">acc = history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc = history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss = history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss = history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(acc))</span><br><span class="line"></span><br><span class="line">plt.plot(epochs, acc, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training accuracy&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_acc, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accuracy&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;accuracy_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可视化训练结果</p>
+<p><img src="/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot.png"></p>
+<blockquote>
+<p>发现拟合结果很好</p>
+</blockquote>
 
         
       </div>
@@ -272,27 +277,22 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left "
-    
-      href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFMTCNN/"
-      title="什么是MTCNN"
+  <a class="article-nav-btn left  disabled "
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
-      
-        什么是MTCNN
         
     </p>
   </a>
   <a class="article-nav-btn right "
     
-      href="/2023/07/07/python%E6%88%AA%E5%8F%96%E7%94%B5%E8%84%91%E5%B1%8F%E5%B9%95-%E6%90%AD%E9%85%8Dyolo%E4%BD%BF%E7%94%A8/"
-      title="python截取电脑屏幕(搭配yolo使用)"
+      href="/2023/07/12/day2/"
+      title="day2"
      >
 
     <p class="title-text">
       
-        python截取电脑屏幕(搭配yolo使用)
+        day2
         
     </p>
     <i class="fa-solid fa-angle-right"></i>
