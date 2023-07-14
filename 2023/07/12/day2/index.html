@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>day2 | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="day2 - 登堂入室 温故而知新 分治的作用 分治的思想 分治的写法(二分查找)  练习题：洛谷 P2249 查找 思考题：洛谷 P1676 Aggressive cows G  排序桶排序 - 最快的排序 思想 优点，适用范围  选择排序 - 打擂台 思想 改进12345678910111213141516171819202122232425262728293031#include&lt;cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day2">
+<meta property="og:url" content="http://example.com/2023/07/12/day2/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="day2 - 登堂入室 温故而知新 分治的作用 分治的思想 分治的写法(二分查找)  练习题：洛谷 P2249 查找 思考题：洛谷 P1676 Aggressive cows G  排序桶排序 - 最快的排序 思想 优点，适用范围  选择排序 - 打擂台 思想 改进12345678910111213141516171819202122232425262728293031#include&lt;cs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-12T11:32:10.000Z">
+<meta property="article:modified_time" content="2023-07-14T07:37:07.080Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="算法特训营">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">10 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2023/07/12/day2/">day2</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/11/day1/">day1</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/11/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">python发送邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/11/%E5%8A%A0%E6%9D%83%E8%BF%9B%E8%A1%8C%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86/">加权进行灰度处理</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/09/TensorFlow%E5%92%8CKeras%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">TensorFlow和Keras有什么区别</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-day2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        day2
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-07-12T11:32:10.000Z" itemprop="datePublished">2023-07-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            758 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="day2-登堂入室"><a href="#day2-登堂入室" class="headerlink" title="day2 - 登堂入室"></a>day2 - 登堂入室</h1><hr>
+<h2 id="温故而知新"><a href="#温故而知新" class="headerlink" title="温故而知新"></a>温故而知新</h2><ol>
+<li>分治的作用</li>
+<li>分治的思想</li>
+<li>分治的写法(二分查找)</li>
+</ol>
+<p>练习题：洛谷 P2249 查找</p>
+<p>思考题：洛谷 P1676 Aggressive cows G</p>
+<hr>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="桶排序-最快的排序"><a href="#桶排序-最快的排序" class="headerlink" title="桶排序 - 最快的排序"></a>桶排序 - 最快的排序</h3><ol>
+<li>思想</li>
+<li>优点，适用范围</li>
+</ol>
+<h3 id="选择排序-打擂台"><a href="#选择排序-打擂台" class="headerlink" title="选择排序 - 打擂台"></a>选择排序 - 打擂台</h3><ol>
+<li>思想</li>
+<li>改进<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">1001</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//核心代码</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">		<span class="type">int</span> max=<span class="number">-99999999</span>;</span><br><span class="line">		<span class="type">int</span> pos;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&gt;max)&#123;</span><br><span class="line">				max=a[j];</span><br><span class="line">				pos=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//交换 </span></span><br><span class="line">		<span class="type">int</span> t=a[i];</span><br><span class="line">		a[i]=a[pos];</span><br><span class="line">		a[pos]=t;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="插入排序-扑克摸牌"><a href="#插入排序-扑克摸牌" class="headerlink" title="插入排序 - 扑克摸牌"></a>插入排序 - 扑克摸牌</h3><ol>
+<li>思想</li>
+<li>优点，使用性<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> len 5</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a[] = &#123;<span class="number">45</span>,<span class="number">32</span>,<span class="number">56</span>,<span class="number">71</span>,<span class="number">12</span>&#125;;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;原数组：&quot;</span>&lt;&lt;endl; </span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n经过直接插入排序后：\n&quot;</span>); </span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> j,temp;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = a[i];</span><br><span class="line">		<span class="comment">//当前数小于前一位数时</span></span><br><span class="line">		<span class="keyword">if</span>(a[i] &lt; a[i<span class="number">-1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//将子序列重新排列为有序序列</span></span><br><span class="line">			<span class="keyword">for</span>(j=i<span class="number">-1</span>;temp&lt;a[j];j--)</span><br><span class="line">			&#123;</span><br><span class="line">				a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">			&#125;</span><br><span class="line">			a[j+<span class="number">1</span>] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="冒泡排序-邻居好说话"><a href="#冒泡排序-邻居好说话" class="headerlink" title="冒泡排序 - 邻居好说话"></a>冒泡排序 - 邻居好说话</h3><ol>
+<li>思想</li>
+<li>改进(优化，双向冒泡)</li>
+<li>优点</li>
+</ol>
+<h3 id="快速排序-用的最多的排序"><a href="#快速排序-用的最多的排序" class="headerlink" title="快速排序 - 用的最多的排序"></a>快速排序 - 用的最多的排序</h3><ol>
+<li>思想</li>
+<li>优缺点</li>
+</ol>
+<h3 id="更多排序算法-进阶"><a href="#更多排序算法-进阶" class="headerlink" title="更多排序算法 - 进阶"></a>更多排序算法 - 进阶</h3><ol>
+<li>基数排序</li>
+<li>希尔排序</li>
+<li>归并排序</li>
+<li>堆排序</li>
+</ol>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p><strong>洛谷</strong></p>
+<p><strong>P1177 【模板】排序</strong></p>
+<p><strong>P1059 [NOIP2006 普及组] 明明的随机数</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">// 数字是1~1000 </span></span><br><span class="line">	<span class="type">int</span> b[<span class="number">1001</span>] = &#123;<span class="number">0</span>&#125;; <span class="comment">//桶的含义 </span></span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n; <span class="comment">//n个数据 </span></span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> x;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		b[x] = <span class="number">1</span>;<span class="comment">//桶排关键代码 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> total=<span class="number">0</span>; </span><br><span class="line">	<span class="comment">//输出 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;<span class="comment">//有1000个桶 	</span></span><br><span class="line">		<span class="keyword">if</span>(b[i]==<span class="number">1</span>)&#123;</span><br><span class="line">			total++;</span><br><span class="line">		&#125;		 </span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;total&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;<span class="comment">//有1000个桶 </span></span><br><span class="line">		<span class="keyword">if</span>(b[i]==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,i);</span><br><span class="line">		&#125;</span><br><span class="line">			 </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>P1012 [NOIP1998 提高组] 拼数</p>
+<blockquote>
+<p>比较判断的条件，字符串的运用</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,n;</span><br><span class="line">    string st[<span class="number">21</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">      	cin&gt;&gt;st[i];</span><br><span class="line">      	</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)</span><br><span class="line">      	<span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">        	<span class="keyword">if</span>(st[j]+st[i]&gt;st[i]+st[j])<span class="comment">//核心代码 </span></span><br><span class="line">          		<span class="built_in">swap</span>(st[j],st[i]);</span><br><span class="line">          		</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">      	cout&lt;&lt;st[i];      </span><br><span class="line">                                      </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>P1051 [NOIP2005 提高组] 谁拿了最多奖学金</em></p>
+<p><em>P1093 [NOIP2007 普及组] 奖学金</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,score[<span class="number">310</span>],id[<span class="number">310</span>],x[<span class="number">310</span>];<span class="comment">//x[]是语文成绩 </span></span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="type">int</span> y, z;</span><br><span class="line">		cin&gt;&gt; x[i] &gt;&gt; y &gt;&gt; z ;</span><br><span class="line">		score[i] = x[i] + y + z; </span><br><span class="line">		</span><br><span class="line">		id[i] = i;</span><br><span class="line">	&#125;    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">			<span class="keyword">if</span>(score[i] &lt; score[j] || <span class="comment">// 核心判断语句 </span></span><br><span class="line">				(score[i] == score[j] &amp;&amp; x[i] &lt; x[j]) ||</span><br><span class="line">				(score[i] == score[j] &amp;&amp; x[i] == x[j] &amp;&amp; id[i] &gt; id[j]))&#123;</span><br><span class="line">					</span><br><span class="line">				<span class="type">int</span> temp = score[i];</span><br><span class="line">				score[i] = score[j];</span><br><span class="line">				score[j] = temp;     <span class="comment">//交换总分 </span></span><br><span class="line">				</span><br><span class="line">				temp = id[i];</span><br><span class="line">				id[i] = id[j];</span><br><span class="line">				id[j] = temp;		<span class="comment">//交换学号 </span></span><br><span class="line">				</span><br><span class="line">				temp = x[i];</span><br><span class="line">				x[i] = x[j];</span><br><span class="line">				x[j] = temp;		<span class="comment">//交换语文成绩 </span></span><br><span class="line">			&#125;          </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)      <span class="comment">//前5名 </span></span><br><span class="line">		cout&lt;&lt;id[i]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;score[i]&lt;&lt;endl;                       </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/07/11/day1/"
+      title="day1"
+     >
+
+    <p class="title-text">
+      
+        day1
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
