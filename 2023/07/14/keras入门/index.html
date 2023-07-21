@@ -11,18 +11,19 @@
   <meta charset="utf-8">
   
   
-  <title>keras入门 | 日月星辰的个人博客</title>
+  <title>keras入门实例(MNIST数字分类) | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748from tensorflow import kerasfrom keras import layersfrom keras.dataset">
+  <meta name="description" content="NN全连接神经网络这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 过程都写在注释里了，下面是train.py的代码： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950from tensorflow import kerasfro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="keras入门">
+<meta property="og:title" content="keras入门实例(MNIST数字分类)">
 <meta property="og:url" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748from tensorflow import kerasfrom keras import layersfrom keras.dataset">
+<meta property="og:description" content="NN全连接神经网络这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。 过程都写在注释里了，下面是train.py的代码： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950from tensorflow import kerasfro">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot.png">
+<meta property="og:image" content="http://example.com/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot2.png">
 <meta property="article:published_time" content="2023-07-14T11:19:19.000Z">
-<meta property="article:modified_time" content="2023-07-14T12:15:56.228Z">
+<meta property="article:modified_time" content="2023-07-21T11:32:27.991Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -190,7 +191,7 @@
           </li>
         
           <li>
-            <a href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门</a>
+            <a href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门实例(MNIST数字分类)</a>
           </li>
         
           <li>
@@ -229,7 +230,7 @@
   
     
       <h1 class="p-name article-title" itemprop="headline name">
-        keras入门
+        keras入门实例(MNIST数字分类)
       </h1>
     
   
@@ -248,7 +249,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            328 words 
+            2.4k words 
           </div>
         </div>
         
@@ -257,8 +258,9 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          <p>这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据集</span></span><br><span class="line">(train_images, train_lables), (test_images, test_labels) = mnist.load_data()</span><br><span class="line"><span class="built_in">print</span>(train_images.shape) <span class="comment"># (60000, 28, 28)</span></span><br><span class="line"><span class="built_in">print</span>(train_lables)       <span class="comment"># [5 0 4 ... 5 6 8]</span></span><br><span class="line"></span><br><span class="line">model = keras.Sequential([</span><br><span class="line">    layers.Dense(<span class="number">512</span>, activation=<span class="string">&quot;relu&quot;</span>),   <span class="comment"># 512个神经元的全连接层</span></span><br><span class="line">    layers.Dense(<span class="number">10</span>, activation=<span class="string">&quot;softmax&quot;</span>)  <span class="comment"># softmax分类输出层</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&quot;rmsprop&quot;</span>,                    <span class="comment"># 优化器</span></span><br><span class="line">              loss=<span class="string">&quot;sparse_categorical_crossentropy&quot;</span>, <span class="comment"># 损失函数</span></span><br><span class="line">              metrics=[<span class="string">&quot;accuracy&quot;</span>])                   <span class="comment"># 指标，只关心精度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line"><span class="comment"># 将每图片展成一维数组，长度是28*28，一共60000个一维数组</span></span><br><span class="line"><span class="comment"># 数据/255都转成0~1的整数</span></span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">train_images = train_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拟合训练</span></span><br><span class="line">history = model.fit(train_images, train_lables, epochs = <span class="number">10</span>,validation_data = (test_images, test_labels) , verbose=<span class="number">1</span>)</span><br><span class="line">model.save_weights(<span class="string">&#x27;weight.h5&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练准确度(已知图片)和验证准确度(未知图片)曲线</span></span><br><span class="line">acc = history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc = history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss = history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss = history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(acc))</span><br><span class="line"></span><br><span class="line">plt.plot(epochs, acc, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training accuracy&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_acc, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accuracy&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;accuracy_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h1 id="NN全连接神经网络"><a href="#NN全连接神经网络" class="headerlink" title="NN全连接神经网络"></a>NN全连接神经网络</h1><p>这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。</p>
+<p>过程都写在注释里了，下面是train.py的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据集</span></span><br><span class="line">(train_images, train_lables), (test_images, test_labels) = mnist.load_data()</span><br><span class="line"><span class="built_in">print</span>(train_images.shape) <span class="comment"># (60000, 28, 28)</span></span><br><span class="line"><span class="built_in">print</span>(train_lables)       <span class="comment"># [5 0 4 ... 5 6 8]</span></span><br><span class="line"></span><br><span class="line">model = keras.Sequential([</span><br><span class="line">    layers.Dense(<span class="number">512</span>, activation=<span class="string">&quot;relu&quot;</span>),   <span class="comment"># 512个神经元的全连接层</span></span><br><span class="line">    layers.Dense(<span class="number">10</span>, activation=<span class="string">&quot;softmax&quot;</span>)  <span class="comment"># softmax分类输出层</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line"><span class="comment"># 因为我们要做的是带有softmax输出的十类别分类，因此要使用分类交叉损失</span></span><br><span class="line"><span class="comment"># 而且由于标签是整数，因此要使用稀疏分类交叉熵损失sparse_categorical_crossentropy</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&quot;rmsprop&quot;</span>,                    <span class="comment"># 优化器</span></span><br><span class="line">              loss=<span class="string">&quot;sparse_categorical_crossentropy&quot;</span>, <span class="comment"># 损失函数</span></span><br><span class="line">              metrics=[<span class="string">&quot;accuracy&quot;</span>])                   <span class="comment"># 指标，只关心精度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line"><span class="comment"># 将每图片展成一维数组，长度是28*28，一共60000个一维数组</span></span><br><span class="line"><span class="comment"># 数据/255都转成0~1的整数</span></span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">train_images = train_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拟合训练</span></span><br><span class="line">history = model.fit(train_images, train_lables, epochs = <span class="number">10</span>,validation_data = (test_images, test_labels) , verbose=<span class="number">1</span>)</span><br><span class="line">model.save_weights(<span class="string">&#x27;weight.h5&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练准确度(已知图片)和验证准确度(未知图片)曲线</span></span><br><span class="line">acc = history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc = history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss = history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss = history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(acc))</span><br><span class="line"></span><br><span class="line">plt.plot(epochs, acc, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training accuracy&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_acc, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accuracy&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;accuracy_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>可视化训练结果</p>
 <p><img src="/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot.png"></p>
@@ -267,6 +269,136 @@
 <p>但发现测试精度比训练精度低不少，这是 <strong>过拟合</strong> 造成的</p>
 </blockquote>
 <p>过拟合是指机器学习模型在新数据上的性能往往比在训练数据上要差</p>
+<hr>
+<h1 id="CNN卷积神经网络"><a href="#CNN卷积神经网络" class="headerlink" title="CNN卷积神经网络"></a>CNN卷积神经网络</h1><p>train.py的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 加载数据集</span></span><br><span class="line">(train_images, train_lables), (test_images, test_labels) = mnist.load_data()</span><br><span class="line"><span class="built_in">print</span>(train_images.shape) <span class="comment"># (60000, 28, 28)</span></span><br><span class="line"><span class="built_in">print</span>(train_lables)       <span class="comment"># [5 0 4 ... 5 6 8]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">inputs = keras.Input(shape=(<span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">32</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(inputs)</span><br><span class="line">x = layers.MaxPooling2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line">x = layers.Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPooling2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line">x = layers.Conv2D(filters=<span class="number">128</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.Flatten()(x)</span><br><span class="line"></span><br><span class="line">outputs = layers.Dense(<span class="number">10</span>, activation=<span class="string">&quot;softmax&quot;</span>)(x)</span><br><span class="line"></span><br><span class="line">model = keras.Model(inputs=inputs, outputs=outputs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示模型的概述信息</span></span><br><span class="line">model.summary()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&quot;rmsprop&quot;</span>,                    <span class="comment"># 优化器</span></span><br><span class="line">              loss=<span class="string">&quot;sparse_categorical_crossentropy&quot;</span>, <span class="comment"># 损失函数</span></span><br><span class="line">              metrics=[<span class="string">&quot;accuracy&quot;</span>])                   <span class="comment"># 指标，只关心精度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预处理</span></span><br><span class="line"><span class="comment"># 这是训练集和验证集</span></span><br><span class="line">train_images = train_images.reshape((<span class="number">60000</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>))</span><br><span class="line">train_images = train_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line">test_images = test_images.reshape((<span class="number">10000</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>))</span><br><span class="line">test_images = test_images.astype(<span class="string">&quot;float32&quot;</span>) / <span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拟合训练</span></span><br><span class="line">history = model.fit(train_images, train_lables, epochs = <span class="number">10</span>,validation_data = (test_images, test_labels) , verbose=<span class="number">1</span>)</span><br><span class="line">model.save(<span class="string">&#x27;model.h5&#x27;</span>) <span class="comment"># 将模型保存到本地</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练准确度(已知图片)和验证准确度(未知图片)曲线</span></span><br><span class="line">acc = history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc = history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss = history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss = history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(acc))</span><br><span class="line"></span><br><span class="line">plt.plot(epochs, acc, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training accuracy&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_acc, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accuracy&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;accuracy_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模型信息：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;model.summary()</span><br><span class="line">Model: &quot;model&quot;</span><br><span class="line">_________________________________________________________________</span><br><span class="line"> Layer (type)                Output Shape              Param #   </span><br><span class="line">=================================================================</span><br><span class="line"> input_1 (InputLayer)        [(None, 28, 28, 1)]       0</span><br><span class="line"></span><br><span class="line"> conv2d (Conv2D)             (None, 26, 26, 32)        320       </span><br><span class="line"></span><br><span class="line"> max_pooling2d (MaxPooling2D  (None, 13, 13, 32)       0</span><br><span class="line"> )</span><br><span class="line"></span><br><span class="line"> conv2d_1 (Conv2D)           (None, 11, 11, 64)        18496</span><br><span class="line"></span><br><span class="line"> max_pooling2d_1 (MaxPooling  (None, 5, 5, 64)         0</span><br><span class="line"> 2D)</span><br><span class="line"></span><br><span class="line"> conv2d_2 (Conv2D)           (None, 3, 3, 128)         73856</span><br><span class="line"></span><br><span class="line"> flatten (Flatten)           (None, 1152)              0</span><br><span class="line"></span><br><span class="line"> dense (Dense)               (None, 10)                11530</span><br><span class="line"></span><br><span class="line">=================================================================</span><br><span class="line">Total params: 104,202</span><br><span class="line">Trainable params: 104,202</span><br><span class="line">Non-trainable params: 0</span><br><span class="line">_________________________________________________________________</span><br></pre></td></tr></table></figure>
+
+<p>这是一个简单的卷积神经网络（Convolutional Neural Network，CNN）模型的结构概览。这个CNN模型用于处理28x28像素的灰度图像，并用于图像分类任务，目标是将输入的图像分为10个类别。</p>
+<p>下面是对模型结构的解释：</p>
+<ol>
+<li><p>输入层（InputLayer）：</p>
+<ul>
+<li>输入数据的形状为(None, 28, 28, 1)，其中None表示输入的样本数量可以是任意值，28x28表示每个图像的尺寸，1表示输入图像是灰度图像（通道数为1）。</li>
+</ul>
+</li>
+<li><p>第一个卷积层（Conv2D）：</p>
+<ul>
+<li>使用32个大小为3x3的滤波器（卷积核）对输入图像进行卷积操作。</li>
+<li>卷积操作会输出32个特征图（Feature Map）。</li>
+<li>输出特征图的尺寸为(None, 26, 26, 32)，因为卷积操作会在图像周围添加0像素（Padding），以便保持尺寸。</li>
+<li>参数数量：32个滤波器 * （3x3的滤波器尺寸 * 1个输入通道 + 1个偏置项）&#x3D; 320个参数。</li>
+</ul>
+</li>
+<li><p>第一个池化层（MaxPooling2D）：</p>
+<ul>
+<li>使用2x2的池化窗口对上一层的特征图进行最大池化操作。</li>
+<li>最大池化会将特征图的尺寸减半，输出的特征图尺寸为(None, 13, 13, 32)。</li>
+<li>池化层没有需要学习的参数。</li>
+</ul>
+</li>
+<li><p>第二个卷积层（Conv2D）：</p>
+<ul>
+<li>使用64个大小为3x3的滤波器对上一层的特征图进行卷积操作。</li>
+<li>卷积操作会输出64个特征图。</li>
+<li>输出特征图的尺寸为(None, 11, 11, 64)。</li>
+<li>参数数量：64个滤波器 * （3x3的滤波器尺寸 * 32个输入通道 + 1个偏置项）&#x3D; 18,496个参数。</li>
+</ul>
+</li>
+<li><p>第二个池化层（MaxPooling2D）：</p>
+<ul>
+<li>使用2x2的池化窗口对上一层的特征图进行最大池化操作。</li>
+<li>最大池化会将特征图的尺寸减半，输出的特征图尺寸为(None, 5, 5, 64)。</li>
+<li>池化层没有需要学习的参数。</li>
+</ul>
+</li>
+<li><p>第三个卷积层（Conv2D）：</p>
+<ul>
+<li>使用128个大小为3x3的滤波器对上一层的特征图进行卷积操作。</li>
+<li>卷积操作会输出128个特征图。</li>
+<li>输出特征图的尺寸为(None, 3, 3, 128)。</li>
+<li>参数数量：128个滤波器 * （3x3的滤波器尺寸 * 64个输入通道 + 1个偏置项）&#x3D; 73,856个参数。</li>
+</ul>
+</li>
+<li><p>展平层（Flatten）：</p>
+<ul>
+<li>将上一层的3D特征图展平为1D向量。</li>
+<li>输出的形状为(None, 1152)，其中1152是3x3x128的结果。</li>
+</ul>
+</li>
+<li><p>全连接层（Dense）：</p>
+<ul>
+<li>这是一个全连接层，包含10个神经元，用于输出10个类别的概率分布。</li>
+<li>参数数量：1152个输入神经元 * 10个输出神经元 + 10个偏置项 &#x3D; 11,530个参数。</li>
+</ul>
+</li>
+</ol>
+<p>总参数数量：320 + 18,496 + 73,856 + 11,530 &#x3D; 104,202个参数。</p>
+<p>这是一个典型的CNN模型结构，包含了交替的卷积层和池化层，最后是一个全连接层用于分类任务。在训练过程中，这些参数会根据数据进行调整，以使模型能够更好地对图像进行分类。</p>
+<p>再来看看卷积模型的结构</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">inputs = keras.Input(shape=(<span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">32</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(inputs)</span><br><span class="line">x = layers.MaxPooling2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line">x = layers.Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPooling2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line">x = layers.Conv2D(filters=<span class="number">128</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.Flatten()(x)</span><br><span class="line"></span><br><span class="line">outputs = layers.Dense(<span class="number">10</span>, activation=<span class="string">&quot;softmax&quot;</span>)(x)</span><br><span class="line"></span><br><span class="line">model = keras.Model(inputs=inputs, outputs=outputs)</span><br></pre></td></tr></table></figure>
+
+<p>来解释每一部分的作用：</p>
+<ol>
+<li><p>输入层：</p>
+<ul>
+<li>使用<code>keras.Input</code>函数定义输入层，指定输入数据的形状为<code>(28, 28, 1)</code>，其中28x28表示图像的尺寸，1表示输入图像是单通道的灰度图像。</li>
+</ul>
+</li>
+<li><p>第一个卷积层和池化层：</p>
+<ul>
+<li><code>layers.Conv2D</code>定义了第一个卷积层，具有32个滤波器（即<code>filters=32</code>），滤波器的大小为3x3（即<code>kernel_size=3</code>）。</li>
+<li>激活函数使用ReLU（即<code>activation=&quot;relu&quot;</code>），它将对每个滤波器的输出应用ReLU非线性激活函数。</li>
+<li>卷积层对输入进行卷积操作，输出特征图的大小为<code>(None, 26, 26, 32)</code>，其中<code>None</code>表示批量大小可以是任意值，26x26是因为卷积会在图像周围添加0像素（Padding）。</li>
+<li>紧接着，<code>layers.MaxPooling2D</code>定义了第一个池化层，使用2x2的池化窗口对特征图进行最大池化操作。这会将特征图的尺寸减半，输出的特征图大小为<code>(None, 13, 13, 32)</code>。</li>
+</ul>
+</li>
+<li><p>第二个卷积层和池化层：</p>
+<ul>
+<li><code>layers.Conv2D</code>定义了第二个卷积层，具有64个滤波器（即<code>filters=64</code>），滤波器的大小为3x3（即<code>kernel_size=3</code>）。</li>
+<li>激活函数使用ReLU（即<code>activation=&quot;relu&quot;</code>）。</li>
+<li>卷积层对上一层的特征图进行卷积操作，输出特征图的大小为<code>(None, 11, 11, 64)</code>。</li>
+<li>紧接着，<code>layers.MaxPooling2D</code>定义了第二个池化层，使用2x2的池化窗口对特征图进行最大池化操作，输出的特征图大小为<code>(None, 5, 5, 64)</code>。</li>
+</ul>
+</li>
+<li><p>第三个卷积层：</p>
+<ul>
+<li><code>layers.Conv2D</code>定义了第三个卷积层，具有128个滤波器（即<code>filters=128</code>），滤波器的大小为3x3（即<code>kernel_size=3</code>）。</li>
+<li>激活函数使用ReLU（即<code>activation=&quot;relu&quot;</code>）。</li>
+<li>卷积层对上一层的特征图进行卷积操作，输出特征图的大小为<code>(None, 3, 3, 128)</code>。</li>
+</ul>
+</li>
+<li><p>展平层：</p>
+<ul>
+<li><code>layers.Flatten</code>将卷积层的输出特征图展平为一维向量，用于连接到全连接层。</li>
+<li>输出的形状为<code>(None, 1152)</code>，其中1152是3x3x128的结果。</li>
+</ul>
+</li>
+<li><p>全连接层：</p>
+<ul>
+<li><code>layers.Dense</code>定义了全连接层，包含10个神经元，用于输出10个类别的概率分布。</li>
+<li>激活函数使用Softmax（即<code>activation=&quot;softmax&quot;</code>），用于将输出转换为类别概率。</li>
+<li>输出的形状为<code>(None, 10)</code>，其中10是输出类别的数量。</li>
+</ul>
+</li>
+<li><p>模型构建：</p>
+<ul>
+<li><code>keras.Model</code>用于构建整个模型，指定输入层和输出层，形成完整的模型结构。</li>
+</ul>
+</li>
+</ol>
+<p>这个CNN模型有三个卷积层，每个卷积层后面都跟有一个最大池化层，然后是一个展平层和一个全连接层，最后输出10个类别的概率分布。这个模型用于图像分类任务，接受28x28大小的单通道灰度图像，并输出对应的图像类别概率。</p>
+<p>最终的训练结果:</p>
+<p><img src="/2023/07/14/keras%E5%85%A5%E9%97%A8/accuracy_plot2.png"></p>
+<blockquote>
+<p>比上一种好很多，全连接模型测试精度约为97.8%，而这个简单的卷积神经网络的测试精度达到了99.1%，错误率降低了约60%(相对比例)</p>
+</blockquote>
+<hr>
+<p>参考：Python深度学习(第二版)</p>
 
         
       </div>

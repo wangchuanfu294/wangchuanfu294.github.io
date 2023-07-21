@@ -183,7 +183,7 @@
           </li>
         
           <li>
-            <a href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门</a>
+            <a href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门实例(MNIST数字分类)</a>
           </li>
         
           <li>
@@ -287,7 +287,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门</a>
+        <a class="p-name article-title" href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门实例(MNIST数字分类)</a>
       </h1>
     
   
@@ -306,7 +306,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            328 words 
+            2.4k words 
           </div>
         </div>
         
@@ -316,8 +316,9 @@
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
-            这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748from tensorflow import kerasfrom keras import layersfrom keras.datasets import mnistimport matplotlib.pyplot as plt# 加载数据集(train_images, train_lables), (test_images, test_labels) = mnist.load_data()print(train_images.shape) # (60000, 28, 28)print(train_lables)       # [5 0 4 ... 5 6 8]model = keras.Sequential([    layers.Dense(512, activation=&quot;relu&quot;),   #...  
+            NN全连接神经网络这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。
+过程都写在注释里了，下面是train.py的代码：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950from tensorflow import kerasfrom keras import layersfrom keras.datasets import mnistimport matplotlib.pyplot as plt# 加载数据集(train_images, train_lables), (test_images, test_labels) = mnist.load_data()print(train_images.shape) # (60000, 28, 28)print(train_lables)       # [5 0 4 ... 5 6 8]model = keras.Sequential([    layers.Dense...  
           </div>
         
       </div>
