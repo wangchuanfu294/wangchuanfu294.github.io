@@ -179,7 +179,7 @@
       <ul>
         
           <li>
-            <a href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/">kreas入门(猫狗大战)</a>
+            <a href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/">kreas入门实例(猫狗大战)</a>
           </li>
         
           <li>
@@ -221,7 +221,7 @@
   
     
       <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/">kreas入门(猫狗大战)</a>
+        <a class="p-name article-title" href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/">kreas入门实例(猫狗大战)</a>
       </h1>
     
   
@@ -240,7 +240,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 words 
+            941 words 
           </div>
         </div>
         
@@ -250,7 +250,16 @@
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
-              
+            下载数据集从kaggle中找到dogs-vs-cats比赛，下载数据集压缩包并解压得到一个大数据集train文件夹。
+
+这里我们不用这么多张图片，我们自己创建一个小型数据集进行学习，提升自我能力。
+
+先给数据集路径做个YAML文件:
+data.yml文件的代码
+1234# 原始数据集解压目录original_dir: &quot;train&quot;# 保存较小的数据集目录new_base_dir: &quot;cats_vs_dogs_small&quot;
+
+createdataset.py的代码
+12345678910111213141516171819202122232425262728import os, shutil, pathlibimport yaml# 读取YAML文件with open(&#x27;data.yml&#x27;, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as file:    data = yaml.safe_load(file)# 原始数据集解压目录original_dir = pathlib....  
           </div>
         
       </div>
