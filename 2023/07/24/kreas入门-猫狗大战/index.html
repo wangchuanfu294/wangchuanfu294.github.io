@@ -23,8 +23,10 @@
 <meta property="og:image" content="http://example.com/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/dogs.png">
 <meta property="og:image" content="http://example.com/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/accuracy_plot.png">
 <meta property="og:image" content="http://example.com/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/loss_plot.png">
+<meta property="og:image" content="http://example.com/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/1.png">
+<meta property="og:image" content="http://example.com/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/2.png">
 <meta property="article:published_time" content="2023-07-24T07:29:07.000Z">
-<meta property="article:modified_time" content="2023-07-27T05:23:24.332Z">
+<meta property="article:modified_time" content="2023-07-27T09:13:59.273Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -173,7 +175,7 @@
       
         <a class="archive-link" href="/archives/2023/07 ">
           July 2023 
-          <div class="archive-count">12 </div>
+          <div class="archive-count">13 </div>
         </a>
       
     </div>
@@ -186,6 +188,10 @@
     <div class="widget">
       <h3 class="widget-title">Recent Posts</h3>
       <ul>
+        
+          <li>
+            <a href="/2023/07/27/Dropout%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8/">Dropout层的作用</a>
+          </li>
         
           <li>
             <a href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/">kreas入门实例(猫狗大战)</a>
@@ -201,10 +207,6 @@
         
           <li>
             <a href="/2023/07/12/day2/">day2</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/11/day1/">day1</a>
           </li>
         
       </ul>
@@ -250,7 +252,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            941 words 
+            1.1k words 
           </div>
         </div>
         
@@ -287,10 +289,32 @@
 <h1 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h1><p>train.py的代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span> init <span class="keyword">import</span> train_dataset, validation_dataset, data_augmentation</span><br><span class="line"></span><br><span class="line">inputs = keras.Input(shape=(<span class="number">180</span>, <span class="number">180</span>, <span class="number">3</span>))</span><br><span class="line">x = data_augmentation(inputs) <span class="comment"># 数据增强</span></span><br><span class="line">x = layers.Rescaling(<span class="number">1.</span>/<span class="number">255</span>)(x) <span class="comment"># 将输入除以255使其缩放至[0,1]</span></span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">32</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPool2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPool2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">128</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPool2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.MaxPool2D(pool_size=<span class="number">2</span>)(x)</span><br><span class="line"></span><br><span class="line">x = layers.Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">x = layers.Flatten()(x)</span><br><span class="line"></span><br><span class="line">x = layers.Dropout(<span class="number">0.5</span>)(x)</span><br><span class="line">outputs = layers.Dense(<span class="number">1</span>, activation=<span class="string">&quot;sigmoid&quot;</span>)(x)</span><br><span class="line">model = keras.Model(inputs=inputs, outputs=outputs)</span><br><span class="line"></span><br><span class="line">model.summary()</span><br><span class="line"><span class="comment"># 模型的最后一层是单一的sigmoid单元，所以使用二元交叉熵作为损失函数</span></span><br><span class="line"></span><br><span class="line">model.<span class="built_in">compile</span>(loss=<span class="string">&quot;binary_crossentropy&quot;</span>, optimizer=<span class="string">&quot;rmsprop&quot;</span>, metrics=[<span class="string">&quot;accuracy&quot;</span>])</span><br><span class="line"></span><br><span class="line">callbacks = [</span><br><span class="line">    keras.callbacks.ModelCheckpoint(</span><br><span class="line">        filepath=<span class="string">&quot;convent_from_scratch.keras&quot;</span>,</span><br><span class="line">        save_best_only=<span class="literal">True</span>,</span><br><span class="line">        monitor=<span class="string">&quot;val_loss&quot;</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">history = model.fit(train_dataset, epochs=<span class="number">80</span>, validation_data=validation_dataset, callbacks=callbacks)</span><br><span class="line"></span><br><span class="line">model.save(<span class="string">&#x27;model.h5&#x27;</span>) <span class="comment"># 将模型保存到本地</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练准确度(已知图片)和验证准确度(未知图片)曲线</span></span><br><span class="line">acc = history.history[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">val_acc = history.history[<span class="string">&#x27;val_accuracy&#x27;</span>]</span><br><span class="line">loss = history.history[<span class="string">&#x27;loss&#x27;</span>]</span><br><span class="line">val_loss = history.history[<span class="string">&#x27;val_loss&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 精度曲线</span></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(acc))</span><br><span class="line">plt.plot(epochs, acc, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training accuracy&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_acc, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation accuracy&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation accuracy&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;accuracy_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个新的Figure对象</span></span><br><span class="line">plt.figure()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 损失曲线</span></span><br><span class="line">epochs = <span class="built_in">range</span>(<span class="built_in">len</span>(loss))</span><br><span class="line">plt.plot(epochs, loss, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Training loss&#x27;</span>)</span><br><span class="line">plt.plot(epochs, val_loss, <span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;validation loss&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Training and validation loss&#x27;</span>)</span><br><span class="line">plt.legend(loc=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&#x27;loss_plot.png&#x27;</span>)  <span class="comment"># 保存为本地文件</span></span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>为了进一步降低过拟合，我们还会在模型密集连接分类器之前添加一个Dropout层</p>
+</blockquote>
+<p>我们根据验证损失这个指标来保存最优的模型convent_from_scratch.keras</p>
+<p>训练结果</p>
+<figure class="half">
+    <img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/accuracy_plot.png">
+    <img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/loss_plot.png">
+</figure>
 
-<p>其实我还有没有数据增强的结果曲线，可以看出数据增强后效果相当不错<br><img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/accuracy_plot.png"><img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/loss_plot.png"></p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>test.py的代码</p>
+<p>其实我还有没有经过数据增强的结果曲线，对比后可以看出数据增强后效果相当不错</p>
+<figure class="half">
+    <img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/1.png">
+    <img src="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/2.png">
+</figure>
+
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>如果是在Colab上训练的，记得把这个convent_from_scratch.keras训练模型下载下来，别搞丢了</p>
+<p>test.py的代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> image_dataset_from_directory</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取YAML文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;data.yml&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    data = yaml.safe_load(file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取较小的数据集目录</span></span><br><span class="line">new_base_dir = pathlib.Path(data[<span class="string">&#x27;new_base_dir&#x27;</span>])</span><br><span class="line"></span><br><span class="line">test_dataset = image_dataset_from_directory(</span><br><span class="line">    new_base_dir / <span class="string">&quot;test&quot;</span>,</span><br><span class="line">    image_size=(<span class="number">180</span>, <span class="number">180</span>),</span><br><span class="line">    batch_size=<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 评估模型</span></span><br><span class="line">test_model = load_model(<span class="string">&#x27;convent_from_scratch.keras&#x27;</span>)</span><br><span class="line">loss, accuracy = test_model.evaluate(test_dataset)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Test Loss:&quot;</span>, loss)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Test Accuracy:&quot;</span>, accuracy)</span><br></pre></td></tr></table></figure>
+
+<p>测试结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Found 1000 files belonging to 2 classes.</span><br><span class="line">32/32 [==============================] - 6s 141ms/step - loss: 0.5211 - accuracy: 0.8490</span><br><span class="line">Test Loss: 0.5210882425308228</span><br><span class="line">Test Accuracy: 0.8489999771118164</span><br></pre></td></tr></table></figure>
+<p>测试精度达到84.9%</p>
+<hr>
+<p>参考：python深度学习</p>
+
         
       </div>
 
@@ -302,10 +326,15 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left  disabled "
+  <a class="article-nav-btn left "
+    
+      href="/2023/07/27/Dropout%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8/"
+      title="Dropout层的作用"
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
+      
+        Dropout层的作用
         
     </p>
   </a>

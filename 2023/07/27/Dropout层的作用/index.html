@@ -11,14 +11,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives | 日月星辰的个人博客</title>
+  <title>Dropout层的作用 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="日月星辰的个人博客">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="Dropout是一种在深度学习模型中常用的正则化技术。它的作用是减少过拟合（overfitting）的风险，提高模型的泛化能力。 过拟合是指模型在训练数据上表现得非常好，但在未见过的新数据上表现较差的情况。这通常是因为模型过度拟合了训练数据中的噪声和特定样本的细节，导致在新数据上的泛化能力不佳。 Dropout层在训练过程中随机地将一部分神经元的输出置为0，即在前向传播过程中丢弃这些神经元的激活值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dropout层的作用">
+<meta property="og:url" content="http://example.com/2023/07/27/Dropout%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="Dropout是一种在深度学习模型中常用的正则化技术。它的作用是减少过拟合（overfitting）的风险，提高模型的泛化能力。 过拟合是指模型在训练数据上表现得非常好，但在未见过的新数据上表现较差的情况。这通常是因为模型过度拟合了训练数据中的噪声和特定样本的细节，导致在新数据上的泛化能力不佳。 Dropout层在训练过程中随机地将一部分神经元的输出置为0，即在前向传播过程中丢弃这些神经元的激活值">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-27T09:03:45.000Z">
+<meta property="article:modified_time" content="2023-07-27T09:04:42.522Z">
 <meta property="article:author" content="cmc">
+<meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
@@ -209,214 +214,97 @@
     <div id="content-body">
        
 
-<div class="archive-main-card">
-    <div class="archive-top">
-      <div class="main-title-bar">
-        <div class="main-title-dot"></div>
-        <h1 class="article-title">Archive</h1>
-      </div>    
+<article id="post-Dropout层的作用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Dropout层的作用
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-07-27T09:03:45.000Z" itemprop="datePublished">2023-07-27</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            433 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <p>Dropout是一种在深度学习模型中常用的正则化技术。它的作用是减少过拟合（overfitting）的风险，提高模型的泛化能力。</p>
+<p>过拟合是指模型在训练数据上表现得非常好，但在未见过的新数据上表现较差的情况。这通常是因为模型过度拟合了训练数据中的噪声和特定样本的细节，导致在新数据上的泛化能力不佳。</p>
+<p>Dropout层在训练过程中随机地将一部分神经元的输出置为0，即在前向传播过程中丢弃这些神经元的激活值。换句话说，每次进行前向传播时，Dropout会随机地使一部分神经元“失活”，不参与当前一次前向传播的计算。</p>
+<p>这样做的效果是，每次前向传播时，模型都在不同的子集上进行训练，从而减少了神经元之间的复杂共适应关系。这样的处理有两个主要好处：</p>
+<ol>
+<li><p>减少过拟合：Dropout可以强制模型去学习多个独立的特征表示，而不是依赖于特定的神经元。这有助于减少对训练样本的过度依赖，降低过拟合的风险。</p>
+</li>
+<li><p>提高泛化能力：由于Dropout在训练期间增加了一些随机性，模型在预测未见过的数据时更具有泛化能力。</p>
+</li>
+</ol>
+<p>需要注意的是，在推断（inference）阶段，Dropout不会被应用，而是采用整个网络进行预测。这是因为在推断时，我们希望得到一致的输出结果，而不需要随机丢弃神经元的输出。</p>
+
+        
+      </div>
+
+         
     </div>
     
-    
-      
-      
-        
-        <div class="year-line">
-            <div class="year-num">2023</div>
-            <div class="dot-wrapper">
-                <div class="dot"></div>
-            </div>
-        </div>
-      
-      <a class="archive-article-link" href="/2023/07/27/Dropout%E5%B1%82%E7%9A%84%E4%BD%9C%E7%94%A8/" title="Dropout层的作用">
-        <div class="date">07-27</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    Dropout层的作用
-                
-            </div>
-        </div>
-        <div class="tags">
-            #深度学习
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/" title="kreas入门实例(猫狗大战)">
-        <div class="date">07-24</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    kreas入门实例(猫狗大战)
-                
-            </div>
-        </div>
-        <div class="tags">
-            #深度学习
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/14/day4/" title="day4">
-        <div class="date">07-14</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    day4
-                
-            </div>
-        </div>
-        <div class="tags">
-            #算法特训营
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/14/keras%E5%85%A5%E9%97%A8/" title="keras入门实例(MNIST数字分类)">
-        <div class="date">07-14</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    keras入门实例(MNIST数字分类)
-                
-            </div>
-        </div>
-        <div class="tags">
-            #深度学习
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/12/day2/" title="day2">
-        <div class="date">07-12</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    day2
-                
-            </div>
-        </div>
-        <div class="tags">
-            #算法特训营
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/11/day1/" title="day1">
-        <div class="date">07-11</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    day1
-                
-            </div>
-        </div>
-        <div class="tags">
-            #算法特训营
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/11/python%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/" title="python发送邮件">
-        <div class="date">07-11</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    python发送邮件
-                
-            </div>
-        </div>
-        <div class="tags">
-            #目标检测
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/11/%E5%8A%A0%E6%9D%83%E8%BF%9B%E8%A1%8C%E7%81%B0%E5%BA%A6%E5%A4%84%E7%90%86/" title="加权进行灰度处理">
-        <div class="date">07-11</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    加权进行灰度处理
-                
-            </div>
-        </div>
-        <div class="tags">
-            #目标检测
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/09/TensorFlow%E5%92%8CKeras%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" title="TensorFlow和Keras有什么区别">
-        <div class="date">07-09</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    TensorFlow和Keras有什么区别
-                
-            </div>
-        </div>
-        <div class="tags">
-            #深度学习
-        </div>
-      </a>
-    
-      
-      
-      <a class="archive-article-link" href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFMTCNN/" title="什么是MTCNN">
-        <div class="date">07-09</div>
-        <div class="line">
-            <div class="dot"></div>
-        </div>
-        <div class="title">
-            <div class="title-inner">
-                
-                    什么是MTCNN
-                
-            </div>
-        </div>
-        <div class="tags">
-            #深度学习
-        </div>
-      </a>
-    
+     
   </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/07/24/kreas%E5%85%A5%E9%97%A8-%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98/"
+      title="kreas入门实例(猫狗大战)"
+     >
+
+    <p class="title-text">
+      
+        kreas入门实例(猫狗大战)
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
     </div>
     <div id="footer-wrapper">
       <footer id="footer">
