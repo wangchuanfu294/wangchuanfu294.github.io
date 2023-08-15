@@ -164,7 +164,7 @@
       
         <a class="archive-link" href="/archives/2023/08 ">
           August 2023 
-          <div class="archive-count">4 </div>
+          <div class="archive-count">5 </div>
         </a>
       
         <a class="archive-link" href="/archives/2023/07 ">
@@ -184,6 +184,10 @@
       <ul>
         
           <li>
+            <a href="/2023/08/14/day8/">day8</a>
+          </li>
+        
+          <li>
             <a href="/2023/08/12/day7/">day7</a>
           </li>
         
@@ -199,10 +203,6 @@
             <a href="/2023/08/09/%E8%87%AA%E5%88%B6app%E6%8E%A7%E5%88%B6arduino%E8%93%9D%E7%89%99%E5%B0%8F%E8%BD%A6/">自制app控制arduino蓝牙小车(非常简单)</a>
           </li>
         
-          <li>
-            <a href="/2023/07/30/OLED%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/">OLED显示当前时间</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -213,6 +213,74 @@
     </div>
     <div id="content-body">
       
+   
+
+<article id="post-keras入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2023/07/14/keras%E5%85%A5%E9%97%A8/">keras入门实例(MNIST数字分类)</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-07-14T11:19:19.000Z" itemprop="datePublished">2023-07-14</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            2.4k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            NN全连接神经网络这是我第一次实现一个神经网络实例：使用python的Keras库来学习手写数字分类。
+过程都写在注释里了，下面是train.py的代码：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950from tensorflow import kerasfrom keras import layersfrom keras.datasets import mnistimport matplotlib.pyplot as plt# 加载数据集(train_images, train_lables), (test_images, test_labels) = mnist.load_data()print(train_images.shape) # (60000, 28, 28)print(train_lables)       # [5 0 4 ... 5 6 8]model = keras.Sequential([    layers.Dense...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2023/07/14/keras%E5%85%A5%E9%97%A8/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
    
 
 <article id="post-day2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
