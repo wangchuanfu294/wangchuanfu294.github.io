@@ -164,7 +164,7 @@
       
         <a class="archive-link" href="/archives/2024/03 ">
           March 2024 
-          <div class="archive-count">5 </div>
+          <div class="archive-count">6 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/02 ">
@@ -209,6 +209,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
           </li>
         
@@ -224,10 +228,6 @@
             <a href="/2024/03/05/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E4%B8%8D%E5%90%8C%E7%AD%96%E7%95%A5%E6%B1%82GCD%EF%BC%8C%E6%B1%82%E5%AD%90%E9%9B%86/">【算法作业】不同策略求GCD，求子集</a>
           </li>
         
-          <li>
-            <a href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/">【算法作业】单调栈排序</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -238,6 +238,72 @@
     </div>
     <div id="content-body">
       
+   
+
+<article id="post-【算法作业】次数不小于k的字符，n-2的选票" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-03-22T03:28:08.000Z" itemprop="datePublished">2024-03-22</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            12 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            问题描述解题思路完整代码  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
    
 
 <article id="post-【算法作业】top-k和CubeSort" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -270,7 +336,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 words 
+            1.7k words 
           </div>
         </div>
         
@@ -280,7 +346,35 @@
       <div class="e-content article-entry" itemprop="articleBody">
         
           <div class="truncate-text">
-              
+            问题描述
+在不同应用领域，经常涉及到top-K的问题，请给出不同策略在一系列数中返回Top-K元素，并分析你的策略。
+
+调研学习排序算法CubeSort，体会分治思想的使用。
+
+
+解题思路T1
+方法一(直接排序法):
+
+将整个数组排序，然后取前K个元素作为结果。常见的排序算法包括快速排序、归并排序等。
+
+优点： 简单直观，易于实现。
+缺点： 时间复杂度较高，通常为 O(nlogn)，不适用于大规模数据集。并且，如果只需要前K个元素而不需要对整个数组排序，则效率低下。
+
+
+方法二(堆&#x2F;优先队列):
+
+使用堆数据结构来解决Top-K元素问题，通常是使用小根堆或大根堆。
+
+优点： 时间复杂度为 O(nlogk)，适用于大规模数据集，只需维护大小为K的堆，节省了排序整个数组的开销。
+缺点： 实现稍微复杂一些，需要理解堆数据结构的性质和操作。
+
+
+方法三(快速选择):
+
+这是一种改进的快速排序算法，用于查找未排序数组中的第K个最小元素。
+
+优点： 平均时间复杂度为 O(n)，在实践中通常比堆更快。
+缺点： 最坏情况下时间复杂度为 O(n^2)，但是通过一些优化策略可以将最坏情况的...  
           </div>
         
       </div>
@@ -964,80 +1058,6 @@ NFC是Near Field Communication缩写，即近距离无线通讯技术。
 
  
 
-   
-
-<article id="post-tensorflow入门实例-线性分类器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/">tensorflow入门实例(线性分类器)</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-08-20T11:33:29.000Z" itemprop="datePublished">2023-08-20</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            1.5k words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            前言在参加机器学习面试时，面试官可能会要求你用Tensorflow从头开始实现一个线性分类器。这是一项非常简单的任务，可以用于考察求职这是否具有基本的机器学习背景。
-生成数据集在二维平面上，生成两个类别线性可分的数据。生成办法是从一个具有特定协方差矩阵和特定均值的随机分布中抽取坐标来生成每一类点。
-直观上讲，协方差矩阵描述了电云的形状，均值描述了电云的位置。
-
-协方差矩阵在多维情况下用于描述多个随机变量之间的协方差关系。对于 n 个随机变量的情况，协方差矩阵是一个 n×n 的矩阵，其中第 i 行和第 j 列的元素表示第 i 个和第 j 个变量之间的协方差。
-
-注意协方差矩阵是对称阵，对角线位置且都是1
-createdots.py的代码
-1234567891011121314151617181920212223242526272829import numpy as npimport matplotlib.pyplot as plt# 定义每个类别的样本数量，每个类别有1000个样本num_samples_per_class = 1000 # 负样本negative_samples ...  
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
- 
-
 
   <nav id="page-nav">
     <!-- 在第二页时 page.prev_link 不知为何无法返回正确的链接 -->
@@ -1045,7 +1065,7 @@ createdots.py的代码
       <span class="material-symbols-rounded">navigate_before</span>
     </a>
     <div id="num-bar">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a>  
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a>  
     </div>
     <a id="next-btn" class="page-nav-btn " href="/page/2/">
       <span class="material-symbols-rounded">navigate_next</span>

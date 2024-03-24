@@ -13,13 +13,15 @@
   
   <title>【算法作业】top-k和CubeSort | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
+  <meta name="description" content="问题描述 在不同应用领域，经常涉及到top-K的问题，请给出不同策略在一系列数中返回Top-K元素，并分析你的策略。  调研学习排序算法CubeSort，体会分治思想的使用。   解题思路T1 方法一(直接排序法):  将整个数组排序，然后取前K个元素作为结果。常见的排序算法包括快速排序、归并排序等。  优点： 简单直观，易于实现。 缺点： 时间复杂度较高，通常为 O(nlogn)，不适用于大规模">
+<meta property="og:type" content="article">
 <meta property="og:title" content="【算法作业】top-k和CubeSort">
 <meta property="og:url" content="http://example.com/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="问题描述 在不同应用领域，经常涉及到top-K的问题，请给出不同策略在一系列数中返回Top-K元素，并分析你的策略。  调研学习排序算法CubeSort，体会分治思想的使用。   解题思路T1 方法一(直接排序法):  将整个数组排序，然后取前K个元素作为结果。常见的排序算法包括快速排序、归并排序等。  优点： 简单直观，易于实现。 缺点： 时间复杂度较高，通常为 O(nlogn)，不适用于大规模">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-18T06:58:43.000Z">
-<meta property="article:modified_time" content="2024-03-20T03:38:20.566Z">
+<meta property="article:modified_time" content="2024-03-24T05:01:44.436Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -167,7 +169,7 @@
       
         <a class="archive-link" href="/archives/2024/03 ">
           March 2024 
-          <div class="archive-count">5 </div>
+          <div class="archive-count">6 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/02 ">
@@ -212,6 +214,10 @@
       <ul>
         
           <li>
+            <a href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
           </li>
         
@@ -225,10 +231,6 @@
         
           <li>
             <a href="/2024/03/05/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E4%B8%8D%E5%90%8C%E7%AD%96%E7%95%A5%E6%B1%82GCD%EF%BC%8C%E6%B1%82%E5%AD%90%E9%9B%86/">【算法作业】不同策略求GCD，求子集</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/">【算法作业】单调栈排序</a>
           </li>
         
       </ul>
@@ -274,7 +276,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            0 words 
+            1.7k words 
           </div>
         </div>
         
@@ -283,7 +285,78 @@
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
         
-          
+          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><ol>
+<li><p>在不同应用领域，经常涉及到top-K的问题，请给出不同策略在一系列数中返回Top-K元素，并分析你的策略。</p>
+</li>
+<li><p>调研学习排序算法CubeSort，体会分治思想的使用。</p>
+</li>
+</ol>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><ol>
+<li>方法一(直接排序法):</li>
+</ol>
+<p>将整个数组排序，然后取前K个元素作为结果。常见的排序算法包括快速排序、归并排序等。</p>
+<ul>
+<li>优点： 简单直观，易于实现。</li>
+<li>缺点： 时间复杂度较高，通常为 O(nlogn)，不适用于大规模数据集。并且，如果只需要前K个元素而不需要对整个数组排序，则效率低下。</li>
+</ul>
+<ol start="2">
+<li>方法二(堆&#x2F;优先队列):</li>
+</ol>
+<p>使用堆数据结构来解决Top-K元素问题，通常是使用小根堆或大根堆。</p>
+<ul>
+<li>优点： 时间复杂度为 O(nlogk)，适用于大规模数据集，只需维护大小为K的堆，节省了排序整个数组的开销。</li>
+<li>缺点： 实现稍微复杂一些，需要理解堆数据结构的性质和操作。</li>
+</ul>
+<ol start="3">
+<li>方法三(快速选择):</li>
+</ol>
+<p>这是一种改进的快速排序算法，用于查找未排序数组中的第K个最小元素。</p>
+<ul>
+<li>优点： 平均时间复杂度为 O(n)，在实践中通常比堆更快。</li>
+<li>缺点： 最坏情况下时间复杂度为 O(n^2)，但是通过一些优化策略可以将最坏情况的概率降低到很小。</li>
+</ul>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>CubeSort 是一种分治排序算法，其基本思想是将待排序数组划分为多个立方体（cubes），然后分别对每个立方体进行排序，最后将这些有序的立方体合并成一个有序数组。下面是 CubeSort 算法的基本步骤：</p>
+<ol>
+<li><p><strong>划分立方体：</strong> 将待排序的数组划分为多个立方体，每个立方体包含固定数量的元素。立方体的数量可以根据实际情况调整，通常选择的大小与计算机内存大小和处理器缓存大小相关。</p>
+</li>
+<li><p><strong>对每个立方体排序：</strong> 对每个立方体中的元素进行排序。可以选择任何一种排序算法来完成这个任务，通常选择效率较高的排序算法，比如快速排序或归并排序。</p>
+</li>
+<li><p><strong>合并有序立方体：</strong> 将排序好的立方体按照一定规则合并，形成整体有序的数组。这一步可以使用归并操作来实现，将每个立方体的顶部元素依次放入一个优先队列（或堆）中，并逐步取出构建有序序列。</p>
+</li>
+</ol>
+<blockquote>
+<p>CubeSort 算法的时间复杂度取决于三个步骤：划分立方体、排序每个立方体以及合并有序立方体。</p>
+</blockquote>
+<ol>
+<li><p><strong>划分立方体：</strong> 划分立方体的时间复杂度取决于数组的大小和立方体的大小。假设数组大小为 n，立方体的大小为 m，则划分立方体的时间复杂度为 O(n&#x2F;m)。</p>
+</li>
+<li><p><strong>排序每个立方体：</strong> 对每个立方体进行排序的时间复杂度取决于所选的排序算法。通常情况下，可以选择效率较高的排序算法，比如快速排序或归并排序。假设所选的排序算法时间复杂度为 O(m log m)。</p>
+</li>
+<li><p><strong>合并有序立方体：</strong> 合并有序立方体的时间复杂度取决于数组的大小和立方体的数量。假设立方体数量为 k，则合并有序立方体的时间复杂度为 O(n log k)。</p>
+</li>
+</ol>
+<p>综合考虑以上三个步骤，CubeSort 算法的总体时间复杂度为：</p>
+<p>$$ O\left(\frac{n}{m} + m \log m + n \log k\right)$$ </p>
+<p>其中，n 表示数组的大小，m 表示立方体的大小，k 表示立方体的数量。立方体的大小和数量可以根据实际情况进行调整，以平衡算法的时间复杂度和空间复杂度。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><h2 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h2><ol>
+<li>方法一:</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span>      </span></span><br><span class="line"><span class="function"></span>&#123;                         </span><br><span class="line">	<span class="keyword">return</span> a &gt; b;            </span><br><span class="line">&#125;                          </span><br><span class="line">                      </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,a[<span class="number">100</span>];</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组大小：&quot;</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组：&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    	<span class="type">int</span> x;</span><br><span class="line">    	cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入k：&quot;</span>;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line">    cin&gt;&gt;k;</span><br><span class="line">	<span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n, cmp);</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Top-k: &quot;</span> &lt;&lt; a[k];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请输入数组大小：5</span><br><span class="line">请输入数组：2 4 1 5 3</span><br><span class="line">请输入k：2</span><br><span class="line">Top-k: 4</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>方法二:</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建一个最大堆优先队列，存储整数</span></span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; pq;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组大小：&quot;</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组：&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    	<span class="type">int</span> x;</span><br><span class="line">    	cin&gt;&gt;x;</span><br><span class="line">    	pq.<span class="built_in">push</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入k：&quot;</span>;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line">    cin&gt;&gt;k;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k<span class="number">-1</span>;i++)</span><br><span class="line">	    <span class="comment">// 弹出优先队列的顶部元素</span></span><br><span class="line">	    pq.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 再次访问顶部元素</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Top-k: &quot;</span> &lt;&lt; pq.<span class="built_in">top</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>方法三:</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交换函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速选择算法</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">quickSelect</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left == right) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[left];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 选择随机的枢纽元素</span></span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> pivotIndex = left + <span class="built_in">rand</span>() % (right - left + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> pivot = arr[pivotIndex];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将枢纽元素放到正确的位置上</span></span><br><span class="line">    <span class="built_in">swap</span>(arr[pivotIndex], arr[right]);</span><br><span class="line">    <span class="type">int</span> i = left;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = left; j &lt; right; ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[j] &gt; pivot) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(arr[i], arr[j]);</span><br><span class="line">            ++i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">swap</span>(arr[i], arr[right]);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 根据枢纽元素的位置调整递归范围</span></span><br><span class="line">    <span class="keyword">if</span> (k == i) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr[i];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (k &lt; i) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">quickSelect</span>(arr, left, i - <span class="number">1</span>, k);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">quickSelect</span>(arr, i + <span class="number">1</span>, right, k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组大小：&quot;</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入数组：&quot;</span>;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">100</span>]; </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    	cin&gt;&gt;arr[i];</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;请输入k：&quot;</span>;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line">    cin&gt;&gt;k;</span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">quickSelect</span>(arr, <span class="number">0</span>, n - <span class="number">1</span>, k - <span class="number">1</span>); <span class="comment">// 数组索引从0开始，所以要减去1</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;top-k：&quot;</span> &lt;&lt; result ;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并排序好的立方体</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mergeCubes</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> temp[], <span class="type">int</span> left, <span class="type">int</span> mid, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = left, j = mid + <span class="number">1</span>, k = left;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt;= arr[j]) &#123;</span><br><span class="line">            temp[k++] = arr[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            temp[k++] = arr[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid) &#123;</span><br><span class="line">        temp[k++] = arr[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt;= right) &#123;</span><br><span class="line">        temp[k++] = arr[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> l = left; l &lt;= right; ++l) &#123;</span><br><span class="line">        arr[l] = temp[l];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CubeSort 算法</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cubeSort</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> temp[], <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> cubeSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="type">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">cubeSort</span>(arr, temp, left, mid, cubeSize);</span><br><span class="line">        <span class="built_in">cubeSort</span>(arr, temp, mid + <span class="number">1</span>, right, cubeSize);</span><br><span class="line">        <span class="built_in">mergeCubes</span>(arr, temp, left, mid, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="type">int</span> cubeSize = <span class="number">2</span>; <span class="comment">// 设置立方体大小为2</span></span><br><span class="line">    <span class="type">int</span>* temp = <span class="keyword">new</span> <span class="type">int</span>[n];</span><br><span class="line">    <span class="built_in">cubeSort</span>(arr, temp, <span class="number">0</span>, n - <span class="number">1</span>, cubeSize);</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;排序后的数组: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        std::cout &lt;&lt; arr[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
       </div>
 
@@ -295,10 +368,15 @@
   
     
 <nav id="article-nav">
-  <a class="article-nav-btn left  disabled "
+  <a class="article-nav-btn left "
+    
+      href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/"
+      title="【算法作业】次数不小于k的字符，n/2的选票"
      >
     <i class="fa-solid fa-angle-left"></i>
     <p class="title-text">
+      
+        【算法作业】次数不小于k的字符，n/2的选票
         
     </p>
   </a>
