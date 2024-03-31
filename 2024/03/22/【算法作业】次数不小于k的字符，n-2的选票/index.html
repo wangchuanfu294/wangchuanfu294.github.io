@@ -13,15 +13,15 @@
   
   <title>【算法作业】次数不小于k的字符，n/2的选票 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="问题描述 给定一个字符串str和一个整数K，设计策略返回一个最大子串长度使得子串每个字符重复出现的次数不小于K。  假设一个由n人组成的小组中的每个人都从一组候选人中选出两个人来填补委员会的两个职位。排名前两位的选手只要各自获得超过n&#x2F;2的选票，都会赢得位置。设计算法，确定获得最多选票的两位候选人是否各自获得了至少n&#x2F;2张选票，如果是，则确定这两位候选人是谁。   解题思路完整">
+  <meta name="description" content="问题描述 给定一个字符串str和一个整数K，设计策略返回一个最大子串长度使得子串每个字符重复出现的次数不小于K。  假设一个由n人组成的小组中的每个人都从一组候选人中选出两个人来填补委员会的两个职位。排名前两位的选手只要各自获得超过n&#x2F;2的选票，都会赢得位置。设计算法，确定获得最多选票的两位候选人是否各自获得了至少n&#x2F;2张选票，如果是，则确定这两位候选人是谁。    最近的题目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【算法作业】次数不小于k的字符，n&#x2F;2的选票">
 <meta property="og:url" content="http://example.com/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="问题描述 给定一个字符串str和一个整数K，设计策略返回一个最大子串长度使得子串每个字符重复出现的次数不小于K。  假设一个由n人组成的小组中的每个人都从一组候选人中选出两个人来填补委员会的两个职位。排名前两位的选手只要各自获得超过n&#x2F;2的选票，都会赢得位置。设计算法，确定获得最多选票的两位候选人是否各自获得了至少n&#x2F;2张选票，如果是，则确定这两位候选人是谁。   解题思路完整">
+<meta property="og:description" content="问题描述 给定一个字符串str和一个整数K，设计策略返回一个最大子串长度使得子串每个字符重复出现的次数不小于K。  假设一个由n人组成的小组中的每个人都从一组候选人中选出两个人来填补委员会的两个职位。排名前两位的选手只要各自获得超过n&#x2F;2的选票，都会赢得位置。设计算法，确定获得最多选票的两位候选人是否各自获得了至少n&#x2F;2张选票，如果是，则确定这两位候选人是谁。    最近的题目">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-03-22T03:28:08.000Z">
-<meta property="article:modified_time" content="2024-03-24T12:09:33.780Z">
+<meta property="article:modified_time" content="2024-03-31T07:31:18.675Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -276,7 +276,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            175 words 
+            1.9k words 
           </div>
         </div>
         
@@ -291,7 +291,104 @@
 <li><p>假设一个由n人组成的小组中的每个人都从一组候选人中选出两个人来填补委员会的两个职位。排名前两位的选手只要各自获得超过n&#x2F;2的选票，都会赢得位置。设计算法，确定获得最多选票的两位候选人是否各自获得了至少n&#x2F;2张选票，如果是，则确定这两位候选人是谁。</p>
 </li>
 </ol>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1>
+<blockquote>
+<p>最近的题目真是越来越难了(T^T)</p>
+</blockquote>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><ol>
+<li>方法一：</li>
+</ol>
+<blockquote>
+<p>一般在求区间什么最大最小的(比如求区间最大和)，根据经验能采用<strong>前缀和</strong>的思路。</p>
+</blockquote>
+<p>假设字符串只有26个小写英文字母。我们定义<code>sum[i][j]</code>表示<code>str[0 , i-1]</code>中j代表的字符出现的次数。那么子串<code>str[l,r]</code>中j代表的字符出现的次数即为<code>sum[r+1][j]-sum[l][j]</code>。只需要预先处理出所有sum，就能O($ n^2 $)处理出子串中每个字符出现次数</p>
+<ol start="2">
+<li>方法二：</li>
+</ol>
+<blockquote>
+<p>第一种方法简单易想，现在着重讲解第二种方法(滑动窗口法)</p>
+</blockquote>
+<p>让我们逐步解释这个算法的工作原理：</p>
+<ol>
+<li><p><strong>外部循环</strong>：</p>
+<ul>
+<li>外部循环控制着不同字符个数的范围，从 1 到 26。这意味着我们会检查子串中包含的不同字符的个数，从只有一个字符到所有 26 个字符都出现。</li>
+</ul>
+</li>
+<li><p><strong>内部滑动窗口</strong>：</p>
+<ul>
+<li>内部有一个滑动窗口，由两个指针 l 和 r 控制。初始时，l 和 r 都指向字符串的起始位置。</li>
+<li>每次迭代，r 指针向右移动，扩展窗口，并根据窗口内的字符更新 <code>mp</code> 数组和 <code>sum</code>、<code>cnt</code> 变量：<ul>
+<li><code>mp</code> 数组记录了窗口内每个字符出现的次数。</li>
+<li><code>sum</code> 变量表示窗口内所有字符出现次数的总和。</li>
+<li><code>cnt</code> 变量表示窗口内不同字符的个数。</li>
+</ul>
+</li>
+<li>在更新 <code>mp</code> 数组和变量后，检查是否满足了每个字符至少重复 k 次的条件。如果是，则更新答案。</li>
+<li>如果窗口内的不同字符个数超过了当前循环的限制（即 <code>cnt &gt; i</code>），则收缩窗口，移动左指针 l，并更新 <code>mp</code> 数组和变量。</li>
+<li>在窗口内的字符满足条件时，更新最大子串的长度。</li>
+</ul>
+</li>
+<li><p><strong>返回结果</strong>：</p>
+<ul>
+<li>最后，函数返回找到的最大子串长度。</li>
+</ul>
+</li>
+</ol>
+<p>这种方法的优点是它只需遍历字符串一次，并且在每次迭代中，窗口的大小是可变的，因此在满足条件的情况下，它能找到最大的子串长度,时间复杂度为O(n)。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><ol>
+<li>方法一：</li>
+</ol>
+<p>拿到这个题目直观地能想到用一个<strong>哈希表</strong>记录每个人的得票数。</p>
+<p>最后遍历一遍哈希表找到最大和次大值判断是否大于n&#x2F;2。</p>
+<p>代码很简单，这里就不放了。</p>
+<p>性能分析：<br>时间复杂度：O(n)  空间复杂度：O(n)</p>
+<ol start="2">
+<li>方法二：</li>
+</ol>
+<blockquote>
+<p><strong>Boyer-Moore投票算法</strong></p>
+</blockquote>
+<ol>
+<li><p><code>findMajorityCandidates</code> 函数接受一个整数数组 <code>votes</code>、数组长度 <code>n</code>，以及两个引用参数 <code>candidate1</code> 和 <code>candidate2</code>。</p>
+</li>
+<li><p>第一阶段：</p>
+<ul>
+<li>在第一个阶段中，使用Boyer-Moore投票算法来确定获得最多选票的两位候选人。</li>
+<li>遍历投票数组，对每一个候选人进行投票统计。</li>
+<li>如果当前候选人是已知的 <code>candidate1</code> 或 <code>candidate2</code>，则增加其对应的票数。</li>
+<li>如果当前候选人不是已知的 <code>candidate1</code> 或 <code>candidate2</code>，并且 <code>count1</code> 为 0，则将当前候选人设为 <code>candidate1</code>，并将票数 <code>count1</code> 设为 1。</li>
+<li>如果当前候选人不是已知的 <code>candidate1</code> 或 <code>candidate2</code>，并且 <code>count2</code> 为 0，则将当前候选人设为 <code>candidate2</code>，并将票数 <code>count2</code> 设为 1。</li>
+<li>如果当前候选人不是已知的 <code>candidate1</code> 或 <code>candidate2</code>，并且 <code>count1</code> 和 <code>count2</code> 都不为 0，则将 <code>count1</code> 和 <code>count2</code> 各自减 1。</li>
+</ul>
+</li>
+<li><p>第二阶段：</p>
+<ul>
+<li>在第二阶段中，对获得最多选票的两位候选人进行验证，判断他们是否各自获得了超过 n&#x2F;2 的选票。</li>
+<li>重新统计投票数组中出现的 <code>candidate1</code> 和 <code>candidate2</code> 的次数。</li>
+</ul>
+</li>
+</ol>
+<p>使用Boyer-Moore投票算法来高效地找出获得最多选票的两位候选人，并且在第二阶段对他们的选票数进行验证，保证他们各自获得了超过 n&#x2F;2 的选票。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><h2 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h2><ol>
+<li>方法一：</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;b)</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> b;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	string str = <span class="string">&quot;abaabcd&quot;</span>;</span><br><span class="line">	<span class="type">int</span> k=<span class="number">2</span>,len,ans=<span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> sum[<span class="number">1000</span>][<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	len = str.<span class="built_in">length</span>();</span><br><span class="line">	sum[<span class="number">0</span>][str[<span class="number">0</span>]-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++)</span><br><span class="line">			sum[i][j]=sum[i<span class="number">-1</span>][j];</span><br><span class="line">		sum[i][str[i]-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;len;j++)&#123;</span><br><span class="line">			<span class="type">bool</span> ok=<span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">26</span>;k++)&#123;</span><br><span class="line">				<span class="type">int</span> cnt = sum[j][k] - sum[i][k];</span><br><span class="line">				<span class="keyword">if</span>(cnt&gt;<span class="number">0</span> &amp;&amp; cnt&lt;k)&#123;</span><br><span class="line">					ok=<span class="literal">false</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(ok)</span><br><span class="line">				ans = <span class="built_in">max</span>(ans, j-i+<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++)</span><br><span class="line">			cout&lt;&lt;sum[i][j]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	cout&lt;&lt;endl;	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">3 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">3 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br><span class="line">3 2 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>方法二：</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">longestSubstring</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = s.<span class="built_in">length</span>();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">26</span>; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> mp[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;, sum = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(l &lt; n) &#123;</span><br><span class="line">            <span class="keyword">while</span>(cnt &lt;= i &amp;&amp; r &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">                ++r;</span><br><span class="line">                <span class="keyword">if</span>(mp[s[r] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) ++cnt, ++sum;</span><br><span class="line">                <span class="keyword">if</span>(mp[s[r] - <span class="string">&#x27;a&#x27;</span>] == k - <span class="number">1</span>) --sum;</span><br><span class="line">                mp[s[r] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(cnt &gt; i) &#123;</span><br><span class="line">                <span class="keyword">if</span>(mp[s[r] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">1</span>) --cnt, --sum;</span><br><span class="line">                <span class="keyword">if</span>(mp[s[r] - <span class="string">&#x27;a&#x27;</span>] == k) ++sum;</span><br><span class="line">                mp[s[r] - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">                --r;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sum == <span class="number">0</span>) ans = <span class="built_in">max</span>(ans, r - l + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(mp[s[l] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">1</span>) --cnt, --sum;</span><br><span class="line">            <span class="keyword">if</span>(mp[s[l] - <span class="string">&#x27;a&#x27;</span>] == k) ++sum;</span><br><span class="line">            mp[s[l] - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">            ++l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string s = <span class="string">&quot;abaabcd&quot;</span>;</span><br><span class="line">    <span class="type">int</span> k = <span class="number">2</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;最大子串长度: &quot;</span> &lt;&lt; <span class="built_in">longestSubstring</span>(s, k) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h2><p>方法二：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">findMajorityCandidates</span><span class="params">(<span class="type">int</span> votes[], <span class="type">int</span> n, <span class="type">int</span>&amp; candidate1, <span class="type">int</span>&amp; candidate2)</span> </span>&#123;</span><br><span class="line">    candidate1 = <span class="number">-1</span>;</span><br><span class="line">	candidate2 = <span class="number">-1</span>;</span><br><span class="line">    <span class="type">int</span> count1 = <span class="number">0</span>, count2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第一阶段：投票</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (candidate1 == votes[i]) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (candidate2 == votes[i]) &#123;</span><br><span class="line">            count2++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count1 == <span class="number">0</span>) &#123;</span><br><span class="line">            candidate1 = votes[i];</span><br><span class="line">            count1 = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count2 == <span class="number">0</span>) &#123;</span><br><span class="line">            candidate2 = votes[i];</span><br><span class="line">            count2 = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            count1--;</span><br><span class="line">            count2--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第二阶段：验证候选人是否获得超过n/2的选票</span></span><br><span class="line">    count1 = count2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (candidate1 == votes[i]) &#123;</span><br><span class="line">            count1++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (candidate2 == votes[i]) &#123;</span><br><span class="line">            count2++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> votes[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">sizeof</span>(votes) / <span class="built_in">sizeof</span>(votes[<span class="number">0</span>]);</span><br><span class="line">    <span class="type">int</span> candidate1, candidate2;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">findMajorityCandidates</span>(votes, n, candidate1, candidate2);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (candidate1 != <span class="number">-1</span> &amp;&amp; candidate2 != <span class="number">-1</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;获得最多选票的两位候选人分别是：&quot;</span> &lt;&lt; candidate1 &lt;&lt; <span class="string">&quot; 和 &quot;</span> &lt;&lt; candidate2 &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;没有两位候选人各自获得超过n/2的选票&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">获得最多选票的两位候选人分别是：3 和 2</span><br></pre></td></tr></table></figure>
+
+
         
       </div>
 
