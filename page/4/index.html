@@ -162,6 +162,11 @@
       <h3 class="widget-title">Archives</h3>
       
       
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
         <a class="archive-link" href="/archives/2024/03 ">
           March 2024 
           <div class="archive-count">7 </div>
@@ -209,6 +214,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%95%B0%E5%AD%97%E6%B5%81%E4%B8%AD%E6%AF%94x%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0/">【算法作业】数字流中比x小的元素个数,顺时针打印旋转矩阵元素</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B3%A2%E8%B0%B7/">【算法作业】连续序列的最大波谷</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/25/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">【算法题解】部分洛谷题解</a>
           </li>
         
@@ -218,14 +231,6 @@
         
           <li>
             <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/16/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%97%8B%E8%BD%AC%E5%BA%8F%E5%88%97%EF%BC%8C%E7%9F%A9%E9%98%B5%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">【算法作业】旋转序列，矩阵二分查找</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/12/ubuntu%E4%BD%BF%E7%94%A8clash-%E8%B6%85%E7%AE%80%E5%8D%95/">ubuntu使用clash(超简单)</a>
           </li>
         
       </ul>
@@ -238,6 +243,150 @@
     </div>
     <div id="content-body">
       
+   
+
+<article id="post-什么是MTCNN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFMTCNN/">什么是MTCNN</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-07-09T10:21:44.000Z" itemprop="datePublished">2023-07-09</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            404 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            MTCNN是一种用于人脸检测和对齐的多任务卷积神经网络（Multi-task Cascaded Convolutional Networks）。它是一种高效且准确的人脸检测算法，能够同时检测出图像中的人脸位置、人脸边界框的大小以及人脸关键点（如眼睛、鼻子、嘴巴等）的位置。
+
+MTCNN由三个级联的卷积神经网络组成：P-Net（Proposal Network）、R-Net（Refine Network）和O-Net（Output Network）。
+
+
+P-Net：P-Net是第一个级联的网络，它通过滑动窗口和候选框回归来生成一组候选人脸框。P-Net用于快速筛选候选框，检测可能包含人脸的区域。
+
+R-Net：R-Net是第二个级联的网络，在P-Net的基础上进一步筛选候选框，通过分类和回归来提高人脸检测的准确性。R-Net会对候选框进行更准确的定位和边界框回归，排除不包含人脸的框并提供更准确的人脸位置和边界框。
+
+O-Net：O-Net是第三个级联的网络，对R-Net输出的候选框进行最后的筛选和精细化调整。O-Net不仅检测人脸位置和边界框，还检测关键点，如眼睛、鼻子和嘴巴等。...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFMTCNN/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-什么是CNN-LSTM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFCNN-LSTM/">什么是CNN-LSTM</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-07-09T10:15:18.000Z" itemprop="datePublished">2023-07-09</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            421 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            CNN-LSTM是一种混合模型，结合了卷积神经网络（Convolutional Neural Network，CNN）和长短期记忆网络（Long Short-Term Memory，LSTM）。它常被用于处理具有时空特性的数据，如图像序列、文本序列等。
+CNN是一种主要用于处理图像数据的神经网络架构。它通过卷积层和池化层来提取输入数据中的局部特征，然后通过全连接层进行分类或回归等任务。CNN在图像处理领域取得了很大的成功，因为它能够自动学习和提取图像中的特征。
+LSTM是一种递归神经网络（Recurrent Neural Network，RNN）的变体，专门用于处理序列数据。相比于传统的RNN，LSTM能够更好地处理长序列依赖关系，避免了梯度消失或梯度爆炸等问题。LSTM通过使用称为“门”的结构来选择性地遗忘和更新信息，以捕捉序列中的长期依赖关系。
+将CNN和LSTM结合起来，可以利用CNN在提取局部特征方面的优势，并将这些特征输入到LSTM中进行序列建模。这种混合模型常被用于处理文本分类、情感分析、语音识别等任务，其中CNN用于提取文本或语音中的局部特征，而LSTM用于对这些特...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2023/07/09/%E4%BB%80%E4%B9%88%E6%98%AFCNN-LSTM/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
    
 
 <article id="post-python截取电脑屏幕-搭配yolo使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
