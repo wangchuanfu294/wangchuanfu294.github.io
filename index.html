@@ -164,7 +164,7 @@
       
         <a class="archive-link" href="/archives/2024/04 ">
           April 2024 
-          <div class="archive-count">2 </div>
+          <div class="archive-count">4 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/03 ">
@@ -214,6 +214,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/">【算法作业】调研LU分解和矩阵的逆</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%95%B0%E5%AD%97%E6%B5%81%E4%B8%AD%E6%AF%94x%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0/">【算法作业】数字流中比x小的元素个数,顺时针打印旋转矩阵元素</a>
           </li>
         
@@ -223,14 +231,6 @@
         
           <li>
             <a href="/2024/03/25/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">【算法题解】部分洛谷题解</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
           </li>
         
       </ul>
@@ -243,6 +243,173 @@
     </div>
     <div id="content-body">
       
+   
+
+<article id="post-树莓派-Openwrt连接校园网，打破校园网设备限制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-04-17T03:48:08.000Z" itemprop="datePublished">2024-04-17</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.4k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            前言因为本校学生校园网只允许最多三个设备登录，对于同时拥有多个联网设备的我十分不友好，而且大多单片机如esp32的wifi模块是只允许一般的WPA&#x2F;WPA2认证的，是不支持校园网的portal认证。所以我决定搞一个路由器。
+然后我上网买了一个TP-Link的路由器，首先尝试将插一根网线到宿舍座位上的墙口上，然后发现根本就没有网络(我们学校有的宿舍可以)。然后我尝试无线连接校园网，将路由器MAC改成了我连过校园网的手机&#x2F;电脑的MAC，无果。于是最后我就决定自己用手头上的树莓派搭建一个软路由。
+
+参考链接：https://www.bilibili.com/read/cv4211352/
+准备工作所需物资
+树莓派4B(最好带散热器)
+
+USB无线网卡一个
+
+网线
+
+sd卡与读卡器
+
+路由器一个(可选，我用的是TP-Link)
+
+
+烧录Openwrt我采用的烧录软件是win32disk，上网下载树莓派4B的Openwrt的镜像文件。下面是文件链接:
+1https://openwrt.cc/releases/targets/bcm27xx/bcm2711/
+
+
+下载这个...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-【算法作业】调研LU分解和矩阵的逆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/">【算法作业】调研LU分解和矩阵的逆</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-04-13T06:15:16.000Z" itemprop="datePublished">2024-04-13</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            589 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            问题描述
+调研学习并给出矩阵的LU分解方法。
+
+给出方案计算可逆矩阵的逆。
+
+
+解题思路对于 LU 分解，通常有两种方法：Gauss 消去法（也称为高斯消元法）和待定系数法（也称为克洛托分解或克拉默法则）。这两种方法都是将一个矩阵分解为一个下三角矩阵（L，Lower triangular matrix）和一个上三角矩阵（U，Upper triangular matrix）的乘积，即 ( A &#x3D; LU )。
+1. Gauss 消去法Gauss 消去法是一种经典的线性代数方法，用于求解线性方程组。它通过一系列的行变换将系数矩阵变换为上三角形式，然后通过回代的方式求解方程组。
+算法步骤：
+初始化：将线性方程组表示成增广矩阵形式。
+消元操作：通过一系列的行变换，将增广矩阵转化为上三角形式。在每一步中，通过乘以一个适当的系数将某一行的某一列元素变为0。
+回代求解：从最后一行开始，通过回代的方式求解每个未知数的值。
+
+2. 待定系数法待定系数法是一种直接分解系数矩阵的方法，将其分解为一个下三角矩阵和一个上三角矩阵。
+算法步骤：
+初始化：将矩阵 A 分解为 LU，其中 L 是单位下三...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
    
 
 <article id="post-【算法作业】数字流中比x小的元素个数-顺时针打印旋转矩阵元素" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -275,7 +442,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            93 words 
+            1.2k words 
           </div>
         </div>
         
@@ -292,9 +459,24 @@
 
 
 
-解题思路T1T2完整代码T11
+解题思路T1
+方法一：
 
-T21  
+在C++中，你可以使用STL中的std::set或std::multiset来实现这样的数据结构。它们底层通常是基于平衡二叉搜索树实现的，可以高效地插入、删除和查找元素。
+
+方法二：
+
+
+手撕平衡二叉搜索树
+
+
+首先，我们定义了一个 Node 结构体，用于表示二叉搜索树的节点。每个节点包含一个整数值 data，表示节点的值，以及一个整数值 count，表示以该节点为根的子树中的节点个数。节点还有左右子节点的指针。
+
+然后，我们定义了一个 BST 类，用于表示二叉搜索树。这个类中包含了 root 成员变量，表示树的根节点。
+
+BST 类中的 insert 方法用于向二叉搜索树中插入一个新节点。如果树为空，则创建一个新节点并将其作为根节点；否则，根据节点的值比较规则，将新节点插入到合适的位置。在插入过程中，我们还需要更新每个节点的 count 值，以反映树中节点的数量。
+
+count...  
           </div>
         
       </div>
@@ -350,7 +532,7 @@ T21
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.1k words 
+            1.8k words 
           </div>
         </div>
         
@@ -365,7 +547,7 @@ T21
 读题： 这里的l是一个给定的值，不是变化的。(因为我一开始就搞错了)
 
 方法一（暴力）：设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$)
-方法二（滑动窗口）：
+方法二（双端队列）：
 在函数findMaxWave中，首先创建了一个双端队列 dq，用于存储元素的下标。
 
 然后，算法通过两个循环分别处理前l个元素和剩余元素。
@@ -892,160 +1074,6 @@ T21
     <a class="right-panel  non-pic  "
       
       href="/2024/03/05/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E4%B8%8D%E5%90%8C%E7%AD%96%E7%95%A5%E6%B1%82GCD%EF%BC%8C%E6%B1%82%E5%AD%90%E9%9B%86/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
- 
-
-   
-
-<article id="post-【算法作业】单调栈排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/">【算法作业】单调栈排序</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-03-04T14:53:44.000Z" itemprop="datePublished">2024-03-04</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            723 words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            问题描述
-给栈结构设计一个求最小值的操作，要求入栈、出栈以及求最小值均在O(1)完成。
-
-给出策略利用栈去完成一个序列的排序，并分析相应的性能。
-
-
-解题思路第一题
-维护两个栈，一个是普通栈 normalStack，一个是小顶栈 minStack。
-
-入栈操作就是normalStack正常push，minStack当栈为空或栈顶元素比要入栈小时push进去。这样就可保证minStack的top为最小值，且入栈操作时间复杂度为O(1)。
-
-出栈操作normalStack同理正常pop，minStack当top元素的值等于normalStack的top元素时就出栈。这样就可以保证每次pop弹出元素后minStack的top仍为最小值。时间复杂度为O(1)。
-
-求最小值只需要返回minStack的top即可。时间复杂度为O(1)。
-
-
-第二题使用栈进行排序的一个常见策略是利用一个额外的临时栈，将原始栈中的元素依次弹出并按顺序插入到辅助栈中。具体步骤如下：
-
-维护两个栈，一个是主栈mainStack，一个是临时栈tempStack。
-
-入栈时，如果mainStack主栈为空或者要入栈的元...  
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
- 
-
-   
-
-<article id="post-Android-Studio制作血条效果" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2024/02/05/Android-Studio%E5%88%B6%E4%BD%9C%E8%A1%80%E6%9D%A1%E6%95%88%E6%9E%9C/">Android Studio制作血条效果</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2024-02-05T13:41:09.000Z" itemprop="datePublished">2024-02-05</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            377 words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            在Android Studio中制作血条可以通过自定义视图（Custom View）来实现。以下是一个简单的示例，展示如何使用自定义视图绘制一个简单的血条：
-首先，在res/values/styles.xml文件中定义一个样式：
-1234567&lt;style name=&quot;HealthBar&quot;&gt;    &lt;item name=&quot;android:layout_width&quot;&gt;match_parent&lt;/item&gt;    &lt;item name=&quot;android:layout_height&quot;&gt;wrap_content&lt;/item&gt;    &lt;item name=&quot;android:layout_margin&quot;&gt;16dp&lt;/item&gt;    &lt;item name=&quot;android:padding&quot;&gt;4dp&lt;/item&gt;    &lt;item name=&quot;android:backgro...  
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2024/02/05/Android-Studio%E5%88%B6%E4%BD%9C%E8%A1%80%E6%9D%A1%E6%95%88%E6%9E%9C/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>

@@ -13,15 +13,15 @@
   
   <title>【算法作业】连续序列的最大波谷 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="问题描述有一系列数，假设l-序列是其中长度为l的连续子序列，对于每个l-序列有一个最小值，称之为l-序列的波谷。设计算法策略求原序列中的最大波谷（max（min（l-序列））。 解题思路 读题： 这里的l是一个给定的值，不是变化的。(因为我一开始就搞错了)  方法一（暴力）：设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$) 方法二（滑动窗口）： 在函数f">
+  <meta name="description" content="问题描述有一系列数，假设l-序列是其中长度为l的连续子序列，对于每个l-序列有一个最小值，称之为l-序列的波谷。设计算法策略求原序列中的最大波谷（max（min（l-序列））。 解题思路 读题： 这里的l是一个给定的值，不是变化的。(因为我一开始就搞错了)  方法一（暴力）：设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$) 方法二（双端队列）： 在函数f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【算法作业】连续序列的最大波谷">
 <meta property="og:url" content="http://example.com/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B3%A2%E8%B0%B7/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="问题描述有一系列数，假设l-序列是其中长度为l的连续子序列，对于每个l-序列有一个最小值，称之为l-序列的波谷。设计算法策略求原序列中的最大波谷（max（min（l-序列））。 解题思路 读题： 这里的l是一个给定的值，不是变化的。(因为我一开始就搞错了)  方法一（暴力）：设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$) 方法二（滑动窗口）： 在函数f">
+<meta property="og:description" content="问题描述有一系列数，假设l-序列是其中长度为l的连续子序列，对于每个l-序列有一个最小值，称之为l-序列的波谷。设计算法策略求原序列中的最大波谷（max（min（l-序列））。 解题思路 读题： 这里的l是一个给定的值，不是变化的。(因为我一开始就搞错了)  方法一（暴力）：设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$) 方法二（双端队列）： 在函数f">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-10T07:05:58.000Z">
-<meta property="article:modified_time" content="2024-04-10T08:27:36.185Z">
+<meta property="article:modified_time" content="2024-04-13T04:57:48.295Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -169,7 +169,7 @@
       
         <a class="archive-link" href="/archives/2024/04 ">
           April 2024 
-          <div class="archive-count">2 </div>
+          <div class="archive-count">4 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/03 ">
@@ -219,6 +219,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/">【算法作业】调研LU分解和矩阵的逆</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%95%B0%E5%AD%97%E6%B5%81%E4%B8%AD%E6%AF%94x%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0/">【算法作业】数字流中比x小的元素个数,顺时针打印旋转矩阵元素</a>
           </li>
         
@@ -228,14 +236,6 @@
         
           <li>
             <a href="/2024/03/25/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">【算法题解】部分洛谷题解</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
           </li>
         
       </ul>
@@ -281,7 +281,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.1k words 
+            1.8k words 
           </div>
         </div>
         
@@ -295,7 +295,7 @@
 <p>读题： 这里的<code>l</code>是一个给定的值，不是变化的。(<del>因为我一开始就搞错了</del>)</p>
 </blockquote>
 <h2 id="方法一（暴力）："><a href="#方法一（暴力）：" class="headerlink" title="方法一（暴力）："></a>方法一（暴力）：</h2><p>设想弄个两层循环，第二层循环寻找l-序列中的最小值，很简单，时间复杂度为O($n * l$)</p>
-<h2 id="方法二（滑动窗口）："><a href="#方法二（滑动窗口）：" class="headerlink" title="方法二（滑动窗口）："></a>方法二（滑动窗口）：</h2><ol>
+<h2 id="方法二（双端队列）："><a href="#方法二（双端队列）：" class="headerlink" title="方法二（双端队列）："></a>方法二（双端队列）：</h2><ol>
 <li><p>在函数<code>findMaxWave</code>中，首先创建了一个双端队列 <code>dq</code>，用于存储元素的下标。</p>
 </li>
 <li><p>然后，算法通过两个循环分别处理前l个元素和剩余元素。</p>
@@ -310,6 +310,18 @@
 </li>
 </ol>
 <p>这个算法的关键是使用双端队列维护一个单调递减的队列，队列中的元素表示当前窗口的候选最小值，每次遍历新的元素时，都会更新队列，保持队列的单调性。这样就可以在O(1)时间内找到当前窗口的最小值。整个算法的时间复杂度为O(n)，其中n是原序列的长度。</p>
+<h2 id="方法三（优先队列-x2F-最小堆）："><a href="#方法三（优先队列-x2F-最小堆）：" class="headerlink" title="方法三（优先队列&#x2F;最小堆）："></a>方法三（优先队列&#x2F;最小堆）：</h2><blockquote>
+<p>这个方法大体和方法二相同，但是思路比方法二简单，少了一个维护队列有序的过程，因为优先队列&#x2F;最小堆的<code>top</code>就是最小值。</p>
+</blockquote>
+<ol>
+<li><p>首先处理前l个元素，建立一个最小堆。</p>
+</li>
+<li><p>然后从第l+1个元素开始滑动窗口，把堆顶不是属于这个l-序列的<code>pop</code>掉，连续<code>pop</code>直到队列为空或者堆顶在这个l-序列中(因为最小堆堆顶就是这个l-序列的最小值，我们只关心堆顶，如果现在堆下方还有不属于l-序列中的元素，直接不管)。</p>
+</li>
+<li><p><code>push</code>新的元素，优先队列自动维护堆顶最小值。更新<code>max_wave</code></p>
+</li>
+</ol>
+<p>这个算法由于总是要维护一个最小堆，因此时间复杂度为O(l*logl) + O((n-l)<em>logl) &#x3D; O(n</em>logl)</p>
 <h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><ol>
 <li>方法一:</li>
 </ol>
@@ -326,7 +338,11 @@
 <p>运行结果</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dq为：1 3</span><br><span class="line">dq为：1 3 4</span><br><span class="line">dq为：5</span><br><span class="line">dq为：5 6</span><br><span class="line">dq为：5 7</span><br><span class="line">dq为：5 7 8</span><br><span class="line">dq为：7 8 9</span><br><span class="line">原序列中长度为 4 的 l-序列的最大波谷为: 4</span><br></pre></td></tr></table></figure>
 
+<p>方法三：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Element</span>&#123;</span><br><span class="line">	<span class="type">int</span> value;</span><br><span class="line">	<span class="type">int</span> index; </span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 构造函数</span></span><br><span class="line">    <span class="built_in">Element</span>(<span class="type">int</span> v, <span class="type">int</span> i) : <span class="built_in">value</span>(v), <span class="built_in">index</span>(i) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重载小于操作符</span></span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Element&amp; other) <span class="type">const</span> &#123;</span><br><span class="line">        <span class="comment">// 如果值不同，则按值排序</span></span><br><span class="line">        <span class="keyword">if</span> (value != other.value) &#123;</span><br><span class="line">            <span class="keyword">return</span> value &gt; other.value; <span class="comment">// 小于号表示最小堆</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果值相同，则按序号排序</span></span><br><span class="line">        <span class="keyword">return</span> index &gt; other.index; <span class="comment">// 小于号表示最小堆</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printminHeap</span><span class="params">(priority_queue&lt;Element&gt; minHeap)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 克隆一份优先队列</span></span><br><span class="line">    priority_queue&lt;Element&gt; clonedHeap = minHeap;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印克隆的优先队列中的所有元素</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;minHeap priority queue:&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span> (!clonedHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        Element top = clonedHeap.<span class="built_in">top</span>();</span><br><span class="line">        cout &lt;&lt;  top.value &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        clonedHeap.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;	</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">findMaxWave</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> l)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">	<span class="type">int</span> max_wave = <span class="number">-1</span>; <span class="comment">// 最大波谷</span></span><br><span class="line">	<span class="comment">// 使用自定义类型创建最小堆</span></span><br><span class="line">	priority_queue&lt;Element&gt; minHeap;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;l;i++)</span><br><span class="line">		minHeap.<span class="built_in">push</span>(<span class="built_in">Element</span>(nums[i],i));</span><br><span class="line">		</span><br><span class="line">	<span class="built_in">printminHeap</span>(minHeap);<span class="comment">//显示一下 </span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">			</span><br><span class="line">		<span class="comment">// 移除队列中不在当前l-序列范围内的元素</span></span><br><span class="line">		<span class="keyword">while</span>(minHeap.<span class="built_in">top</span>().index &lt;= i -l  &amp;&amp; !minHeap.<span class="built_in">empty</span>())</span><br><span class="line">			minHeap.<span class="built_in">pop</span>();</span><br><span class="line">		</span><br><span class="line">		minHeap.<span class="built_in">push</span>(<span class="built_in">Element</span>(nums[i],i));</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">printminHeap</span>(minHeap);<span class="comment">//显示一下 </span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(minHeap.<span class="built_in">top</span>().value &gt; max_wave)</span><br><span class="line">			max_wave = minHeap.<span class="built_in">top</span>().value;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> max_wave;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">// 示例输入</span></span><br><span class="line">    <span class="type">int</span> input_arr[] = &#123;<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nums</span><span class="params">(input_arr, input_arr + <span class="keyword">sizeof</span>(input_arr) / <span class="keyword">sizeof</span>(input_arr[<span class="number">0</span>]))</span></span>;</span><br><span class="line">    <span class="type">int</span> l = <span class="number">4</span>; <span class="comment">// l-序列的长度</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 寻找最大波谷</span></span><br><span class="line">    <span class="type">int</span> max_wave = <span class="built_in">findMaxWave</span>(nums, l);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输出结果</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;原序列中长度为 &quot;</span> &lt;&lt; l &lt;&lt; <span class="string">&quot; 的 l-序列的最大波谷为: &quot;</span> &lt;&lt; max_wave &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">minHeap priority queue:1 2 3 4</span><br><span class="line">minHeap priority queue:1 2 3 4 5</span><br><span class="line">minHeap priority queue:1 2 3 4 5</span><br><span class="line">minHeap priority queue:1 2 3 4 5 6</span><br><span class="line">minHeap priority queue:1 2 3 4 4 5 6</span><br><span class="line">minHeap priority queue:1 2 3 4 4 5 6 7</span><br><span class="line">minHeap priority queue:4 5 6 7 8</span><br><span class="line">原序列中长度为 4 的 l-序列的最大波谷为: 4</span><br></pre></td></tr></table></figure>
         
       </div>
 

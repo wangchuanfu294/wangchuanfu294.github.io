@@ -164,7 +164,7 @@
       
         <a class="archive-link" href="/archives/2024/04 ">
           April 2024 
-          <div class="archive-count">2 </div>
+          <div class="archive-count">4 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/03 ">
@@ -214,6 +214,14 @@
       <ul>
         
           <li>
+            <a href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/">【算法作业】调研LU分解和矩阵的逆</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%95%B0%E5%AD%97%E6%B5%81%E4%B8%AD%E6%AF%94x%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0/">【算法作业】数字流中比x小的元素个数,顺时针打印旋转矩阵元素</a>
           </li>
         
@@ -223,14 +231,6 @@
         
           <li>
             <a href="/2024/03/25/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">【算法题解】部分洛谷题解</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/22/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%AC%A1%E6%95%B0%E4%B8%8D%E5%B0%8F%E4%BA%8Ek%E7%9A%84%E5%AD%97%E7%AC%A6%EF%BC%8Cn-2%E7%9A%84%E9%80%89%E7%A5%A8/">【算法作业】次数不小于k的字符，n/2的选票</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/18/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91top-k%E5%92%8CCubeSort/">【算法作业】top-k和CubeSort</a>
           </li>
         
       </ul>
@@ -243,6 +243,160 @@
     </div>
     <div id="content-body">
       
+   
+
+<article id="post-【算法作业】单调栈排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/">【算法作业】单调栈排序</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-03-04T14:53:44.000Z" itemprop="datePublished">2024-03-04</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            723 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            问题描述
+给栈结构设计一个求最小值的操作，要求入栈、出栈以及求最小值均在O(1)完成。
+
+给出策略利用栈去完成一个序列的排序，并分析相应的性能。
+
+
+解题思路第一题
+维护两个栈，一个是普通栈 normalStack，一个是小顶栈 minStack。
+
+入栈操作就是normalStack正常push，minStack当栈为空或栈顶元素比要入栈小时push进去。这样就可保证minStack的top为最小值，且入栈操作时间复杂度为O(1)。
+
+出栈操作normalStack同理正常pop，minStack当top元素的值等于normalStack的top元素时就出栈。这样就可以保证每次pop弹出元素后minStack的top仍为最小值。时间复杂度为O(1)。
+
+求最小值只需要返回minStack的top即可。时间复杂度为O(1)。
+
+
+第二题使用栈进行排序的一个常见策略是利用一个额外的临时栈，将原始栈中的元素依次弹出并按顺序插入到辅助栈中。具体步骤如下：
+
+维护两个栈，一个是主栈mainStack，一个是临时栈tempStack。
+
+入栈时，如果mainStack主栈为空或者要入栈的元...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/03/04/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E5%8D%95%E8%B0%83%E6%A0%88%E6%8E%92%E5%BA%8F/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-Android-Studio制作血条效果" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2024/02/05/Android-Studio%E5%88%B6%E4%BD%9C%E8%A1%80%E6%9D%A1%E6%95%88%E6%9E%9C/">Android Studio制作血条效果</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-02-05T13:41:09.000Z" itemprop="datePublished">2024-02-05</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            377 words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="truncate-text">
+            在Android Studio中制作血条可以通过自定义视图（Custom View）来实现。以下是一个简单的示例，展示如何使用自定义视图绘制一个简单的血条：
+首先，在res/values/styles.xml文件中定义一个样式：
+1234567&lt;style name=&quot;HealthBar&quot;&gt;    &lt;item name=&quot;android:layout_width&quot;&gt;match_parent&lt;/item&gt;    &lt;item name=&quot;android:layout_height&quot;&gt;wrap_content&lt;/item&gt;    &lt;item name=&quot;android:layout_margin&quot;&gt;16dp&lt;/item&gt;    &lt;item name=&quot;android:padding&quot;&gt;4dp&lt;/item&gt;    &lt;item name=&quot;android:backgro...  
+          </div>
+        
+      </div>
+
+         
+    </div>
+    
+     
+    <a class="right-panel  non-pic  "
+      
+      href="/2024/02/05/Android-Studio%E5%88%B6%E4%BD%9C%E8%A1%80%E6%9D%A1%E6%95%88%E6%9E%9C/" 
+    >
+       
+      <i class="fa-solid fa-angle-right non-pic"></i>
+       
+    </a>
+     
+  </div>
+  
+</article>
+
+ 
+
    
 
 <article id="post-Android-Studio小白踩坑记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -884,163 +1038,6 @@ createdots.py的代码
     <a class="right-panel  non-pic  "
       
       href="/2023/08/12/day5/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
- 
-
-   
-
-<article id="post-自制app控制arduino蓝牙小车" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/08/09/%E8%87%AA%E5%88%B6app%E6%8E%A7%E5%88%B6arduino%E8%93%9D%E7%89%99%E5%B0%8F%E8%BD%A6/">自制app控制arduino蓝牙小车(非常简单)</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-08-09T13:22:27.000Z" itemprop="datePublished">2023-08-09</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            575 words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            硬件部分arduino我这块是用pcb自制的arduino板，板的右边有电源适配模块和左边有电机驱动的模块，方便我将电机和电池都装载在蓝牙小车上。
-
-蓝牙简简单单非常常见的HC-05蓝牙。接线时用软连接，RX接11号引脚，TX接10号引脚。
-电机5V和GND直接连接电机也是可以转的，但是无法用程序控制电机运行和停止。因此要接到电机驱动板上。
-引脚和4个马达控制的关系
-软件部分arduino IDE简单写一下程序，串口检测蓝牙数据，控制小车行走
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110#include &lt;SoftwareSerial.h&gt; // Pin10接HC05的TXD...  
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2023/08/09/%E8%87%AA%E5%88%B6app%E6%8E%A7%E5%88%B6arduino%E8%93%9D%E7%89%99%E5%B0%8F%E8%BD%A6/" 
-    >
-       
-      <i class="fa-solid fa-angle-right non-pic"></i>
-       
-    </a>
-     
-  </div>
-  
-</article>
-
- 
-
-   
-
-<article id="post-OLED显示当前时间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-   
-  <div class="article-inner">
-    <div class="article-main">
-      <header class="article-header">
-        
-<div class="main-title-bar">
-  <div class="main-title-dot"></div>
-  
-    
-      <h1 itemprop="name">
-        <a class="p-name article-title" href="/2023/07/30/OLED%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/">OLED显示当前时间</a>
-      </h1>
-    
-  
-</div>
-
-        <div class='meta-info-bar'>
-          <div class="meta-info">
-  <time class="dt-published" datetime="2023-07-30T12:06:55.000Z" itemprop="datePublished">2023-07-30</time>
-</div>
-          <div class="need-seperator meta-info">
-            <div class="meta-cate-flex">
-  
-    Uncategorized 
-   
-</div>
-  
-          </div>
-          <div class="wordcount need-seperator meta-info">
-            318 words 
-          </div>
-        </div>
-        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li></ul>
-
-      </header>
-      <div class="e-content article-entry" itemprop="articleBody">
-        
-          <div class="truncate-text">
-            ESP32学习笔记(一)材料ESP32-WROOM-32
-OLED(我的驱动芯片是sh1106)
-细节
-由于OLED是sh1106不是常用的SSD1306，所以库引入得引入u8g2这个库
-
-这里要使用  U8G2_SH1106_128X64_NONAME_F_SW_I2C 软连接 这个类，用硬连接方式不行
-
-WiFi的库也要修改，例程的库用的是ESP8266，要改成我们ESP32的&lt;WiFi.h&gt;这个就行了
-
-u8g2字库文档
-
-
-
-中文字库 https://github.com/larryli/u8g2_wqy
-
-
-英文字库 https://github.com/olikraus/u8g2/wiki/fntlistall
-
-代码time_OLED.ino的代码
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;WiFi.h&gt;#include &lt;WiFiAP...  
-          </div>
-        
-      </div>
-
-         
-    </div>
-    
-     
-    <a class="right-panel  non-pic  "
-      
-      href="/2023/07/30/OLED%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/" 
     >
        
       <i class="fa-solid fa-angle-right non-pic"></i>
