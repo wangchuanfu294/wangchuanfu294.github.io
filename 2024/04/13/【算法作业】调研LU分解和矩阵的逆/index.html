@@ -13,15 +13,15 @@
   
   <title>【算法作业】调研LU分解和矩阵的逆 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="问题描述 调研学习并给出矩阵的LU分解方法。  给出方案计算可逆矩阵的逆。   解题思路对于 LU 分解，通常有两种方法：Gauss 消去法（也称为高斯消元法）和待定系数法（也称为克洛托分解或克拉默法则）。这两种方法都是将一个矩阵分解为一个下三角矩阵（L，Lower triangular matrix）和一个上三角矩阵（U，Upper triangular matrix）的乘积，即 ( A &amp;#x">
+  <meta name="description" content="问题描述 调研学习并给出矩阵的LU分解方法。  给出方案计算可逆矩阵的逆。   解题思路 LU分解是一种常用的矩阵分解方法，它将一个矩阵分解为一个下三角矩阵(Lower Triangular Matrix)和一个上三角矩阵(Upper Triangular Matrix)的乘积。LU分解的过程可以通过高斯消元法来实现。以下是LU分解的算法步骤：  首先，将原始矩阵A分解为两个矩阵L和U，其中L为下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【算法作业】调研LU分解和矩阵的逆">
 <meta property="og:url" content="http://example.com/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="问题描述 调研学习并给出矩阵的LU分解方法。  给出方案计算可逆矩阵的逆。   解题思路对于 LU 分解，通常有两种方法：Gauss 消去法（也称为高斯消元法）和待定系数法（也称为克洛托分解或克拉默法则）。这两种方法都是将一个矩阵分解为一个下三角矩阵（L，Lower triangular matrix）和一个上三角矩阵（U，Upper triangular matrix）的乘积，即 ( A &amp;#x">
+<meta property="og:description" content="问题描述 调研学习并给出矩阵的LU分解方法。  给出方案计算可逆矩阵的逆。   解题思路 LU分解是一种常用的矩阵分解方法，它将一个矩阵分解为一个下三角矩阵(Lower Triangular Matrix)和一个上三角矩阵(Upper Triangular Matrix)的乘积。LU分解的过程可以通过高斯消元法来实现。以下是LU分解的算法步骤：  首先，将原始矩阵A分解为两个矩阵L和U，其中L为下">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-13T06:15:16.000Z">
-<meta property="article:modified_time" content="2024-04-13T06:40:00.902Z">
+<meta property="article:modified_time" content="2024-04-17T11:16:03.872Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -136,7 +136,7 @@
         
           <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
         
-          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
          
       </div>  
     </div>
@@ -169,7 +169,7 @@
       
         <a class="archive-link" href="/archives/2024/04 ">
           April 2024 
-          <div class="archive-count">4 </div>
+          <div class="archive-count">5 </div>
         </a>
       
         <a class="archive-link" href="/archives/2024/03 ">
@@ -219,6 +219,10 @@
       <ul>
         
           <li>
+            <a href="/2024/04/30/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%9C%80%E5%B0%91%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%BC%80%E8%AE%BE%E5%88%86%E5%85%AC%E5%8F%B8/">【算法作业】最少分割回文字符串，开设分公司</a>
+          </li>
+        
+          <li>
             <a href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
           </li>
         
@@ -232,10 +236,6 @@
         
           <li>
             <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B3%A2%E8%B0%B7/">【算法作业】连续序列的最大波谷</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/25/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">【算法题解】部分洛谷题解</a>
           </li>
         
       </ul>
@@ -281,7 +281,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            589 words 
+            536 words 
           </div>
         </div>
         
@@ -296,21 +296,29 @@
 <li><p>给出方案计算可逆矩阵的逆。</p>
 </li>
 </ol>
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于 LU 分解，通常有两种方法：Gauss 消去法（也称为高斯消元法）和待定系数法（也称为克洛托分解或克拉默法则）。这两种方法都是将一个矩阵分解为一个下三角矩阵（L，Lower triangular matrix）和一个上三角矩阵（U，Upper triangular matrix）的乘积，即 ( A &#x3D; LU )。</p>
-<h3 id="1-Gauss-消去法"><a href="#1-Gauss-消去法" class="headerlink" title="1. Gauss 消去法"></a>1. Gauss 消去法</h3><p>Gauss 消去法是一种经典的线性代数方法，用于求解线性方程组。它通过一系列的行变换将系数矩阵变换为上三角形式，然后通过回代的方式求解方程组。</p>
-<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h4><ol>
-<li><strong>初始化</strong>：将线性方程组表示成增广矩阵形式。</li>
-<li><strong>消元操作</strong>：通过一系列的行变换，将增广矩阵转化为上三角形式。在每一步中，通过乘以一个适当的系数将某一行的某一列元素变为0。</li>
-<li><strong>回代求解</strong>：从最后一行开始，通过回代的方式求解每个未知数的值。</li>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><ol>
+<li><p>LU分解是一种常用的矩阵分解方法，它将一个矩阵分解为一个下三角矩阵(Lower Triangular Matrix)和一个上三角矩阵(Upper Triangular Matrix)的乘积。LU分解的过程可以通过高斯消元法来实现。以下是LU分解的算法步骤：</p>
+<ul>
+<li>首先，将原始矩阵A分解为两个矩阵L和U，其中L为下三角矩阵，U为上三角矩阵。</li>
+<li>开始时，L为单位下三角矩阵，U为矩阵A的副本。</li>
+<li>对矩阵U进行高斯消元法的操作，将其变换为上三角形式，同时记录每一步消元操作所产生的乘积因子，这些乘积因子构成了矩阵L的非零元素。</li>
+<li>经过一系列消元操作后，得到的上三角矩阵U即为LU分解的上三角矩阵，而L则是由之前记录的乘积因子所组成的下三角矩阵。</li>
+</ul>
+<p>这样，原始矩阵A就可以表示为LU的乘积形式。LU分解可以提高计算可逆矩阵的效率，同时也方便了求解线性方程组等应用。</p>
+</li>
+<li><p>计算可逆矩阵的逆可以利用LU分解来实现。一旦得到了LU分解的形式，就可以通过前向替换和后向替换的方式来求解原始矩阵的逆。具体步骤如下：</p>
+<ul>
+<li>首先，利用LU分解将原始矩阵A分解为下三角矩阵L和上三角矩阵U。</li>
+<li>然后，将方程AX &#x3D; I（其中I为单位矩阵）拆分为两个步骤：<ul>
+<li>首先，解Ly &#x3D; I，其中y为未知向量。</li>
+<li>然后，解UX &#x3D; y，其中X为未知向量。</li>
+</ul>
+</li>
+<li>经过这两步操作，得到的X即为矩阵A的逆。</li>
+</ul>
+<p>这样就完成了计算可逆矩阵的逆的过程。LU分解方法在求解逆矩阵时可以减少计算量和复杂度，提高求解效率。</p>
+</li>
 </ol>
-<h3 id="2-待定系数法"><a href="#2-待定系数法" class="headerlink" title="2. 待定系数法"></a>2. 待定系数法</h3><p>待定系数法是一种直接分解系数矩阵的方法，将其分解为一个下三角矩阵和一个上三角矩阵。</p>
-<h4 id="算法步骤：-1"><a href="#算法步骤：-1" class="headerlink" title="算法步骤："></a>算法步骤：</h4><ol>
-<li><strong>初始化</strong>：将矩阵 A 分解为 LU，其中 L 是单位下三角矩阵，U 是上三角矩阵。</li>
-<li><strong>选取主元</strong>：在每一步中，选取一个主元素（pivot），通常选择主元素为当前列的对角线元素中绝对值最大的那个。</li>
-<li><strong>消元操作</strong>：对于每一步，使用选定的主元素，通过行变换将当前列的非主元素消为0，得到上三角矩阵 U 的一部分，并将消元操作中所用到的系数存储在下三角矩阵 L 的对应位置上。</li>
-<li><strong>重复</strong>：重复上述步骤直到得到完整的 LU 分解。</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这两种方法都是用于求解线性方程组的有效方法。Gauss 消去法主要用于求解线性方程组，而待定系数法 LU 分解可以更好地理解矩阵的性质，并在数值计算中有着广泛的应用。</p>
 
         
       </div>
