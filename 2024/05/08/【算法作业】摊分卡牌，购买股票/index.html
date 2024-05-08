@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>【算法作业】均分卡牌，购买股票 | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="问题描述 John 有两个孩子，在 John病逝后，留下了一组价值不一定相同的魔卡， 现在要求你设计一种策略，帮John的经管人将John的这些遗产分给他的两个孩子，使得他们获得的遗产差异最小（每张魔卡不能分拆）。  假设已知某股票连续若干天的股价，并且如何时候你手上只能由一支股票，即如果你要买入就得先将手上股票卖出，设计一个算法来计算你所能获取的最大利润。你最多可以完成 k笔交易。也就是说，你最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【算法作业】均分卡牌，购买股票">
+<meta property="og:url" content="http://example.com/2024/05/08/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%91%8A%E5%88%86%E5%8D%A1%E7%89%8C%EF%BC%8C%E8%B4%AD%E4%B9%B0%E8%82%A1%E7%A5%A8/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="问题描述 John 有两个孩子，在 John病逝后，留下了一组价值不一定相同的魔卡， 现在要求你设计一种策略，帮John的经管人将John的这些遗产分给他的两个孩子，使得他们获得的遗产差异最小（每张魔卡不能分拆）。  假设已知某股票连续若干天的股价，并且如何时候你手上只能由一支股票，即如果你要买入就得先将手上股票卖出，设计一个算法来计算你所能获取的最大利润。你最多可以完成 k笔交易。也就是说，你最">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-08T04:23:28.000Z">
+<meta property="article:modified_time" content="2024-05-08T05:58:35.346Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2024/05 ">
+          May 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/03 ">
+          March 2024 
+          <div class="archive-count">7 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/02 ">
+          February 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/01 ">
+          January 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/12 ">
+          December 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          August 2023 
+          <div class="archive-count">6 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2024/05/08/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%91%8A%E5%88%86%E5%8D%A1%E7%89%8C%EF%BC%8C%E8%B4%AD%E4%B9%B0%E8%82%A1%E7%A5%A8/">【算法作业】均分卡牌，购买股票</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/30/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%9C%80%E5%B0%91%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%BC%80%E8%AE%BE%E5%88%86%E5%85%AC%E5%8F%B8/">【算法作业】最少分割回文字符串，开设分公司</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/17/%E6%A0%91%E8%8E%93%E6%B4%BE-Openwrt%E8%BF%9E%E6%8E%A5%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%8C%E6%89%93%E7%A0%B4%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%BE%E5%A4%87%E9%99%90%E5%88%B6/">树莓派+Openwrt连接校园网，打破校园网设备限制</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/13/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E8%B0%83%E7%A0%94LU%E5%88%86%E8%A7%A3%E5%92%8C%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86/">【算法作业】调研LU分解和矩阵的逆</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/10/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%95%B0%E5%AD%97%E6%B5%81%E4%B8%AD%E6%AF%94x%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E5%85%83%E7%B4%A0/">【算法作业】数字流中比x小的元素个数,顺时针打印旋转矩阵元素</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-【算法作业】摊分卡牌，购买股票" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        【算法作业】均分卡牌，购买股票
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-05-08T04:23:28.000Z" itemprop="datePublished">2024-05-08</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.2k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><ol>
+<li><p>John 有两个孩子，在 John病逝后，留下了一组价值不一定相同的魔卡， 现在要求你设计一种策略，帮John的经管人将John的这些遗产分给他的两个孩子，使得他们获得的遗产差异最小（每张魔卡不能分拆）。</p>
+</li>
+<li><p>假设已知某股票连续若干天的股价，并且如何时候你手上只能由一支股票，即如果你要买入就得先将手上股票卖出，设计一个算法来计算你所能获取的最大利润。你最多可以完成 k笔交易。也就是说，你最多可以买k 次，卖 k 次。</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：k = 2, prices = [3,2,7,5,1,4]</span><br><span class="line">输出：8</span><br><span class="line"></span><br><span class="line">7-2  +  4-1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p>这是一个经典的贪心算法问题：</p>
+<ol>
+<li>将所有的魔卡按照价值从大到小排序。</li>
+<li>从价值最高的魔卡开始，依次分配给两个孩子中当前遗产较少的那个孩子。</li>
+<li>重复步骤2直到所有的魔卡都被分配完毕。</li>
+</ol>
+<blockquote>
+<p>这种贪心分东西的思路非常常见，一眼望穿</p>
+</blockquote>
+<p>类似的题目还有捡大小垃圾放两个垃圾袋呀等等。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>那么这道题到底是贪心还是动规呢？</p>
+<p>我们知道动规有一道经典例题，就是非升子序列，不觉得这题有几分相似，都是必须从前往后求最优。其实要证明贪心算法不行只要<strong>举个反例</strong>就行了。</p>
+<p>于是就根据经验按照动规的思路来思考。考虑使用二维数组<code>dp[i][j]</code>，代表当前状态的最大利润，<code>i</code>代表当前是第i次买卖，<code>j</code>代表当前是第j天。</p>
+<p>对于每个状态都有买和不买。为什么是买和不买呢，不是还有卖吗？其实是赚钱和不赚钱这两种选择，赚钱是卖与买之间的差值。所以这道题比一般的动态规划要更复杂些。</p>
+<p>对于每一次买卖，必须有买才有卖，先用<code>maxDiff</code>包括因为买股票亏的钱，一开始由于没有股票，就等于<code>-prices[1]</code>。这个亏的钱也完全不是负数亏的钱，还要包括之前(上一次买卖)因为赚钱累计的成本，这个<code>maxDiff</code>就是代表<strong>本次买卖状态下的累计成本</strong>(<del>比较难理解</del>)。所以$$maxDiff &#x3D; max(maxDiff, dp[i-1][j] - prices[j])$$</p>
+<p>对于每一天，都有去赚钱和不赚钱。不赚钱利润等于昨天的利润，去赚钱的利润等于累计成本<code>maxDiff</code>加上<code>prices[j]</code>，因此$$dp[i][j] &#x3D; max(dp[i][j-1], prices[j] + maxDiff)$$</p>
+<p>在样例下，dp运算结果如下所示。</p>
+<table>
+<thead>
+<tr>
+<th>prices</th>
+<th>3</th>
+<th>2</th>
+<th>7</th>
+<th>5</th>
+<th>1</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dp[1][j]</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>dp[2][j]</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<p>这个dp[k][n]就是answer。</p>
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><h2 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分配遗产的函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">distributeInheritance</span><span class="params">(<span class="type">int</span> cards[], <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 排序魔卡</span></span><br><span class="line">    <span class="built_in">sort</span>(cards, cards + n, <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化两个孩子的遗产值</span></span><br><span class="line">    <span class="type">int</span> child1_inheritance = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> child2_inheritance = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分配遗产</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (child1_inheritance &lt;= child2_inheritance) &#123;</span><br><span class="line">            child1_inheritance += cards[i];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            child2_inheritance += cards[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出两个孩子的遗产差异</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;遗产差异最小为：&quot;</span> &lt;&lt; <span class="built_in">abs</span>(child1_inheritance - child2_inheritance) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 输入魔卡数量</span></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;请输入魔卡数量：&quot;</span>;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入每张魔卡的价值</span></span><br><span class="line">    <span class="type">int</span> cards[n];</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;请输入每张魔卡的价值：&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        cin &gt;&gt; cards[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 调用分配遗产函数</span></span><br><span class="line">    <span class="built_in">distributeInheritance</span>(cards, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* sample input</span></span><br><span class="line"><span class="comment">8 </span></span><br><span class="line"><span class="comment">2 5 6 7 1 7 4 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请输入魔卡数量：8</span><br><span class="line">请输入每张魔卡的价值：</span><br><span class="line">2 5 6 7 1 7 4 3</span><br><span class="line">遗产差异最小为：1</span><br></pre></td></tr></table></figure>
+<h2 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,k,prices[<span class="number">100</span>],dp[<span class="number">101</span>][<span class="number">101</span>]; <span class="comment">// 动态规划数组大小修改为dp[101][101]</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    <span class="built_in">memset</span>(prices,<span class="number">0</span>,<span class="built_in">sizeof</span>(prices));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        cin&gt;&gt;prices[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">        <span class="type">int</span> maxDiff = -prices[<span class="number">1</span>]; <span class="comment">// 数组prices的下标从1开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123; </span><br><span class="line">            dp[i][j] = <span class="built_in">max</span>(dp[i][j<span class="number">-1</span>],prices[j] + maxDiff);</span><br><span class="line">            maxDiff = <span class="built_in">max</span>(maxDiff, dp[i<span class="number">-1</span>][j] - prices[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;dp[k][n]&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印dp数组</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;|dp|&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        cout&lt;&lt;i&lt;&lt;<span class="string">&quot;|&quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;|&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;-|&quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;|&quot;</span>&lt;&lt;i&lt;&lt;<span class="string">&quot;|&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">            cout&lt;&lt;dp[i][j]&lt;&lt;<span class="string">&quot;|&quot;</span>;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* simple input</span></span><br><span class="line"><span class="comment">6 2</span></span><br><span class="line"><span class="comment">3 2 7 5 1 4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6 2</span><br><span class="line">3 2 7 5 1 4</span><br><span class="line">8</span><br><span class="line">|dp|1|2|3|4|5|6|</span><br><span class="line">|-|-|-|-|-|-|-|</span><br><span class="line">|1|0|0|5|5|5|5|</span><br><span class="line">|2|0|0|5|5|5|8|</span><br></pre></td></tr></table></figure>
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/04/30/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%9C%80%E5%B0%91%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%BC%80%E8%AE%BE%E5%88%86%E5%85%AC%E5%8F%B8/"
+      title="【算法作业】最少分割回文字符串，开设分公司"
+     >
+
+    <p class="title-text">
+      
+        【算法作业】最少分割回文字符串，开设分公司
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
