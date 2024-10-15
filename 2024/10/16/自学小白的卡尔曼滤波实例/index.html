@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>自学小白的卡尔曼滤波实例 | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="自学小白的卡尔曼滤波实例前记你有没有在看卡尔曼滤波方程式感到非常烧脑，对一堆高斯分布等数学推理感到困惑?反正我是这样。如果你和我一样只想知道如何运用卡尔曼滤波完成一些例子，学会如何使用卡尔曼滤波做控制的话，希望本文可以为你提供一点帮助。 一、卡尔曼滤波(KF)拟合y&#x3D;sin(x)曲线假设我们要使用卡尔曼滤波对带有噪声的 sin(x) 数据进行拟合，并输出拟合曲线的图像，同时预测 x&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学小白的卡尔曼滤波实例">
+<meta property="og:url" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="自学小白的卡尔曼滤波实例前记你有没有在看卡尔曼滤波方程式感到非常烧脑，对一堆高斯分布等数学推理感到困惑?反正我是这样。如果你和我一样只想知道如何运用卡尔曼滤波完成一些例子，学会如何使用卡尔曼滤波做控制的话，希望本文可以为你提供一点帮助。 一、卡尔曼滤波(KF)拟合y&#x3D;sin(x)曲线假设我们要使用卡尔曼滤波对带有噪声的 sin(x) 数据进行拟合，并输出拟合曲线的图像，同时预测 x&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/0.png">
+<meta property="og:image" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/2.png">
+<meta property="og:image" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/1.png">
+<meta property="og:image" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/3.png">
+<meta property="article:published_time" content="2024-10-15T16:40:45.000Z">
+<meta property="article:modified_time" content="2024-10-15T16:43:14.080Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="目标检测">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2024/10 ">
+          October 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/08 ">
+          August 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/06 ">
+          June 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/05 ">
+          May 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/03 ">
+          March 2024 
+          <div class="archive-count">7 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/02 ">
+          February 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/01 ">
+          January 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/12 ">
+          December 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          August 2023 
+          <div class="archive-count">6 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/">自学小白的卡尔曼滤波实例</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/21/%E3%80%90Unity%E3%80%91live2d%E5%AF%BC%E5%85%A5%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B/">【Unity】快速搭建live2d桌宠</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/29/%E3%80%90%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E3%80%91%E8%A7%A3%E9%A2%98%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">【算法实验】解题实验报告</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/29/%E3%80%90%E7%AE%97%E6%B3%95%E9%A2%98%E8%A7%A3%E3%80%91%E9%83%A8%E5%88%86%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3-%E4%B8%8B/">【算法题解】部分洛谷题解(下)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/08/%E3%80%90%E7%AE%97%E6%B3%95%E4%BD%9C%E4%B8%9A%E3%80%91%E6%91%8A%E5%88%86%E5%8D%A1%E7%89%8C%EF%BC%8C%E8%B4%AD%E4%B9%B0%E8%82%A1%E7%A5%A8/">【算法作业】均分卡牌，购买股票</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-自学小白的卡尔曼滤波实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        自学小白的卡尔曼滤波实例
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-10-15T16:40:45.000Z" itemprop="datePublished">2024-10-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            3.6k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="自学小白的卡尔曼滤波实例"><a href="#自学小白的卡尔曼滤波实例" class="headerlink" title="自学小白的卡尔曼滤波实例"></a>自学小白的卡尔曼滤波实例</h1><h1 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h1><p>你有没有在看卡尔曼滤波方程式感到非常烧脑，对一堆高斯分布等数学推理感到困惑?反正我是这样。如果你和我一样只想知道如何运用卡尔曼滤波完成一些例子，学会如何使用卡尔曼滤波做控制的话，希望本文可以为你提供一点帮助。</p>
+<h1 id="一、卡尔曼滤波-KF-拟合y-x3D-sin-x-曲线"><a href="#一、卡尔曼滤波-KF-拟合y-x3D-sin-x-曲线" class="headerlink" title="一、卡尔曼滤波(KF)拟合y&#x3D;sin(x)曲线"></a>一、卡尔曼滤波(KF)拟合y&#x3D;sin(x)曲线</h1><p>假设我们要使用卡尔曼滤波对带有噪声的 sin(x) 数据进行拟合，并输出拟合曲线的图像，同时预测 x&#x3D;7.5 时的 sin(x) 值。</p>
+<ol>
+<li><p>先贴一个代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 系统模型参数</span></span><br><span class="line">dt = <span class="number">0.05</span>  <span class="comment"># 时间步长（采样点更加密集）</span></span><br><span class="line">A = np.array([[<span class="number">1</span>]])  <span class="comment"># 状态转移矩阵</span></span><br><span class="line">B = np.array([[<span class="number">0</span>]])  <span class="comment"># 控制矩阵（无控制输入）</span></span><br><span class="line">C = np.array([[<span class="number">1</span>]])  <span class="comment"># 观测矩阵</span></span><br><span class="line">Q = np.array([[<span class="number">1e-4</span>]])  <span class="comment"># 过程噪声协方差</span></span><br><span class="line">R = np.array([[<span class="number">0.1</span>]])  <span class="comment"># 观测噪声协方差</span></span><br><span class="line">P = np.array([[<span class="number">1</span>]])  <span class="comment"># 初始估计误差协方差</span></span><br><span class="line">x0 = np.array([[<span class="number">0</span>]])  <span class="comment"># 初始状态</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成带噪声的sin(x)数据</span></span><br><span class="line">np.random.seed(<span class="number">42</span>)  <span class="comment"># 固定随机种子，保证结果可重复</span></span><br><span class="line">x_vals = np.arange(<span class="number">0</span>, <span class="number">7.05</span>, dt)  <span class="comment"># 采样点从 0 到 7</span></span><br><span class="line">true_vals = np.sin(x_vals)  <span class="comment"># sin(x) 的真实值</span></span><br><span class="line">noise = np.random.normal(<span class="number">0</span>, np.sqrt(R[<span class="number">0</span>][<span class="number">0</span>]), size=true_vals.shape)  <span class="comment"># 生成噪声</span></span><br><span class="line">observed_vals = true_vals + noise  <span class="comment"># 带噪声的观测值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始状态</span></span><br><span class="line">x_est = x0</span><br><span class="line">P_est = P</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储预测结果</span></span><br><span class="line">estimates = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卡尔曼滤波过程</span></span><br><span class="line"><span class="keyword">for</span> z <span class="keyword">in</span> observed_vals:</span><br><span class="line">    <span class="comment"># 预测</span></span><br><span class="line">    x_pred = A @ x_est  <span class="comment"># 状态预测</span></span><br><span class="line">    P_pred = A @ P_est @ A.T + Q  <span class="comment"># 误差协方差预测</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 更新</span></span><br><span class="line">    z = np.array([[z]])  <span class="comment"># 当前的观测值</span></span><br><span class="line">    y = z - C @ x_pred  <span class="comment"># 观测残差</span></span><br><span class="line">    S = C @ P_pred @ C.T + R  <span class="comment"># 残差协方差</span></span><br><span class="line">    K = P_pred @ C.T @ np.linalg.inv(S)  <span class="comment"># 卡尔曼增益</span></span><br><span class="line"></span><br><span class="line">    x_est = x_pred + K @ y  <span class="comment"># 状态更新</span></span><br><span class="line">    P_est = (np.eye(<span class="built_in">len</span>(P)) - K @ C) @ P_pred  <span class="comment"># 误差协方差更新</span></span><br><span class="line"></span><br><span class="line">    estimates.append(x_est[<span class="number">0</span>][<span class="number">0</span>])  <span class="comment"># 存储估计值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在最后一次更新后，进行未来预测</span></span><br><span class="line"><span class="comment"># 预测 x=7.5 的状态</span></span><br><span class="line">x_future = x_est  <span class="comment"># 以最后的估计作为基础</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">int</span>(<span class="number">7.5</span> / dt) - <span class="built_in">len</span>(observed_vals) + <span class="number">1</span>):</span><br><span class="line">    x_future = A @ x_future  <span class="comment"># 状态转移预测</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测的 y 值</span></span><br><span class="line">y_future_pred = x_future[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为numpy数组</span></span><br><span class="line">estimates = np.array(estimates)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制带噪声的观测值、真实值以及卡尔曼滤波的拟合结果</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(x_vals, observed_vals, <span class="string">&#x27;r.&#x27;</span>, label=<span class="string">&quot;Noisy observations&quot;</span>, markersize=<span class="number">4</span>)</span><br><span class="line">plt.plot(x_vals, true_vals, <span class="string">&#x27;b-&#x27;</span>, label=<span class="string">&quot;True sin(x)&quot;</span>)</span><br><span class="line">plt.plot(x_vals, estimates, <span class="string">&#x27;g-&#x27;</span>, label=<span class="string">&quot;Kalman filter estimate&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中标出 x=7.5 的预测值</span></span><br><span class="line">plt.scatter([<span class="number">7.5</span>], [y_future_pred], color=<span class="string">&#x27;purple&#x27;</span>, label=<span class="string">f&quot;Predicted y at x=7.5: <span class="subst">&#123;y_future_pred:<span class="number">.2</span>f&#125;</span>&quot;</span>, zorder=<span class="number">5</span>)</span><br><span class="line">plt.axvline(x=<span class="number">7.5</span>, color=<span class="string">&#x27;purple&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 标题和图例</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Kalman Filter Fitting to Noisy sin(x) Data with Prediction at x=7.5&quot;</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.xlim(<span class="number">0</span>, <span class="number">7.5</span>)  <span class="comment"># 设置x轴范围</span></span><br><span class="line">plt.ylim(-<span class="number">1.5</span>, <span class="number">1.5</span>)  <span class="comment"># 设置y轴范围</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印预测的 x=7.5 时的 y 值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;预测 x=7.5 时的 y 值: <span class="subst">&#123;y_future_pred:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>了解参数矩阵</p>
+</li>
+</ol>
+<p>这些系统模型参数是在卡尔曼滤波中定义系统的动态模型和噪声特性的核心部分。每个参数都有特定的含义和作用，下面详细解释这些参数：</p>
+<h3 id="1-dt-1-0（时间步长）"><a href="#1-dt-1-0（时间步长）" class="headerlink" title="1. dt = 1.0（时间步长）"></a>1. <code>dt = 1.0</code>（时间步长）</h3><ul>
+<li><strong>解释</strong>：表示系统的时间步长。尽管在这个例子中没有直接使用 <code>dt</code>，但它在很多动态系统中非常重要，尤其是当系统随时间变化时，<code>dt</code> 用来表示离散时间步之间的间隔。</li>
+<li><strong>作用</strong>：如果状态随时间演化，比如位置、速度等，时间步长可以影响状态的更新方式。在这个简单的例子中，状态（<code>y</code> 值）直接随 <code>x</code> 的增量变化。</li>
+</ul>
+<h3 id="2-A-np-array-1-（状态转移矩阵）"><a href="#2-A-np-array-1-（状态转移矩阵）" class="headerlink" title="2. A = np.array([[1]])（状态转移矩阵）"></a>2. <code>A = np.array([[1]])</code>（状态转移矩阵）</h3><ul>
+<li><strong>解释</strong>：状态转移矩阵 ( A ) 定义了系统的当前状态如何转移到下一个状态。在这里 <code>A</code> 是一个 1x1 的矩阵，值为 1，表示状态在时间步之间没有变化。</li>
+<li><strong>作用</strong>：在卡尔曼滤波中，状态更新公式为：<br>[<br>x_{k+1} &#x3D; A \cdot x_k + B \cdot u_k<br>]<br>在这里，<code>A = 1</code> 表示状态 <code>x</code> 没有因时间推移而改变（保持不变）。</li>
+</ul>
+<h3 id="3-B-np-array-0-（控制矩阵）"><a href="#3-B-np-array-0-（控制矩阵）" class="headerlink" title="3. B = np.array([[0]])（控制矩阵）"></a>3. <code>B = np.array([[0]])</code>（控制矩阵）</h3><ul>
+<li><strong>解释</strong>：控制矩阵 ( B ) 用于将控制输入 ( u_k ) 转换为对系统状态的影响。在这个例子中，<code>B</code> 是一个 1x1 的矩阵，值为 0，表示系统没有外部控制输入。</li>
+<li><strong>作用</strong>：如果系统有控制输入（比如机器人上的电机控制信号），那么 <code>B</code> 就会将输入影响到系统状态中。在这个例子中，因为我们不考虑控制输入，<code>B = 0</code>，所以外部输入对系统没有影响。</li>
+</ul>
+<h3 id="4-C-np-array-1-（观测矩阵）"><a href="#4-C-np-array-1-（观测矩阵）" class="headerlink" title="4. C = np.array([[1]])（观测矩阵）"></a>4. <code>C = np.array([[1]])</code>（观测矩阵）</h3><ul>
+<li><strong>解释</strong>：观测矩阵 ( C ) 定义了系统的状态如何映射到观测值。<code>C = 1</code> 表示我们直接观测系统的状态，没有任何变换。</li>
+<li><strong>作用</strong>：在卡尔曼滤波的观测更新中，观测模型如下：<br>[<br>z_k &#x3D; C \cdot x_k + v_k<br>]<br>其中 ( z_k ) 是观测值，<code>C</code> 定义了如何从状态 ( x_k ) 得到观测值。在这里，<code>C = 1</code>，表示观测值就是系统的真实状态。</li>
+</ul>
+<h3 id="5-Q-np-array-1e-5-（过程噪声协方差）"><a href="#5-Q-np-array-1e-5-（过程噪声协方差）" class="headerlink" title="5. Q = np.array([[1e-5]])（过程噪声协方差）"></a>5. <code>Q = np.array([[1e-5]])</code>（过程噪声协方差）</h3><ul>
+<li><strong>解释</strong>：过程噪声协方差 ( Q ) 表示系统内部状态转移过程中的不确定性或噪声。这里设置的 ( Q &#x3D; 1e-5 )，表示状态演化过程中的噪声较小。</li>
+<li><strong>作用</strong>：这描述了系统的动态模型中的随机扰动。当系统不确定性较高时，可以将 ( Q ) 设置得更大。较大的 ( Q ) 值意味着你相信系统模型中的噪声更大，预测不够准确，观测更新将更重要。</li>
+</ul>
+<h3 id="6-R-np-array-1e-2-（观测噪声协方差）"><a href="#6-R-np-array-1e-2-（观测噪声协方差）" class="headerlink" title="6. R = np.array([[1e-2]])（观测噪声协方差）"></a>6. <code>R = np.array([[1e-2]])</code>（观测噪声协方差）</h3><ul>
+<li><strong>解释</strong>：观测噪声协方差 ( R ) 定义了观测到的数据中所包含的噪声程度。这里设置的 ( R &#x3D; 1e-2 )，表示观测值中有一定的噪声。</li>
+<li><strong>作用</strong>：较大的 ( R ) 值意味着你认为观测数据较不可靠，滤波器在更新状态时会更多依赖状态预测，而不是观测值。较小的 ( R ) 值表示你对观测值更有信心。</li>
+</ul>
+<h3 id="7-P-np-array-1-（初始估计误差协方差）"><a href="#7-P-np-array-1-（初始估计误差协方差）" class="headerlink" title="7. P = np.array([[1]])（初始估计误差协方差）"></a>7. <code>P = np.array([[1]])</code>（初始估计误差协方差）</h3><ul>
+<li><strong>解释</strong>：初始估计误差协方差 ( P ) 描述了初始状态的不确定性。这里设置的 ( P &#x3D; 1 )，表示我们对初始状态的置信度一般，不确定性较大。</li>
+<li><strong>作用</strong>：卡尔曼滤波器的每一步都会更新这个估计误差协方差矩阵，用来衡量当前状态的不确定性。初始的较大 ( P ) 表示对初始状态的估计不太精确，但随着滤波过程，滤波器会逐步降低不确定性。</li>
+</ul>
+<h3 id="8-x0-np-array-1-（初始状态）"><a href="#8-x0-np-array-1-（初始状态）" class="headerlink" title="8. x0 = np.array([[1]])（初始状态）"></a>8. <code>x0 = np.array([[1]])</code>（初始状态）</h3><ul>
+<li><strong>解释</strong>：初始状态 ( x0 ) 是我们开始卡尔曼滤波时的假设系统状态。在这里，设置为 1，表示在 ( x &#x3D; 0 ) 时，初始状态 ( y(0) &#x3D; 1 )。</li>
+<li><strong>作用</strong>：这是滤波的起点，随着新的观测和预测，卡尔曼滤波器将逐渐修正这一初始状态，使其逼近真实状态。</li>
+</ul>
+<p>这些参数定义了卡尔曼滤波器在估计和预测状态时所需要的系统模型：</p>
+<ul>
+<li><strong>状态转移矩阵</strong> ( A ) 和 <strong>观测矩阵</strong> ( C ) 定义了状态如何随时间变化，以及如何观测到状态。</li>
+<li><strong>噪声协方差</strong> ( Q ) 和 ( R ) 定义了过程中的随机性或不确定性。</li>
+<li><strong>初始状态</strong> ( x0 ) 和 <strong>初始估计误差协方差</strong> ( P ) 定义了卡尔曼滤波的起点，以及对初始状态的不确定性。</li>
+</ul>
+<p>你可以根据系统的特性和数据的噪声程度调整这些参数，以获得更精确的估计和预测。</p>
+<ol start="3">
+<li>运行并调整参数矩阵</li>
+</ol>
+<p align="center">
+  <img src="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/0.png" width="50%">
+</p>
+
+<p>发现是这样的，卡尔曼滤波的曲线好像并没有很好的拟合住 sin(x)，这时我们就要调整上面说的 Q 矩阵(过程噪声矩阵)，将它的值调大，以更好的拟合 sin(x)，但是这样会卡尔曼滤波曲线抖动会更加剧烈。</p>
+<p>将 Q 调为 1e-3 后发现拟合还差点，调为 1e-1 发现确实差不多在 sin(x) 上下，但是抖动剧烈，调为 1e-2 就差不多了</p>
+<p align="center">
+  <img src="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/2.png" width="50%">
+</p>
+
+<p>但是，有个问题就是预测的 <code>x=7.5</code> 的值会和 <code>x=7</code> 的值是一模一样的，因为状态矩阵是 <code>[1]</code> ，就是状态不变。所以要用到别的线性状态矩阵了。</p>
+<ol>
+<li><p>线性状态转移</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>]])  <span class="comment"># 当前状态不变</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一阶差分（增加预测能力）</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>, dt], [<span class="number">0</span>, <span class="number">1</span>]])  <span class="comment"># 状态转移矩阵，包含位置和速度</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二次状态转移（更复杂的模型）</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>, dt, <span class="number">0.5</span> * dt**<span class="number">2</span>], </span><br><span class="line">          [<span class="number">0</span>, <span class="number">1</span>, dt], </span><br><span class="line">          [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]])  <span class="comment"># 增加加速度状态</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>这里我们先用一次状态转移</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 系统模型参数</span></span><br><span class="line">dt = <span class="number">0.05</span>  <span class="comment"># 时间步长（采样点更加密集）</span></span><br><span class="line">A = np.array([[<span class="number">1</span>, dt],   <span class="comment"># 状态转移矩阵，位置和速度</span></span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])  <span class="comment"># 位置和速度</span></span><br><span class="line">B = np.array([[<span class="number">0</span>], </span><br><span class="line">              [<span class="number">0</span>]])  <span class="comment"># 控制矩阵（无控制输入）</span></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">0</span>]])  <span class="comment"># 观测矩阵，只观测位置</span></span><br><span class="line">Q = np.array([[<span class="number">1e-2</span>, <span class="number">0</span>],  <span class="comment"># 过程噪声协方差</span></span><br><span class="line">              [<span class="number">0</span>, <span class="number">1e-2</span>]])</span><br><span class="line"></span><br><span class="line">R = np.array([[<span class="number">0.05</span>]])  <span class="comment"># 观测噪声协方差</span></span><br><span class="line"></span><br><span class="line">P = np.array([[<span class="number">1</span>, <span class="number">0</span>], </span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])  <span class="comment"># 初始估计误差协方差</span></span><br><span class="line">x0 = np.array([[<span class="number">0</span>], </span><br><span class="line">                [<span class="number">0</span>]])  <span class="comment"># 初始状态（位置为0，速度为0）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成带噪声的sin(x)数据</span></span><br><span class="line">np.random.seed(<span class="number">42</span>)  <span class="comment"># 固定随机种子，保证结果可重复</span></span><br><span class="line">x_vals = np.arange(<span class="number">0</span>, <span class="number">7.05</span>, dt)  <span class="comment"># 采样点从 0 到 7</span></span><br><span class="line">true_vals = np.sin(x_vals)  <span class="comment"># sin(x) 的真实值</span></span><br><span class="line">noise = np.random.normal(<span class="number">0</span>, np.sqrt(R[<span class="number">0</span>][<span class="number">0</span>]), size=true_vals.shape)  <span class="comment"># 生成噪声</span></span><br><span class="line">observed_vals = true_vals + noise  <span class="comment"># 带噪声的观测值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始状态</span></span><br><span class="line">x_est = x0</span><br><span class="line">P_est = P</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储预测结果</span></span><br><span class="line">estimates = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卡尔曼滤波过程</span></span><br><span class="line"><span class="keyword">for</span> z <span class="keyword">in</span> observed_vals:</span><br><span class="line">    <span class="comment"># 预测</span></span><br><span class="line">    x_pred = A @ x_est  <span class="comment"># 状态预测</span></span><br><span class="line">    P_pred = A @ P_est @ A.T + Q  <span class="comment"># 误差协方差预测</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 更新</span></span><br><span class="line">    z = np.array([[z]])  <span class="comment"># 当前的观测值</span></span><br><span class="line">    y = z - C @ x_pred  <span class="comment"># 观测残差</span></span><br><span class="line">    S = C @ P_pred @ C.T + R  <span class="comment"># 残差协方差</span></span><br><span class="line">    K = P_pred @ C.T @ np.linalg.inv(S)  <span class="comment"># 卡尔曼增益</span></span><br><span class="line"></span><br><span class="line">    x_est = x_pred + K @ y  <span class="comment"># 状态更新</span></span><br><span class="line">    P_est = (np.eye(<span class="built_in">len</span>(P)) - K @ C) @ P_pred  <span class="comment"># 误差协方差更新</span></span><br><span class="line"></span><br><span class="line">    estimates.append(x_est[<span class="number">0</span>][<span class="number">0</span>])  <span class="comment"># 存储估计值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在最后一次更新后，进行未来预测</span></span><br><span class="line"><span class="comment"># 预测 x=7.5, 8, 8.5, 9, 9.5, 10 的状态</span></span><br><span class="line">future_x_values = np.arange(<span class="number">7.5</span>, <span class="number">10.5</span>, <span class="number">0.5</span>)  <span class="comment"># 未来的x值</span></span><br><span class="line">future_predictions = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x_future <span class="keyword">in</span> future_x_values:</span><br><span class="line">    <span class="comment"># 基于当前的状态进行预测</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>((x_future - x_vals[-<span class="number">1</span>]) / dt)):</span><br><span class="line">        x_est = A @ x_est  <span class="comment"># 状态转移预测</span></span><br><span class="line">    future_predictions.append(x_est[<span class="number">0</span>][<span class="number">0</span>])  <span class="comment"># 存储预测的y值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为numpy数组</span></span><br><span class="line">estimates = np.array(estimates)</span><br><span class="line">future_predictions = np.array(future_predictions)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制带噪声的观测值、真实值以及卡尔曼滤波的拟合结果</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(x_vals, observed_vals, <span class="string">&#x27;r.&#x27;</span>, label=<span class="string">&quot;Noisy observations&quot;</span>, markersize=<span class="number">4</span>)</span><br><span class="line">plt.plot(x_vals, true_vals, <span class="string">&#x27;b-&#x27;</span>, label=<span class="string">&quot;True sin(x)&quot;</span>)</span><br><span class="line">plt.plot(x_vals, estimates, <span class="string">&#x27;g-&#x27;</span>, label=<span class="string">&quot;Kalman filter estimate&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中标出未来预测的值</span></span><br><span class="line"><span class="keyword">for</span> future_x, future_y <span class="keyword">in</span> <span class="built_in">zip</span>(future_x_values, future_predictions):</span><br><span class="line">    plt.scatter([future_x], [future_y], color=<span class="string">&#x27;purple&#x27;</span>, label=<span class="string">f&quot;Predicted y at x=<span class="subst">&#123;future_x:<span class="number">.1</span>f&#125;</span>: <span class="subst">&#123;future_y:<span class="number">.2</span>f&#125;</span>&quot;</span>, zorder=<span class="number">5</span>)</span><br><span class="line">    plt.axvline(x=future_x, color=<span class="string">&#x27;purple&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, alpha=<span class="number">0.6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 标题和图例</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">&quot;x&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;y&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Kalman Filter Fitting to Noisy sin(x) Data with Predictions&quot;</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.xlim(<span class="number">0</span>, <span class="number">10</span>)  <span class="comment"># 设置x轴范围</span></span><br><span class="line">plt.ylim(-<span class="number">1.5</span>, <span class="number">5</span>)  <span class="comment"># 设置y轴范围</span></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印预测的 y 值</span></span><br><span class="line"><span class="keyword">for</span> future_x, future_y <span class="keyword">in</span> <span class="built_in">zip</span>(future_x_values, future_predictions):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;预测 x=<span class="subst">&#123;future_x:<span class="number">.1</span>f&#125;</span> 时的 y 值: <span class="subst">&#123;future_y:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p align="center">
+  <img src="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/1.png" width="50%">
+</p>
+
+<p>发现后面的点可以预测了。</p>
+<h1 id="二、扩展卡尔曼滤波-EKF"><a href="#二、扩展卡尔曼滤波-EKF" class="headerlink" title="二、扩展卡尔曼滤波(EKF)"></a>二、扩展卡尔曼滤波(EKF)</h1><p>扩展卡尔曼滤波（Extended Kalman Filter, EKF）是一种高效处理非线性系统的状态估计算法。它通过线性化非线性模型来近似系统动态和观测模型，从而允许使用卡尔曼滤波的框架。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 状态转移函数：x[0] 是位置，x[1] 是速度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x, u, dt</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    非线性状态转移函数，基于正弦函数动态。</span></span><br><span class="line"><span class="string">    x[0] = 当前的x值</span></span><br><span class="line"><span class="string">    x[1] = 当前的速度</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> np.array([x[<span class="number">0</span>] + x[<span class="number">1</span>]*dt, x[<span class="number">1</span>]])  <span class="comment"># 假设状态为 [x, dx/dt]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 观测函数：观测的是 sin(x[0])</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">h</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    非线性观测模型，基于 y = sin(x)。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> np.array([np.sin(x[<span class="number">0</span>])])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 状态转移方程的雅可比矩阵</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">jacobian_f</span>(<span class="params">x, u, dt</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    f 的雅可比矩阵，线性化状态转移方程。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> np.array([[<span class="number">1</span>, dt], [<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 观测方程的雅可比矩阵</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">jacobian_h</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    h 的雅可比矩阵，线性化观测方程。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> np.array([[np.cos(x[<span class="number">0</span>]), <span class="number">0</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化参数</span></span><br><span class="line">x_est = np.array([<span class="number">0</span>, <span class="number">1</span>])  <span class="comment"># 初始状态估计 [x, dx/dt]</span></span><br><span class="line">P = np.array([[<span class="number">1</span>, <span class="number">0</span>], </span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])  <span class="comment"># 初始状态协方差矩阵</span></span><br><span class="line">Q = np.array([[<span class="number">0.01</span>, <span class="number">0</span>], </span><br><span class="line">              [<span class="number">0</span>, <span class="number">0.01</span>]])  <span class="comment"># 过程噪声协方差</span></span><br><span class="line">R = np.array([[<span class="number">0.1</span>]])  <span class="comment"># 观测噪声协方差</span></span><br><span class="line">dt = <span class="number">0.05</span>  <span class="comment"># 时间步长</span></span><br><span class="line">u = <span class="number">0</span>  <span class="comment"># 没有外部控制输入</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用于存储结果</span></span><br><span class="line">true_x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>)  <span class="comment"># 真实 x (0到10)</span></span><br><span class="line">true_y = np.sin(true_x)  <span class="comment"># 真实的 y = sin(x)</span></span><br><span class="line">noisy_observations = true_y + np.random.normal(<span class="number">0</span>, <span class="number">0.1</span>, size=true_y.shape)  <span class="comment"># 带噪声的观测</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测和估计</span></span><br><span class="line">x_ekf_estimates = []</span><br><span class="line"><span class="keyword">for</span> z <span class="keyword">in</span> noisy_observations:</span><br><span class="line">    <span class="comment"># 预测步骤</span></span><br><span class="line">    F = jacobian_f(x_est, u, dt)</span><br><span class="line">    x_pred = f(x_est, u, dt)</span><br><span class="line">    P_pred = F @ P @ F.T + Q</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 更新步骤</span></span><br><span class="line">    H = jacobian_h(x_pred)</span><br><span class="line">    y = z - h(x_pred)  <span class="comment"># 观测残差</span></span><br><span class="line">    S = H @ P_pred @ H.T + R  <span class="comment"># 残差协方差</span></span><br><span class="line">    K = P_pred @ H.T @ np.linalg.inv(S)  <span class="comment"># 卡尔曼增益</span></span><br><span class="line">    x_est = x_pred + K @ y  <span class="comment"># 更新状态估计</span></span><br><span class="line">    P = (np.eye(<span class="number">2</span>) - K @ H) @ P_pred  <span class="comment"># 更新协方差矩阵</span></span><br><span class="line"></span><br><span class="line">    x_ekf_estimates.append(h(x_est)[<span class="number">0</span>])  <span class="comment"># 存储估计的 sin(x) 值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展预测：x = 11, 12, 13</span></span><br><span class="line">future_x = np.array([<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>])</span><br><span class="line">future_y_estimates = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x_val <span class="keyword">in</span> future_x:</span><br><span class="line">    F = jacobian_f(x_est, u, dt)</span><br><span class="line">    x_pred = f(x_est, u, dt)  <span class="comment"># 预测下一步</span></span><br><span class="line">    x_est = x_pred  <span class="comment"># 更新状态估计为当前预测值</span></span><br><span class="line">    future_y_estimates.append(h(x_est)[<span class="number">0</span>])  <span class="comment"># 预测的 sin(x) 值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将真实值和EKF估计值进行比较</span></span><br><span class="line">plt.plot(true_x, true_y, label=<span class="string">&#x27;True sin(x)&#x27;</span>, color=<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">plt.scatter(true_x, noisy_observations, label=<span class="string">&#x27;Noisy observations&#x27;</span>, color=<span class="string">&#x27;red&#x27;</span>, s=<span class="number">10</span>)</span><br><span class="line">plt.plot(true_x, x_ekf_estimates, label=<span class="string">&#x27;EKF estimate&#x27;</span>, color=<span class="string">&#x27;green&#x27;</span>)</span><br><span class="line">plt.scatter(future_x, future_y_estimates, label=<span class="string">&#x27;Predicted x = 11,12,13&#x27;</span>, color=<span class="string">&#x27;orange&#x27;</span>, s=<span class="number">50</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">&#x27;EKF Fitting to Noisy sin(x) Data with Future Predictions&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p align="center">
+  <img src="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/3.png" width="50%">
+</p>
+
+<p>发现拟合和预测都变得好了很多很多。</p>
+<p>扩展卡尔曼滤波器（EKF）是一种用于非线性系统状态估计的算法。它通过对系统的状态转移方程和观测方程进行线性化处理，使得卡尔曼滤波能够应用于非线性问题。EKF广泛应用于机器人定位、导航、目标跟踪等领域，可以在带有噪声的环境中，结合传感器数据，实时估计系统的状态，如位置、速度等。</p>
+<p>EKF不是本文的重点内容，下文将正式运用EKF完成一个<strong>识别+跟踪</strong>的项目。</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/08/21/%E3%80%90Unity%E3%80%91live2d%E5%AF%BC%E5%85%A5%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B/"
+      title="【Unity】快速搭建live2d桌宠"
+     >
+
+    <p class="title-text">
+      
+        【Unity】快速搭建live2d桌宠
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
