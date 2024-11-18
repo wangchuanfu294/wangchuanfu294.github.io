@@ -13,19 +13,23 @@
   
   <title>深度学习基础 | 日月星辰的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考资料：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
+  <meta name="description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考书籍：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习基础">
 <meta property="og:url" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="日月星辰的个人博客">
-<meta property="og:description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考资料：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
+<meta property="og:description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考书籍：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/1.png">
 <meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/2.png">
 <meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/3.png">
 <meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/4.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/6.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/5.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/7.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/8.png">
 <meta property="article:published_time" content="2024-11-16T10:22:33.000Z">
-<meta property="article:modified_time" content="2024-11-18T06:31:36.889Z">
+<meta property="article:modified_time" content="2024-11-18T14:40:30.142Z">
 <meta property="article:author" content="cmc">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -311,7 +315,7 @@
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            1.8k words 
+            2.7k words 
           </div>
         </div>
         
@@ -326,7 +330,7 @@
 <li>学习完前面的C++培训知识，有基本的编程能力。</li>
 <li>掌握Python的基本语法。</li>
 </ul>
-<p>参考资料：</p>
+<p>参考书籍：</p>
 <ul>
 <li>Deep Learning with Python Second Edition (主要讲tensorflow)</li>
 <li>DIVE INTO DEEP LEARNING (主要讲pytorch)</li>
@@ -338,12 +342,13 @@
 </blockquote>
 <hr>
 <h1 id="1-初识深度学习"><a href="#1-初识深度学习" class="headerlink" title="1. 初识深度学习"></a>1. 初识深度学习</h1><h2 id="1-1-什么是深度学习"><a href="#1-1-什么是深度学习" class="headerlink" title="1.1 什么是深度学习"></a>1.1 什么是深度学习</h2><p>深度学习（Deep Learning）是<strong>机器学习</strong>的一种方法，它利用多层<strong>神经网络</strong>对数据进行学习，并通过<strong>反向传播</strong>算法进行<strong>梯度下降</strong>，从而使得神经网络能够自动学习到数据的特征，并对未知数据进行<strong>预测</strong>。</p>
-<h2 id="1-2-深度学习与RoboMaster"><a href="#1-2-深度学习与RoboMaster" class="headerlink" title="1.2 深度学习与RoboMaster"></a>1.2 深度学习与RoboMaster</h2><p>在RoboMaster中，有许多需要使用到深度学习的地方，如图像识别、目标检测等。</p>
+<h2 id="1-2-RoboMaster与深度学习"><a href="#1-2-RoboMaster与深度学习" class="headerlink" title="1.2 RoboMaster与深度学习"></a>1.2 RoboMaster与深度学习</h2><p>在RoboMaster中，有许多需要使用到深度学习的地方，如图像识别、目标检测等。</p>
 <ul>
 <li>装甲板检测：可以使用实时目标检测装甲板的位置，准确有效击打装甲板。</li>
 <li>装甲数字识别：使用一个简单的图像分类网络，识别数字。</li>
 <li>雷达：目标检测赛场上的各种敌我车辆，显示小地图，发动易伤buff。</li>
 </ul>
+<p>所以RMer视觉也要掌握深度学习的基本知识。</p>
 <h2 id="1-3-机器学习与深度学习"><a href="#1-3-机器学习与深度学习" class="headerlink" title="1.3 机器学习与深度学习"></a>1.3 机器学习与深度学习</h2><h3 id="1-3-1-机器学习"><a href="#1-3-1-机器学习" class="headerlink" title="1.3.1 机器学习"></a>1.3.1 机器学习</h3><p>机器学习的主要任务是从数据中学习，并利用这些知识对未知数据进行预测或决策。机器学习的算法有监督学习、无监督学习、半监督学习、强化学习等。</p>
 <ul>
 <li>输入数据。机器学习的输入数据可以是图像、文本、声音、视频等。</li>
@@ -358,7 +363,39 @@
 <p>可以将深度神经网络看做一个多级的<strong>信息蒸馏</strong>：信息穿过多层过滤器，其纯度越来越高。</p>
 <h2 id="1-4-用三张图理解深度学习的工作原理"><a href="#1-4-用三张图理解深度学习的工作原理" class="headerlink" title="1.4 用三张图理解深度学习的工作原理"></a>1.4 用三张图理解深度学习的工作原理</h2><p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/3.png"></p>
 <p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/4.png"></p>
-<h2 id="1-5-神经网络的数学基础讲解"><a href="#1-5-神经网络的数学基础讲解" class="headerlink" title="1.5 神经网络的数学基础讲解"></a>1.5 神经网络的数学基础讲解</h2><h3 id="1-5-1-张量-Tensor-介绍"><a href="#1-5-1-张量-Tensor-介绍" class="headerlink" title="1.5.1 张量 (Tensor) 介绍"></a>1.5.1 张量 (Tensor) 介绍</h3><ol>
+<h2 id="1-5-深度学习的硬件"><a href="#1-5-深度学习的硬件" class="headerlink" title="1.5 深度学习的硬件"></a>1.5 深度学习的硬件</h2><p>CPU、GPU、TPU(张量处理器)</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xE421j7Uv/?share_source=copy_web&vd_source=e4838a460d5e965db0426ab9bd050b56">【硬核科普】从零开始认识显卡</a></p>
+<p>2007年，NVIDIA推出了CUDA，它是一种基于GPU的并行编程模型，可以让程序员编写并行代码，并在GPU上运行。</p>
+<h2 id="1-6-深度学习的历史与发展"><a href="#1-6-深度学习的历史与发展" class="headerlink" title="1.6 深度学习的历史与发展"></a>1.6 深度学习的历史与发展</h2><h3 id="1-6-1-神经网络的核心关键原则："><a href="#1-6-1-神经网络的核心关键原则：" class="headerlink" title="1.6.1 神经网络的核心关键原则："></a>1.6.1 神经网络的核心关键原则：</h3><ol>
+<li><strong>线性和非线性处理单元的交替</strong><br>通常称为层（layers）。</li>
+<li><strong>使用链式规则（也称为反向传播 Backpropagation）</strong><br>一次性调整网络中的全部参数。</li>
+</ol>
+<h3 id="1-6-2深度学习的提出历史："><a href="#1-6-2深度学习的提出历史：" class="headerlink" title="1.6.2深度学习的提出历史："></a>1.6.2深度学习的提出历史：</h3><ul>
+<li>一些中流砥柱的模型：<ul>
+<li>多层感知机（McCulloch and Pitts, 1943）</li>
+<li>卷积神经网络（LeCun et al., 1998）</li>
+<li>长短期记忆网络（Graves and Schmidhuber, 2005）</li>
+<li>Q学习（Watkins and Dayan, 1992）</li>
+</ul>
+</li>
+<li>曾因对休眠期和当时技术限制被搁置一段时间后，过去十年被重新发现。</li>
+</ul>
+<h3 id="1-6-3-为什么最近十几年深度学习才重新“热门”？"><a href="#1-6-3-为什么最近十几年深度学习才重新“热门”？" class="headerlink" title="1.6.3 为什么最近十几年深度学习才重新“热门”？"></a>1.6.3 为什么最近十几年深度学习才重新“热门”？</h3><ol>
+<li><strong>网络和图像传感器的发展使得数据的获取变得廉价</strong>  <ul>
+<li>大量图片、视频和用户数据信息使得大规模数据集变得触手可及。</li>
+</ul>
+</li>
+<li><strong>运算设备的算力发展</strong>  <ul>
+<li>GPU的普及，使大规模算力唾手可得。</li>
+</ul>
+</li>
+<li><strong>深度学习框架在传播想法方面发挥了至关重要的作用</strong>  <ul>
+<li>例如，PyTorch 和 TensorFlow。</li>
+<li>在2014年之前，对卡内基梅隆大学机器学习博士生来说，训练全性能回归模型曾是一个复杂的作业问题。而现在，这项任务只需不到10行代码即可完成。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-神经网络的基本数学概念"><a href="#2-神经网络的基本数学概念" class="headerlink" title="2. 神经网络的基本数学概念"></a>2. 神经网络的基本数学概念</h1><h2 id="2-1-张量-Tensor-介绍"><a href="#2-1-张量-Tensor-介绍" class="headerlink" title="2.1 张量 (Tensor) 介绍"></a>2.1 张量 (Tensor) 介绍</h2><ol>
 <li>标量 (Scalar)</li>
 <li>向量 (Vector)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure></li>
 <li>矩阵 (Matrix)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure></li>
@@ -383,55 +420,67 @@
 <li>AdaGrad</li>
 <li>Adam</li>
 </ul>
-<h2 id="1-6-深度学习的硬件"><a href="#1-6-深度学习的硬件" class="headerlink" title="1.6 深度学习的硬件"></a>1.6 深度学习的硬件</h2><p>CPU、GPU、TPU(张量处理器)</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xE421j7Uv/?share_source=copy_web&vd_source=e4838a460d5e965db0426ab9bd050b56">【硬核科普】从零开始认识显卡</a></p>
-<p>2007年，NVIDIA推出了CUDA，它是一种基于GPU的并行编程模型，可以让程序员编写并行代码，并在GPU上运行。</p>
-<h2 id="1-7-深度学习的历史与发展"><a href="#1-7-深度学习的历史与发展" class="headerlink" title="1.7 深度学习的历史与发展"></a>1.7 深度学习的历史与发展</h2><h3 id="1-7-1-神经网络的核心关键原则："><a href="#1-7-1-神经网络的核心关键原则：" class="headerlink" title="1.7.1 神经网络的核心关键原则："></a>1.7.1 神经网络的核心关键原则：</h3><ol>
-<li><strong>线性和非线性处理单元的交替</strong><br>通常称为层（layers）。</li>
-<li><strong>使用链式规则（也称为反向传播 Backpropagation）</strong><br>一次性调整网络中的全部参数。</li>
-</ol>
-<h3 id="1-7-2深度学习的提出历史："><a href="#1-7-2深度学习的提出历史：" class="headerlink" title="1.7.2深度学习的提出历史："></a>1.7.2深度学习的提出历史：</h3><ul>
-<li>一些中流砥柱的模型：<ul>
-<li>多层感知机（McCulloch and Pitts, 1943）</li>
-<li>卷积神经网络（LeCun et al., 1998）</li>
-<li>长短期记忆网络（Graves and Schmidhuber, 2005）</li>
-<li>Q学习（Watkins and Dayan, 1992）</li>
-</ul>
-</li>
-<li>曾因对休眠期和当时技术限制被搁置一段时间后，过去十年被重新发现。</li>
-</ul>
-<h3 id="1-7-3-为什么最近十几年深度学习才重新“热门”？"><a href="#1-7-3-为什么最近十几年深度学习才重新“热门”？" class="headerlink" title="1.7.3 为什么最近十几年深度学习才重新“热门”？"></a>1.7.3 为什么最近十几年深度学习才重新“热门”？</h3><ol>
-<li><strong>网络和图像传感器的发展使得数据的获取变得廉价</strong>  <ul>
-<li>大量图片、视频和用户数据信息使得大规模数据集变得触手可及。</li>
-</ul>
-</li>
-<li><strong>运算设备的算力发展</strong>  <ul>
-<li>GPU的普及，使大规模算力唾手可得。</li>
-</ul>
-</li>
-<li><strong>深度学习框架在传播想法方面发挥了至关重要的作用</strong>  <ul>
-<li>例如，PyTorch 和 TensorFlow。</li>
-<li>在2014年之前，对卡内基梅隆大学机器学习博士生来说，训练全性能回归模型曾是一个复杂的作业问题。而现在，这项任务只需不到10行代码即可完成。</li>
-</ul>
-</li>
-</ol>
-<h1 id="2-Linux下配置深度学习环境"><a href="#2-Linux下配置深度学习环境" class="headerlink" title="2. Linux下配置深度学习环境"></a>2. Linux下配置深度学习环境</h1><ol>
-<li><p>安装显卡驱动</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装CUDA</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装Python环境，包括numpy、tensorflow、keras、pytorch等</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy tensorflow keras torch torchvision</span><br></pre></td></tr></table></figure></li>
-</ol>
+<h1 id="3-从线性回归到深度学习"><a href="#3-从线性回归到深度学习" class="headerlink" title="3. 从线性回归到深度学习"></a>3. 从线性回归到深度学习</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 生成数据</span></span><br><span class="line"><span class="comment"># 创建一些模拟数据，假设 y = 3x + 2 + 噪声</span></span><br><span class="line">torch.manual_seed(<span class="number">42</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line">x = torch.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>).unsqueeze(<span class="number">1</span>)  <span class="comment"># 输入数据 (100, 1)</span></span><br><span class="line">y = <span class="number">3</span> * x + <span class="number">2</span> + torch.randn(<span class="number">100</span>, <span class="number">1</span>) * <span class="number">2</span>  <span class="comment"># 输出数据带噪声 (100, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 定义一个简单的线性回归模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinearRegressionModel</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LinearRegressionModel, self).__init__()</span><br><span class="line">        self.linear = nn.Linear(<span class="number">1</span>, <span class="number">1</span>)  <span class="comment"># 输入特征维度1，输出特征维度1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.linear(x)</span><br><span class="line"></span><br><span class="line">model = LinearRegressionModel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.MSELoss()  <span class="comment"># 均方误差损失</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)  <span class="comment"># 随机梯度下降优化器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 训练模型</span></span><br><span class="line">epochs = <span class="number">1000</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">losses = []  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    model.train()  <span class="comment"># 设置为训练模式</span></span><br><span class="line">    optimizer.zero_grad()  <span class="comment"># 清空梯度</span></span><br><span class="line"></span><br><span class="line">    predictions = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line">    loss = criterion(predictions, y)  <span class="comment"># 计算损失</span></span><br><span class="line">    loss.backward()  <span class="comment"># 反向传播计算梯度</span></span><br><span class="line">    optimizer.step()  <span class="comment"># 更新模型参数</span></span><br><span class="line"></span><br><span class="line">    losses.append(loss.item())  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每100次输出一次训练信息</span></span><br><span class="line">    <span class="keyword">if</span> (epoch + <span class="number">1</span>) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;epochs&#125;</span>, Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 可视化训练结果</span></span><br><span class="line"><span class="comment"># 绘制损失曲线</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.plot(<span class="built_in">range</span>(epochs), losses)</span><br><span class="line">plt.title(<span class="string">&quot;Loss Curve&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Epochs&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;MSE Loss&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制预测结果</span></span><br><span class="line">model.<span class="built_in">eval</span>()  <span class="comment"># 设置为评估模式</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    predicted = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.scatter(x.numpy(), y.numpy(), label=<span class="string">&quot;Ground Truth&quot;</span>)  <span class="comment"># 原始数据</span></span><br><span class="line">plt.plot(x.numpy(), predicted.numpy(), color=<span class="string">&quot;red&quot;</span>, label=<span class="string">&quot;Predicted&quot;</span>)  <span class="comment"># 预测结果</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">&quot;Linear Regression Result&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Delusional/article/details/113097030?fromshare=blogdetail&sharetype=blogdetail&sharerId=113097030&sharerefer=PC&sharesource=m0_72845244&sharefrom=from_link">详解使用pytorch实现线性回归</a></p>
+<h1 id="4-Linux下配置深度学习环境"><a href="#4-Linux下配置深度学习环境" class="headerlink" title="4. Linux下配置深度学习环境"></a>4. Linux下配置深度学习环境</h1><h2 id="4-1-安装显卡驱动"><a href="#4-1-安装显卡驱动" class="headerlink" title="4.1 安装显卡驱动"></a>4.1 安装显卡驱动</h2><p>   NVIDIA显卡驱动是深度学习的基础，安装显卡驱动使用显卡推理和训练会更高效。</p>
+<p>   <a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/ubuntu-linux-install-nvidia-driver-latest-proprietary-driver/">安装NVIDIA显卡驱动</a></p>
+<p>   强烈建议通过ubuntu22.04的官方GUI软件<strong>软件和更新</strong>安装显卡驱动。(Linux官方把nvidia驱动已经做的相当好了，安装起来也很方便。但是NVIDIA驱动其实还会有各式各样的BUG，包括Linux之父Linus Torvalds曾经说过的那样：“NVIDIA是最难伺候的硬件制造商，也是我们接触过最糟糕的公司，没有之一，<del>SO NVIDIA FUCK YOU</del>”.)</p>
+<p>   图标长这样(<del>有时候它是灰色的</del>)，<img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/6.png"></p>
+<p>   安装成功后在终端使用 <code>nvidia-smi</code> 可以看到GPU信息，看到就算安装成功</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+<p>   <img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/5.png"></p>
+<p>   这里显示的CUDA版本是最高支持版本，安装个比这低的就行(但是也不能太低，下面会讲)。</p>
+<p>   <img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/7.png"><br>   如果想要更改显卡驱动，也可以在这里改。</p>
+<blockquote>
+<p>显卡驱动安装需要谨慎对待，尽量安装recommend版本，否则可能会导致ubuntu桌面不显示、开机不了、电脑副屏幕不显示等问题。</p>
+</blockquote>
+<blockquote>
+<p>装错显卡驱动时，不到万不得已，不要使用 <code>sudo apt autoremove</code>，这是下下策。</p>
+</blockquote>
+<h2 id="4-2-安装CUDA"><a href="#4-2-安装CUDA" class="headerlink" title="4.2 安装CUDA"></a>4.2 安装CUDA</h2><p>   显卡驱动版本和CUDA版本有一定的对应关系。</p>
+<p>   CUDA版本：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA Toolkit Archive</a></p>
+<p>   <a target="_blank" rel="noopener" href="https://sundaygeek.blog.csdn.net/article/details/86695400?fromshare=blogdetail&sharetype=blogdetail&sharerId=86695400&sharerefer=PC&sharesource=m0_72845244&sharefrom=from_link">不同版本cuda对应的NVIDIA驱动版本</a></p>
+<blockquote>
+<p>但是CUDA版本也不一定是越新越好，某些较新的CUDA版本可能没有pytorch的适配版本，所以安装时要注意。(这其实是配环境很常见的事情，不同软件由不同公司厂家开发，进度各有快慢，版本兼容性也不一样，所以需要注意。)</p>
+</blockquote>
+<p>   <strong>不要下载deb格式的，下载runfile！！！！</strong></p>
+<p>   Cuda的一个安装教程： <a target="_blank" rel="noopener" href="https://yinguobing.com/install-cuda11-with-runfile/">https://yinguobing.com/install-cuda11-with-runfile/</a></p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+
+<p>   <img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/8.png"></p>
+<p>   如果显示了这个代表安装成功。这里显示的CUDA版本是11.5，同学们也可以下载这个版本的CUDA。</p>
+<h2 id="4-3-安装Python环境"><a href="#4-3-安装Python环境" class="headerlink" title="4.3 安装Python环境"></a>4.3 安装Python环境</h2><p>   我们要使用pip工具安装深度学习的一些包，有numpy、tensorflow、keras、pytorch等</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy tensorflow keras torch torchvision -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p>   后面的 <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a> 是清华大学的镜像源地址，下载速度比较快。</p>
+<p>   如果不想安装tensorflow，可以只安装pytorch。把 tensorflow keras 去掉。</p>
+<blockquote>
+<p>这里的安装命令是安装最新版本适配你电脑python环境的包，如果想安装特定版本的包，可以加上版本号。</p>
+</blockquote>
+<blockquote>
+<p>如果发现还是下载不了，也可以在官网上找到你想要torch和torchvision的版本，然后手动下载安装。</p>
+</blockquote>
+<p>   官网下载：<a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/torch_stable.html">torch版本大全</a></p>
+<p>   然后使用pip安装。<br>   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install *.whl</span><br></pre></td></tr></table></figure></p>
+<p>   最后，检查一下pytorch是否安装成功。是否能使用cuda。<br>   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">import torch</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure><br>   如果能输出True，那么恭喜你安装成功。</p>
+<h2 id="4-4-安装Anaconda"><a href="#4-4-安装Anaconda" class="headerlink" title="4.4 安装Anaconda"></a>4.4 安装Anaconda</h2><p>   Anaconda是一个python包管理虚拟环境（可装可不装，<del>不过还是建议装上喵</del>）</p>
+<p>   官网： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/459607806">https://zhuanlan.zhihu.com/p/459607806</a></p>
+<p>   可以参考的国内教程： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/459607806">https://zhuanlan.zhihu.com/p/459607806</a></p>
+<p>   官网安装教程： <a target="_blank" rel="noopener" href="https://docs.anaconda.com/free/anaconda/install/linux/">https://docs.anaconda.com/free/anaconda/install/linux/</a></p>
+<p>   因为ubuntu22.04默认安装了<strong>python3.10.7</strong>，正常就是ROS2 Humble需要的python版本，所以可以直接使用本机的python版本。</p>
+<blockquote>
+<p>如果有需要使用某些Qt程序，比如PyQt5，可能需要利用Anacoda安装python的3.9版本才能使用Qt。正常使用时来回切换python版本即可。</p>
+</blockquote>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n XXX python=3.9 </span><br><span class="line">conda activate XXX  # 进入虚拟环境</span><br></pre></td></tr></table></figure>
+
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate # 退出虚拟环境</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>如果配置有困难的同学可以先使用<code>Google Colab</code>进行深度学习实验。但是配环境是每一个RoboMaster视觉组新手小白都需要的基本能力，建议大家都掌握。</p>
 </blockquote>
-<h1 id="3-从线性回归到深度学习"><a href="#3-从线性回归到深度学习" class="headerlink" title="3. 从线性回归到深度学习"></a>3. 从线性回归到深度学习</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 生成数据</span></span><br><span class="line"><span class="comment"># 创建一些模拟数据，假设 y = 3x + 2 + 噪声</span></span><br><span class="line">torch.manual_seed(<span class="number">42</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line">x = torch.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>).unsqueeze(<span class="number">1</span>)  <span class="comment"># 输入数据 (100, 1)</span></span><br><span class="line">y = <span class="number">3</span> * x + <span class="number">2</span> + torch.randn(<span class="number">100</span>, <span class="number">1</span>) * <span class="number">2</span>  <span class="comment"># 输出数据带噪声 (100, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 定义一个简单的线性回归模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinearRegressionModel</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LinearRegressionModel, self).__init__()</span><br><span class="line">        self.linear = nn.Linear(<span class="number">1</span>, <span class="number">1</span>)  <span class="comment"># 输入特征维度1，输出特征维度1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.linear(x)</span><br><span class="line"></span><br><span class="line">model = LinearRegressionModel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.MSELoss()  <span class="comment"># 均方误差损失</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)  <span class="comment"># 随机梯度下降优化器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 训练模型</span></span><br><span class="line">epochs = <span class="number">1000</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">losses = []  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    model.train()  <span class="comment"># 设置为训练模式</span></span><br><span class="line">    optimizer.zero_grad()  <span class="comment"># 清空梯度</span></span><br><span class="line"></span><br><span class="line">    predictions = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line">    loss = criterion(predictions, y)  <span class="comment"># 计算损失</span></span><br><span class="line">    loss.backward()  <span class="comment"># 反向传播计算梯度</span></span><br><span class="line">    optimizer.step()  <span class="comment"># 更新模型参数</span></span><br><span class="line"></span><br><span class="line">    losses.append(loss.item())  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每100次输出一次训练信息</span></span><br><span class="line">    <span class="keyword">if</span> (epoch + <span class="number">1</span>) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;epochs&#125;</span>, Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 可视化训练结果</span></span><br><span class="line"><span class="comment"># 绘制损失曲线</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.plot(<span class="built_in">range</span>(epochs), losses)</span><br><span class="line">plt.title(<span class="string">&quot;Loss Curve&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Epochs&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;MSE Loss&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制预测结果</span></span><br><span class="line">model.<span class="built_in">eval</span>()  <span class="comment"># 设置为评估模式</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    predicted = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.scatter(x.numpy(), y.numpy(), label=<span class="string">&quot;Ground Truth&quot;</span>)  <span class="comment"># 原始数据</span></span><br><span class="line">plt.plot(x.numpy(), predicted.numpy(), color=<span class="string">&quot;red&quot;</span>, label=<span class="string">&quot;Predicted&quot;</span>)  <span class="comment"># 预测结果</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">&quot;Linear Regression Result&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
 <hr>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Delusional/article/details/113097030?fromshare=blogdetail&sharetype=blogdetail&sharerId=113097030&sharerefer=PC&sharesource=m0_72845244&sharefrom=from_link">详解使用pytorch实现线性回归</a></p>
+<p>作业：请同学们在自己Linux电脑上安装好深度学习环境，下次作业要用上，不用提交Gitee。</p>
 
         
       </div>
