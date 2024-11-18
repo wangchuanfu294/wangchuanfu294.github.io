@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>深度学习基础 | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考资料：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习基础">
+<meta property="og:url" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="前言FYT视觉组培训，针对RoboMaster的深度学习速成课。 预备知识：  学习完前面的C++培训知识，有基本的编程能力。 掌握Python的基本语法。  参考资料：  Deep Learning with Python Second Edition (主要讲tensorflow) DIVE INTO DEEP LEARNING (主要讲pytorch) 了解CV与RoboMaster视觉组">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/1.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/2.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/3.png">
+<meta property="og:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/4.png">
+<meta property="article:published_time" content="2024-11-16T10:22:33.000Z">
+<meta property="article:modified_time" content="2024-11-18T06:31:36.889Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2024/11 ">
+          November 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/10 ">
+          October 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/08 ">
+          August 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/06 ">
+          June 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/05 ">
+          May 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/03 ">
+          March 2024 
+          <div class="archive-count">7 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/02 ">
+          February 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/01 ">
+          January 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/12 ">
+          December 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          August 2023 
+          <div class="archive-count">6 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2024/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/">计算机视觉深度学习入门</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">深度学习基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/">自学小白的卡尔曼滤波实例</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/21/%E3%80%90Unity%E3%80%91live2d%E5%AF%BC%E5%85%A5%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B/">【Unity】快速搭建live2d桌宠</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/29/%E3%80%90%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E3%80%91%E8%A7%A3%E9%A2%98%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">【算法实验】解题实验报告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-深度学习基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        深度学习基础
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2024-11-16T10:22:33.000Z" itemprop="datePublished">2024-11-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.8k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>FYT视觉组培训，针对RoboMaster的深度学习速成课。</p>
+<p>预备知识：</p>
+<ul>
+<li>学习完前面的C++培训知识，有基本的编程能力。</li>
+<li>掌握Python的基本语法。</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li>Deep Learning with Python Second Edition (主要讲tensorflow)</li>
+<li>DIVE INTO DEEP LEARNING (主要讲pytorch)</li>
+<li>了解CV与RoboMaster视觉组 (视觉组圣经)</li>
+</ul>
+<p>讲解人</p>
+<blockquote>
+<p>计科2205 蔡明辰</p>
+</blockquote>
+<hr>
+<h1 id="1-初识深度学习"><a href="#1-初识深度学习" class="headerlink" title="1. 初识深度学习"></a>1. 初识深度学习</h1><h2 id="1-1-什么是深度学习"><a href="#1-1-什么是深度学习" class="headerlink" title="1.1 什么是深度学习"></a>1.1 什么是深度学习</h2><p>深度学习（Deep Learning）是<strong>机器学习</strong>的一种方法，它利用多层<strong>神经网络</strong>对数据进行学习，并通过<strong>反向传播</strong>算法进行<strong>梯度下降</strong>，从而使得神经网络能够自动学习到数据的特征，并对未知数据进行<strong>预测</strong>。</p>
+<h2 id="1-2-深度学习与RoboMaster"><a href="#1-2-深度学习与RoboMaster" class="headerlink" title="1.2 深度学习与RoboMaster"></a>1.2 深度学习与RoboMaster</h2><p>在RoboMaster中，有许多需要使用到深度学习的地方，如图像识别、目标检测等。</p>
+<ul>
+<li>装甲板检测：可以使用实时目标检测装甲板的位置，准确有效击打装甲板。</li>
+<li>装甲数字识别：使用一个简单的图像分类网络，识别数字。</li>
+<li>雷达：目标检测赛场上的各种敌我车辆，显示小地图，发动易伤buff。</li>
+</ul>
+<h2 id="1-3-机器学习与深度学习"><a href="#1-3-机器学习与深度学习" class="headerlink" title="1.3 机器学习与深度学习"></a>1.3 机器学习与深度学习</h2><h3 id="1-3-1-机器学习"><a href="#1-3-1-机器学习" class="headerlink" title="1.3.1 机器学习"></a>1.3.1 机器学习</h3><p>机器学习的主要任务是从数据中学习，并利用这些知识对未知数据进行预测或决策。机器学习的算法有监督学习、无监督学习、半监督学习、强化学习等。</p>
+<ul>
+<li>输入数据。机器学习的输入数据可以是图像、文本、声音、视频等。</li>
+<li>预期输出示例。机器学习的预期输出可以是分类、回归、聚类、排序等。</li>
+<li>衡量算法效果的方法。衡量结果是一种反馈信号，用于调整算法。这个调整的步骤就是我们说的<strong>学习</strong>。</li>
+</ul>
+<p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/1.png"></p>
+<p>机器学习和深度学习的核心问题在于有意义地变换数据。换句话说，在于学习输入数据的有用表示——这种表示可以让数据更接近预期输出。</p>
+<p>了解了<strong>学习</strong>的概念后，看看深度学习的特别之处。</p>
+<h3 id="1-3-2-深度学习之“深度”"><a href="#1-3-2-深度学习之“深度”" class="headerlink" title="1.3.2 深度学习之“深度”"></a>1.3.2 深度学习之“深度”</h3><p>深度学习是机器学习的一个分支，它利用多层神经网络对数据进行学习。</p>
+<p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/2.png"></p>
+<p>可以将深度神经网络看做一个多级的<strong>信息蒸馏</strong>：信息穿过多层过滤器，其纯度越来越高。</p>
+<h2 id="1-4-用三张图理解深度学习的工作原理"><a href="#1-4-用三张图理解深度学习的工作原理" class="headerlink" title="1.4 用三张图理解深度学习的工作原理"></a>1.4 用三张图理解深度学习的工作原理</h2><p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/3.png"></p>
+<p><img src="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/4.png"></p>
+<h2 id="1-5-神经网络的数学基础讲解"><a href="#1-5-神经网络的数学基础讲解" class="headerlink" title="1.5 神经网络的数学基础讲解"></a>1.5 神经网络的数学基础讲解</h2><h3 id="1-5-1-张量-Tensor-介绍"><a href="#1-5-1-张量-Tensor-介绍" class="headerlink" title="1.5.1 张量 (Tensor) 介绍"></a>1.5.1 张量 (Tensor) 介绍</h3><ol>
+<li>标量 (Scalar)</li>
+<li>向量 (Vector)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure></li>
+<li>矩阵 (Matrix)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure></li>
+<li>张量 (Tensor)<br>  更高维</li>
+</ol>
+<p>张量的基本运算包括点积、矩阵乘法、逐元素操作等。</p>
+<h3 id="1-5-2-链式求导（Chain-Rule）"><a href="#1-5-2-链式求导（Chain-Rule）" class="headerlink" title="1.5.2 链式求导（Chain Rule）"></a>1.5.2 链式求导（Chain Rule）</h3><p>链式求导是计算复合函数的导数的方法，用于深度学习中梯度的计算。</p>
+<h3 id="1-5-3-激活函数-Activation-Function"><a href="#1-5-3-激活函数-Activation-Function" class="headerlink" title="1.5.3 激活函数 (Activation Function)"></a>1.5.3 激活函数 (Activation Function)</h3><p>激活函数是神经网络的关键组成部分，它将输入信号转换为输出信号。</p>
+<p>常见的激活函数有：</p>
+<ul>
+<li>sigmoid</li>
+<li>tanh</li>
+<li>ReLU</li>
+<li>Softmax</li>
+</ul>
+<h3 id="1-5-4-反向传播-Backpropagation"><a href="#1-5-4-反向传播-Backpropagation" class="headerlink" title="1.5.4 反向传播 (Backpropagation)"></a>1.5.4 反向传播 (Backpropagation)</h3><p>反向传播是深度学习的核心算法，它通过计算梯度来更新网络参数，使得网络在训练过程中更好地拟合数据。</p>
+<h3 id="1-5-5-优化器-Optimizer"><a href="#1-5-5-优化器-Optimizer" class="headerlink" title="1.5.5 优化器 (Optimizer)"></a>1.5.5 优化器 (Optimizer)</h3><p>优化器是深度学习中用于更新网络参数的算法。</p>
+<p>常见的优化器有：</p>
+<ul>
+<li>随机梯度下降 (SGD)</li>
+<li>动量 (Momentum)</li>
+<li>AdaGrad</li>
+<li>Adam</li>
+</ul>
+<h2 id="1-6-深度学习的硬件"><a href="#1-6-深度学习的硬件" class="headerlink" title="1.6 深度学习的硬件"></a>1.6 深度学习的硬件</h2><p>CPU、GPU、TPU(张量处理器)</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xE421j7Uv/?share_source=copy_web&vd_source=e4838a460d5e965db0426ab9bd050b56">【硬核科普】从零开始认识显卡</a></p>
+<p>2007年，NVIDIA推出了CUDA，它是一种基于GPU的并行编程模型，可以让程序员编写并行代码，并在GPU上运行。</p>
+<h2 id="1-7-深度学习的历史与发展"><a href="#1-7-深度学习的历史与发展" class="headerlink" title="1.7 深度学习的历史与发展"></a>1.7 深度学习的历史与发展</h2><h3 id="1-7-1-神经网络的核心关键原则："><a href="#1-7-1-神经网络的核心关键原则：" class="headerlink" title="1.7.1 神经网络的核心关键原则："></a>1.7.1 神经网络的核心关键原则：</h3><ol>
+<li><strong>线性和非线性处理单元的交替</strong><br>通常称为层（layers）。</li>
+<li><strong>使用链式规则（也称为反向传播 Backpropagation）</strong><br>一次性调整网络中的全部参数。</li>
+</ol>
+<h3 id="1-7-2深度学习的提出历史："><a href="#1-7-2深度学习的提出历史：" class="headerlink" title="1.7.2深度学习的提出历史："></a>1.7.2深度学习的提出历史：</h3><ul>
+<li>一些中流砥柱的模型：<ul>
+<li>多层感知机（McCulloch and Pitts, 1943）</li>
+<li>卷积神经网络（LeCun et al., 1998）</li>
+<li>长短期记忆网络（Graves and Schmidhuber, 2005）</li>
+<li>Q学习（Watkins and Dayan, 1992）</li>
+</ul>
+</li>
+<li>曾因对休眠期和当时技术限制被搁置一段时间后，过去十年被重新发现。</li>
+</ul>
+<h3 id="1-7-3-为什么最近十几年深度学习才重新“热门”？"><a href="#1-7-3-为什么最近十几年深度学习才重新“热门”？" class="headerlink" title="1.7.3 为什么最近十几年深度学习才重新“热门”？"></a>1.7.3 为什么最近十几年深度学习才重新“热门”？</h3><ol>
+<li><strong>网络和图像传感器的发展使得数据的获取变得廉价</strong>  <ul>
+<li>大量图片、视频和用户数据信息使得大规模数据集变得触手可及。</li>
+</ul>
+</li>
+<li><strong>运算设备的算力发展</strong>  <ul>
+<li>GPU的普及，使大规模算力唾手可得。</li>
+</ul>
+</li>
+<li><strong>深度学习框架在传播想法方面发挥了至关重要的作用</strong>  <ul>
+<li>例如，PyTorch 和 TensorFlow。</li>
+<li>在2014年之前，对卡内基梅隆大学机器学习博士生来说，训练全性能回归模型曾是一个复杂的作业问题。而现在，这项任务只需不到10行代码即可完成。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-Linux下配置深度学习环境"><a href="#2-Linux下配置深度学习环境" class="headerlink" title="2. Linux下配置深度学习环境"></a>2. Linux下配置深度学习环境</h1><ol>
+<li><p>安装显卡驱动</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装CUDA</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Python环境，包括numpy、tensorflow、keras、pytorch等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy tensorflow keras torch torchvision</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>如果配置有困难的同学可以先使用<code>Google Colab</code>进行深度学习实验。但是配环境是每一个RoboMaster视觉组新手小白都需要的基本能力，建议大家都掌握。</p>
+</blockquote>
+<h1 id="3-从线性回归到深度学习"><a href="#3-从线性回归到深度学习" class="headerlink" title="3. 从线性回归到深度学习"></a>3. 从线性回归到深度学习</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 生成数据</span></span><br><span class="line"><span class="comment"># 创建一些模拟数据，假设 y = 3x + 2 + 噪声</span></span><br><span class="line">torch.manual_seed(<span class="number">42</span>)  <span class="comment"># 设置随机种子</span></span><br><span class="line">x = torch.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>).unsqueeze(<span class="number">1</span>)  <span class="comment"># 输入数据 (100, 1)</span></span><br><span class="line">y = <span class="number">3</span> * x + <span class="number">2</span> + torch.randn(<span class="number">100</span>, <span class="number">1</span>) * <span class="number">2</span>  <span class="comment"># 输出数据带噪声 (100, 1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 定义一个简单的线性回归模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinearRegressionModel</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LinearRegressionModel, self).__init__()</span><br><span class="line">        self.linear = nn.Linear(<span class="number">1</span>, <span class="number">1</span>)  <span class="comment"># 输入特征维度1，输出特征维度1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.linear(x)</span><br><span class="line"></span><br><span class="line">model = LinearRegressionModel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.MSELoss()  <span class="comment"># 均方误差损失</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)  <span class="comment"># 随机梯度下降优化器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 训练模型</span></span><br><span class="line">epochs = <span class="number">1000</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">losses = []  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    model.train()  <span class="comment"># 设置为训练模式</span></span><br><span class="line">    optimizer.zero_grad()  <span class="comment"># 清空梯度</span></span><br><span class="line"></span><br><span class="line">    predictions = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line">    loss = criterion(predictions, y)  <span class="comment"># 计算损失</span></span><br><span class="line">    loss.backward()  <span class="comment"># 反向传播计算梯度</span></span><br><span class="line">    optimizer.step()  <span class="comment"># 更新模型参数</span></span><br><span class="line"></span><br><span class="line">    losses.append(loss.item())  <span class="comment"># 记录损失</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 每100次输出一次训练信息</span></span><br><span class="line">    <span class="keyword">if</span> (epoch + <span class="number">1</span>) % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;epochs&#125;</span>, Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 可视化训练结果</span></span><br><span class="line"><span class="comment"># 绘制损失曲线</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.plot(<span class="built_in">range</span>(epochs), losses)</span><br><span class="line">plt.title(<span class="string">&quot;Loss Curve&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Epochs&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;MSE Loss&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制预测结果</span></span><br><span class="line">model.<span class="built_in">eval</span>()  <span class="comment"># 设置为评估模式</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    predicted = model(x)  <span class="comment"># 模型预测</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.scatter(x.numpy(), y.numpy(), label=<span class="string">&quot;Ground Truth&quot;</span>)  <span class="comment"># 原始数据</span></span><br><span class="line">plt.plot(x.numpy(), predicted.numpy(), color=<span class="string">&quot;red&quot;</span>, label=<span class="string">&quot;Predicted&quot;</span>)  <span class="comment"># 预测结果</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">&quot;Linear Regression Result&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Delusional/article/details/113097030?fromshare=blogdetail&sharetype=blogdetail&sharerId=113097030&sharerefer=PC&sharesource=m0_72845244&sharefrom=from_link">详解使用pytorch实现线性回归</a></p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2024/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/"
+      title="计算机视觉深度学习入门"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        计算机视觉深度学习入门
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/"
+      title="自学小白的卡尔曼滤波实例"
+     >
+
+    <p class="title-text">
+      
+        自学小白的卡尔曼滤波实例
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
