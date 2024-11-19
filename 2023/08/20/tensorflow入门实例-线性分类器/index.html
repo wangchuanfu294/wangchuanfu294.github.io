@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>tensorflow入门实例(线性分类器) | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言在参加机器学习面试时，面试官可能会要求你用Tensorflow从头开始实现一个线性分类器。这是一项非常简单的任务，可以用于考察求职这是否具有基本的机器学习背景。 生成数据集在二维平面上，生成两个类别线性可分的数据。生成办法是从一个具有特定协方差矩阵和特定均值的随机分布中抽取坐标来生成每一类点。 直观上讲，协方差矩阵描述了电云的形状，均值描述了电云的位置。  协方差矩阵在多维情况下用于描述多个随">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow入门实例(线性分类器)">
+<meta property="og:url" content="http://example.com/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="前言在参加机器学习面试时，面试官可能会要求你用Tensorflow从头开始实现一个线性分类器。这是一项非常简单的任务，可以用于考察求职这是否具有基本的机器学习背景。 生成数据集在二维平面上，生成两个类别线性可分的数据。生成办法是从一个具有特定协方差矩阵和特定均值的随机分布中抽取坐标来生成每一类点。 直观上讲，协方差矩阵描述了电云的形状，均值描述了电云的位置。  协方差矩阵在多维情况下用于描述多个随">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/Figure_1.png">
+<meta property="og:image" content="http://example.com/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/Figure_2.png">
+<meta property="article:published_time" content="2023-08-20T11:33:29.000Z">
+<meta property="article:modified_time" content="2023-08-20T13:48:58.000Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/Figure_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2024/11 ">
+          November 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/10 ">
+          October 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/08 ">
+          August 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/06 ">
+          June 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/05 ">
+          May 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/03 ">
+          March 2024 
+          <div class="archive-count">7 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/02 ">
+          February 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/01 ">
+          January 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/12 ">
+          December 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          August 2023 
+          <div class="archive-count">6 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2024/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/">计算机视觉深度学习入门</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">深度学习基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/">自学小白的卡尔曼滤波实例</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/21/%E3%80%90Unity%E3%80%91live2d%E5%AF%BC%E5%85%A5%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B/">【Unity】快速搭建live2d桌宠</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/29/%E3%80%90%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E3%80%91%E8%A7%A3%E9%A2%98%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">【算法实验】解题实验报告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-tensorflow入门实例-线性分类器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        tensorflow入门实例(线性分类器)
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-08-20T11:33:29.000Z" itemprop="datePublished">2023-08-20</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.5k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在参加机器学习面试时，面试官可能会要求你用Tensorflow从头开始实现一个线性分类器。这是一项非常简单的任务，可以用于考察求职这是否具有基本的机器学习背景。</p>
+<h1 id="生成数据集"><a href="#生成数据集" class="headerlink" title="生成数据集"></a>生成数据集</h1><p>在二维平面上，生成两个类别线性可分的数据。生成办法是从一个具有特定协方差矩阵和特定均值的随机分布中抽取坐标来生成每一类点。</p>
+<p>直观上讲，协方差矩阵描述了电云的形状，均值描述了电云的位置。</p>
+<blockquote>
+<p>协方差矩阵在多维情况下用于描述多个随机变量之间的协方差关系。对于 n 个随机变量的情况，协方差矩阵是一个 n×n 的矩阵，其中第 i 行和第 j 列的元素表示第 i 个和第 j 个变量之间的协方差。</p>
+</blockquote>
+<p>注意协方差矩阵是对称阵，对角线位置且都是1</p>
+<p>createdots.py的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义每个类别的样本数量，每个类别有1000个样本</span></span><br><span class="line">num_samples_per_class = <span class="number">1000</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 负样本</span></span><br><span class="line">negative_samples = np.random.multivariate_normal(</span><br><span class="line">    mean= [<span class="number">0</span>, <span class="number">3</span>],</span><br><span class="line">    cov= [[<span class="number">1</span>, <span class="number">0.5</span>],[<span class="number">0.5</span>, <span class="number">1</span>]],</span><br><span class="line">    size=num_samples_per_class</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正样本</span></span><br><span class="line">positive_samples = np.random.multivariate_normal(</span><br><span class="line">    mean= [<span class="number">3</span>, <span class="number">0</span>],</span><br><span class="line">    cov= [[<span class="number">1</span>, <span class="number">0.5</span>],[<span class="number">0.5</span>, <span class="number">1</span>]],</span><br><span class="line">    size=num_samples_per_class</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入数据集</span></span><br><span class="line">inputs = np.vstack((negative_samples, positive_samples)).astype(np.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标(标签)数据集</span></span><br><span class="line">targets = np.vstack((np.zeros((num_samples_per_class, <span class="number">1</span>), dtype=<span class="string">&quot;float32&quot;</span>), np.ones((num_samples_per_class, <span class="number">1</span>),dtype=<span class="string">&quot;float32&quot;</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示</span></span><br><span class="line">plt.scatter(inputs[:, <span class="number">0</span>], inputs[:, <span class="number">1</span>], c=targets)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>negative_samples = np.random.multivariate_normal(mean=[0, 3], cov=[[1, 0.5], [0.5, 1]], size=num_samples_per_class)</code>: 使用<code>np.random.multivariate_normal</code>函数生成一个二维高斯分布的负样本集合。<code>mean</code>参数指定了均值向量，<code>cov</code>参数指定了协方差矩阵，<code>size</code>参数指定生成样本的数量。这个函数生成了一个具有负标签的数据集，均值为[0, 3]，协方差矩阵为[[1, 0.5], [0.5, 1]]。</p>
+</blockquote>
+<p>显示随机生成数据集</p>
+<p><img src="/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/Figure_1.png"></p>
+<p>注意看在大概(0, 0)的位置有一个黄色点在紫色点的位置，在(2, 1)的周围也有个紫色点在黄色点的位置，过会再看这两个点0</p>
+<h1 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h1><ol>
+<li><p>导入必要的库：</p>
+<ul>
+<li><code>tensorflow</code> 用于构建和训练神经网络模型。</li>
+<li><code>matplotlib.pyplot</code> 用于数据可视化。</li>
+<li><code>numpy</code> 用于数值计算。</li>
+<li><code>createdots</code> 是一个模块，用于导入名为 <code>inputs</code> 和 <code>targets</code> 的数据。</li>
+</ul>
+</li>
+<li><p>定义输入和输出维度：</p>
+<ul>
+<li><code>input_dim = 2</code> 表示输入数据的维度为2，这里是二维点。</li>
+<li><code>output_dim = 1</code> 表示模型的输出维度为1，即模型预测的每个样本的分数。</li>
+</ul>
+</li>
+<li><p>初始化模型参数：</p>
+<ul>
+<li><code>w</code> 和 <code>b</code> 是模型的权重和偏差，分别用 <code>tf.Variable</code> 初始化。<code>w</code> 是一个形状为 <code>(input_dim, output_dim)</code> 的矩阵，而 <code>b</code> 是一个形状为 <code>(output_dim,)</code> 的向量。</li>
+</ul>
+</li>
+<li><p>定义前向传播函数 <code>model</code>：</p>
+<ul>
+<li><code>model(inputs)</code> 通过矩阵乘法和偏差相加来计算模型的预测结果。</li>
+</ul>
+</li>
+<li><p>定义均方误差损失函数 <code>square_loss</code>：</p>
+<ul>
+<li><code>square_loss(targets, predictions)</code> 计算预测值与目标值之间的均方误差损失(MSE)。</li>
+</ul>
+</li>
+<li><p>设置学习率：</p>
+<ul>
+<li><code>learning_rate = 0.1</code> 表示训练过程中的学习率，用于控制参数更新的步长。</li>
+</ul>
+</li>
+<li><p>定义训练步骤函数 <code>training_step</code>：</p>
+<ul>
+<li>在这个函数中，使用 TensorFlow 的自动微分功能计算梯度，然后通过梯度下降法更新模型的参数 <code>w</code> 和 <code>b</code>，同时返回损失值。</li>
+</ul>
+</li>
+<li><p>进行训练：</p>
+<ul>
+<li>使用循环进行40次训练迭代，每次迭代调用 <code>training_step</code> 函数来更新模型参数，并打印出损失值。</li>
+</ul>
+</li>
+<li><p>预测：</p>
+<ul>
+<li>使用训练后的模型进行预测，将结果保存在 <code>predictions</code> 中。</li>
+</ul>
+</li>
+<li><p>可视化显示分类结果：</p>
+<ul>
+<li>创建一个从 -1 到 4 的线性空间，计算模型的决策边界，然后使用 <code>matplotlib.pyplot</code> 绘制分类边界。</li>
+<li>使用 <code>plt.scatter</code> 绘制数据点，其中颜色表示预测结果是否大于0.5，用0.5作为分类的阈值。</li>
+</ul>
+</li>
+</ol>
+<p>model.py的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> createdots <span class="keyword">import</span> inputs, targets</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入的是二维点</span></span><br><span class="line">input_dim = <span class="number">2</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个样本输出的预测值是一个分数(预测样本属于0，那么分数越接近0)</span></span><br><span class="line">output_dim = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">w = tf.Variable(initial_value=tf.random.uniform(shape=(input_dim, output_dim)))</span><br><span class="line">b = tf.Variable(initial_value=tf.zeros(shape=(output_dim,)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前向传播函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">model</span>(<span class="params">inputs</span>):</span><br><span class="line">    <span class="keyword">return</span> tf.matmul(inputs, w) + b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 均方误差损失函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">square_loss</span>(<span class="params">targets, predictions</span>):</span><br><span class="line">    per_sample_losses = tf.square(targets - predictions)</span><br><span class="line">    <span class="keyword">return</span> tf.reduce_mean(per_sample_losses)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 学习率</span></span><br><span class="line">learning_rate = <span class="number">0.1</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练步骤函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">training_step</span>(<span class="params">inputs, targets</span>):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        predictions = model(inputs)</span><br><span class="line">        loss = square_loss(targets, predictions)</span><br><span class="line">    grad_loss_wrt_w, grad_loss_wrt_b = tape.gradient(loss, [w, b])</span><br><span class="line">    w.assign_sub(grad_loss_wrt_w * learning_rate)</span><br><span class="line">    b.assign_sub(grad_loss_wrt_b * learning_rate)</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练40遍</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">40</span>):</span><br><span class="line">    loss = training_step(inputs, targets)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Loss at step <span class="subst">&#123;step&#125;</span>: <span class="subst">&#123;loss:<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测</span></span><br><span class="line">predictions = model(inputs)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可视化显示线性分类器</span></span><br><span class="line">x = np.linspace(-<span class="number">1</span>, <span class="number">4</span>, <span class="number">100</span>)</span><br><span class="line">y = - w[<span class="number">0</span>] / w[<span class="number">1</span>] * x + (<span class="number">0.5</span> - b) / w[<span class="number">1</span>]</span><br><span class="line">plt.plot(x, y, <span class="string">&quot;-r&quot;</span>)</span><br><span class="line">plt.scatter(inputs[:, <span class="number">0</span>], inputs[:, <span class="number">1</span>], c=predictions[:, <span class="number">0</span>] &gt; <span class="number">0.5</span>) <span class="comment"># 用0.5这个阈值区分</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>仔细想想，prediction &#x3D; [ [w1] , [w2] ] dot [x,y] +b &#x3D; w1 * x + w2 * y + b, 又因为类别0是w1 * x + w2 * y +b &lt; 0.5, 类别1是w1 * x + w2 * y +b &gt; 0.5, 所以直线方程是w1 * x + w2 * y +b &#x3D; 0.5，变形一下就是y &#x3D; -w1&#x2F;w2 * x + (0.5-b)&#x2F;w2</p>
+<p>训练结果，损失函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Loss at step 0: 2.8693</span><br><span class="line">Loss at step 1: 0.4232</span><br><span class="line">Loss at step 2: 0.1604</span><br><span class="line">Loss at step 3: 0.1208</span><br><span class="line">Loss at step 4: 0.1090</span><br><span class="line">Loss at step 5: 0.1014</span><br><span class="line">Loss at step 6: 0.0947</span><br><span class="line">Loss at step 7: 0.0887</span><br><span class="line">Loss at step 8: 0.0831</span><br><span class="line">Loss at step 9: 0.0781 </span><br><span class="line">Loss at step 10: 0.0735</span><br><span class="line">Loss at step 11: 0.0693</span><br><span class="line">Loss at step 12: 0.0654</span><br><span class="line">Loss at step 13: 0.0619</span><br><span class="line">Loss at step 14: 0.0587</span><br><span class="line">Loss at step 15: 0.0557</span><br><span class="line">Loss at step 16: 0.0530</span><br><span class="line">Loss at step 17: 0.0506</span><br><span class="line">Loss at step 18: 0.0483</span><br><span class="line">Loss at step 19: 0.0462</span><br><span class="line">Loss at step 20: 0.0444</span><br><span class="line">Loss at step 21: 0.0426</span><br><span class="line">Loss at step 22: 0.0411</span><br><span class="line">Loss at step 23: 0.0396</span><br><span class="line">Loss at step 24: 0.0383</span><br><span class="line">Loss at step 25: 0.0371</span><br><span class="line">Loss at step 26: 0.0360</span><br><span class="line">Loss at step 27: 0.0350</span><br><span class="line">Loss at step 28: 0.0341</span><br><span class="line">Loss at step 29: 0.0332</span><br><span class="line">Loss at step 30: 0.0325</span><br><span class="line">Loss at step 31: 0.0318</span><br><span class="line">Loss at step 32: 0.0311</span><br><span class="line">Loss at step 33: 0.0305</span><br><span class="line">Loss at step 34: 0.0300</span><br><span class="line">Loss at step 35: 0.0295</span><br><span class="line">Loss at step 36: 0.0291</span><br><span class="line">Loss at step 37: 0.0286</span><br><span class="line">Loss at step 38: 0.0283</span><br><span class="line">Loss at step 39: 0.0279</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/Figure_2.png"></p>
+<p>现在斜线两边就全是紫点或黄点了。</p>
+<hr>
+<p>参考：python深度学习</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/"
+      title="用手机NFC复制校园一卡通"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        用手机NFC复制校园一卡通
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/08/14/day8/"
+      title="day8"
+     >
+
+    <p class="title-text">
+      
+        day8
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>用手机NFC复制校园一卡通 | 日月星辰的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言 NFC是Near Field Communication缩写，即近距离无线通讯技术。  校园卡一般是感应式CPU卡，是一种加密卡。 如果只有一个带nfc功能的安卓手机，那么手机只能复制校园卡的第0块第0扇区，类似于nfc卡的卡号或者有点像是nfc的名字。 加密部分都不能被读取出来。一般关于钱的部分都被加密了。 所以想完完整整的复制校园卡需要自己在淘宝购买解码器，或者去校园外的锁业打听，一般锁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用手机NFC复制校园一卡通">
+<meta property="og:url" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/index.html">
+<meta property="og:site_name" content="日月星辰的个人博客">
+<meta property="og:description" content="前言 NFC是Near Field Communication缩写，即近距离无线通讯技术。  校园卡一般是感应式CPU卡，是一种加密卡。 如果只有一个带nfc功能的安卓手机，那么手机只能复制校园卡的第0块第0扇区，类似于nfc卡的卡号或者有点像是nfc的名字。 加密部分都不能被读取出来。一般关于钱的部分都被加密了。 所以想完完整整的复制校园卡需要自己在淘宝购买解码器，或者去校园外的锁业打听，一般锁">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/1.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/2.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/10.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/3.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/4.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/5.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/R-C.png">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/6.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/7.jpg">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/8.png">
+<meta property="og:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/9.jpg">
+<meta property="article:published_time" content="2023-09-06T13:44:20.000Z">
+<meta property="article:modified_time" content="2023-09-07T13:44:38.000Z">
+<meta property="article:author" content="cmc">
+<meta property="article:tag" content="嵌入式开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="日月星辰的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/avatar.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/./assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>日月星辰的个人博客 </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="Search" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/./assets/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">日月星辰 </div>
+      <div class="dot"></div>
+      <div class="subtitle">一个不想拯救世界的技术宅 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_72845244?type=blog" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/wangchuanfu294" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Unity/" rel="tag">Unity</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93-%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91/" rel="tag">安卓&#x2F;鸿蒙开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/" rel="tag">生活随笔</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag">目标检测</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%89%B9%E8%AE%AD%E8%90%A5/" rel="tag">算法特训营</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Archives</h3>
+      
+      
+        <a class="archive-link" href="/archives/2024/11 ">
+          November 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/10 ">
+          October 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/08 ">
+          August 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/06 ">
+          June 2024 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/05 ">
+          May 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/04 ">
+          April 2024 
+          <div class="archive-count">5 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/03 ">
+          March 2024 
+          <div class="archive-count">7 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/02 ">
+          February 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2024/01 ">
+          January 2024 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/12 ">
+          December 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/09 ">
+          September 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          August 2023 
+          <div class="archive-count">6 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/07 ">
+          July 2023 
+          <div class="archive-count">15 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Recent Posts</h3>
+      <ul>
+        
+          <li>
+            <a href="/2024/11/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/">计算机视觉深度学习入门</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">深度学习基础</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/16/%E8%87%AA%E5%AD%A6%E5%B0%8F%E7%99%BD%E7%9A%84%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%AE%9E%E4%BE%8B/">自学小白的卡尔曼滤波实例</a>
+          </li>
+        
+          <li>
+            <a href="/2024/08/21/%E3%80%90Unity%E3%80%91live2d%E5%AF%BC%E5%85%A5%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B/">【Unity】快速搭建live2d桌宠</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/29/%E3%80%90%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E3%80%91%E8%A7%A3%E9%A2%98%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">【算法实验】解题实验报告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-用手机NFC复制校园一卡通" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        用手机NFC复制校园一卡通
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-09-06T13:44:20.000Z" itemprop="datePublished">2023-09-06</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+    Uncategorized 
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.6k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>NFC是Near Field Communication缩写，即<strong>近距离无线通讯技术</strong>。</p>
+</blockquote>
+<p>校园卡一般是感应式CPU卡，是一种加密卡。</p>
+<p>如果只有一个带nfc功能的安卓手机，那么手机只能复制校园卡的第0块第0扇区，类似于nfc卡的卡号或者有点像是nfc的名字。</p>
+<p>加密部分都不能被读取出来。一般关于钱的部分都被加密了。</p>
+<p>所以想完完整整的复制校园卡需要自己在淘宝购买解码器，或者去校园外的锁业打听，一般锁业需要本人带着自己的饭卡和身份证才能帮你复制。</p>
+<p>复制好了之后，原来的饭卡和复制出来的饭卡里面的钱可以通用，在一个卡里面花钱了，另一张卡里面钱就同步也减少了，极少部分学校的一卡通复制之后金钱不同步，如果遇到这个情况建议不要贪财，应该直接向有关部门反映，也贪不了多少钱，犯不上冒着被处分的风险钻这个漏洞。</p>
+<p>如果不想这么麻烦，不想涉及到金钱，只想用手机nfc刷门禁的同学可以继续往下看！</p>
+<p>小编是中南大学本科生。就以中南大学校园卡来举例。</p>
+<hr>
+<p>本文参考资料：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/308487617/answer/1753667726">https://www.zhihu.com/question/308487617/answer/1753667726</a></p>
+<h1 id="入门教程-——-直接利用手机NFC创建虚拟校园卡"><a href="#入门教程-——-直接利用手机NFC创建虚拟校园卡" class="headerlink" title="入门教程 —— 直接利用手机NFC创建虚拟校园卡"></a>入门教程 —— 直接利用手机NFC创建虚拟校园卡</h1><p>手机只能复制校园卡的第0块第0扇区，而一般的门禁也基本上只读取校园卡的第0块第0扇区，所以手机自带的nfc可以刷开学校的门禁。</p>
+<p>小编用的是华为 Hi nova 9 Pro 的手机，在手机可以找到华为手机自带的应用“钱包”，打开后点击卡包，点击右上角的加号“➕”，选择钥匙，选择门禁卡。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/1.jpg"></p>
+<p>然后“模拟实体门禁卡”即可复制校园卡，注意这里并不能复制校园卡中饭卡和水卡涉及金额的部分，这些都是有加密的。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/2.jpg"></p>
+<p>如果你还有华为手表的话，一般能用蓝牙和手机连接的华为手表也可以复制校园卡门禁。(^_^)</p>
+<h1 id="基础教程-——-将校园卡0扇区序列号复制到CUID卡中"><a href="#基础教程-——-将校园卡0扇区序列号复制到CUID卡中" class="headerlink" title="基础教程 —— 将校园卡0扇区序列号复制到CUID卡中"></a>基础教程 —— 将校园卡0扇区序列号复制到CUID卡中</h1><p>这种方法和上面手机类似，这个方法是将0扇区的信息复制到我们平常用的那种小蓝色门禁钥匙里。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li><p>没有安卓手机的同学借一个带nfc功能的安卓手机，需要下载一个app，名字是mifare classic tool，应用商店可能没有这个app，大家百度一下这个名字会有很多网站分享这个软件的安装包，下载好软件安装包后，发送到安卓手机上面，直接安装到手机上即可。</p>
+</li>
+<li><p>淘宝随便买几张CUID卡(注意一定是CUID卡)。这里我要多说几句，我在大一时玩嵌入式开发，那个arduino套装中RC522模块中自带的一张白卡和小蓝钥匙是IC卡，不是CUID卡。IC卡的0扇区是不可擦写的。关于IC，ID，UID，FUID，CUID，CPU卡的区别，请移步到这里知乎<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351266514%E3%80%82">https://zhuanlan.zhihu.com/p/351266514。</a></p>
+</li>
+</ol>
+<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>打开app</p>
+<p>选择“读标签”,全选密钥文件，将校园卡放在手机下(手机NFC一般是在摄像头附近)，调整好位置，发现屏幕底下显示了卡片的序列号，拿笔记下你的序列号，这个序列号是非常重要的，然后点击“开始映射并读取标签”。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/10.jpg"></p>
+<p>如果这里因为标签失连(可能是因为加密卡的原因)读取中途失败也没有关系，退出来点击“写标签”。点击“克隆UID”，“打开UID克隆工具”，勾选“显示选项”，看到里面的块0的其余部分和块0的写密码。</p>
+<p>接下来详细讲一下写标签的两种方法：</p>
+<ol>
+<li>用刚刚读标签的方法，再对你的CUID卡用一次，观察读取的标签。</li>
+</ol>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/3.jpg"></p>
+<p>可以观察到，最上面一排紫色的是UID和厂家信息，密钥A和密钥B分别是其下面的绿色的和深绿色的，看扇区0就好。</p>
+<p>记下密钥，填写到克隆UID那里，把CUID卡放好，然后点击“计算块0并克隆UID”，火速搞定。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/4.jpg"></p>
+<ol start="2">
+<li>直接写块。</li>
+</ol>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/5.jpg"></p>
+<p>这里的数据就就要想想了，这里要求填16字节，一个字节就是两位16进制，所以要填写32个16进制数。可是刚刚数了一数那个块0剩余部分只有22位，加上8位序列数就是30位，还差2位什么？</p>
+<p>通过查阅资料知道0扇区0块是这种构成。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/R-C.png"></p>
+<blockquote>
+<p>在序列号和厂商信息之间夹有一个校验数，通常是序列号的异或值，这里我们可以偷懒用MCT这个软件工具里的BCC计算器来输入序列号算校验数。</p>
+</blockquote>
+<p>然后就凑齐了32位，一顿输出即可。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/6.jpg"></p>
+<p>全选密钥文件，这里的密钥文件就有很多密钥，几乎可以涵盖所有情况。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/7.jpg"></p>
+<p>大功告成！</p>
+<h1 id="进阶教程-——-CUID-PCB升级校园卡"><a href="#进阶教程-——-CUID-PCB升级校园卡" class="headerlink" title="进阶教程 —— CUID+PCB升级校园卡"></a>进阶教程 —— CUID+PCB升级校园卡</h1><p>这个部分就有点难了，请各位看情况自行撤退。</p>
+<p>小编采用嘉立创EDA画板子。上淘宝买到cuid的芯片(不是卡了)，和0603LED灯珠。</p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/8.png"></p>
+<p>这个线圈是画在PCB板子里面，然后<strong>并联</strong>几个0603灯珠，焊上CUID芯片，就OK了</p>
+<p>开源链接<a target="_blank" rel="noopener" href="https://oshwhub.com/heiliheili/qi-sheng-shao-huan-fan-ka-DIY%EF%BC%8C%E4%B9%9F%E7%BB%99%E5%8E%9F%E4%BD%9C%E8%80%85%E7%82%B9%E4%B8%AA%E8%B5%9E%E5%90%A7%EF%BC%8C%E6%88%91%E4%BF%AE%E6%94%B9%E4%BA%86%E4%B8%80%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%86%E5%87%BA%E6%9D%A5%E3%80%82">https://oshwhub.com/heiliheili/qi-sheng-shao-huan-fan-ka-DIY，也给原作者点个赞吧，我修改了一下打印了出来。</a></p>
+<p><img src="/2023/09/06/%E7%94%A8%E6%89%8B%E6%9C%BANFC%E5%A4%8D%E5%88%B6%E6%A0%A1%E5%9B%AD%E4%B8%80%E5%8D%A1%E9%80%9A/9.jpg"></p>
+<blockquote>
+<p>然后就可以带着这张卡去学校教室打卡机面前社死<del>装逼</del>了</p>
+</blockquote>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>另外，还可以在安卓手机上下载个NFC Tools Pro这个软件，将你想存入的信息写如到上面的卡中，比如我把我的个人博客网址写进卡中<a target="_blank" rel="noopener" href="https://wangchuanfu294.github.io/%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%88%AB%E4%BA%BA%E7%94%A8%E6%89%8B%E6%9C%BANFC%E4%B8%80%E6%89%AB%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80%E4%BA%86%E3%80%82">https://wangchuanfu294.github.io/，这样别人用手机NFC一扫就可以打开了。</a></p>
+<p>最后，本项目以学习为目的，请勿用于其他用途，还请各位同学们保管好自己的校园卡哟。</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/2023/12/22/%E6%97%B6%E5%85%89%E6%9C%BA%E2%80%94%E2%80%94%E5%9B%9E%E9%A1%BE%E6%88%91%E4%B8%8E%E7%BC%96%E7%A8%8B/"
+      title="时光机——回顾我与编程"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        时光机——回顾我与编程
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/08/20/tensorflow%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8/"
+      title="tensorflow入门实例(线性分类器)"
+     >
+
+    <p class="title-text">
+      
+        tensorflow入门实例(线性分类器)
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2024 日月星辰<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
